@@ -19,7 +19,7 @@ class SingleControlRenderer(private val component: FormControlComponent) : Contr
         id: String?,
         prefix: String,
         context: RenderContext,
-        control: RenderContext.() -> Unit
+        control: RenderContext.() -> RenderContext
     ) {
         context.stackUp(
             {
@@ -34,20 +34,23 @@ class SingleControlRenderer(private val component: FormControlComponent) : Contr
         ) {
             spacing { tiny }
             items {
-                label({
+                val label = label({
                     component.labelStyle.value()
                 }) {
-                    component.controlRegistration.assignee?.id?.let { `for`(it) }
                     className(formGroupElementLabelMarker)
                     component.label.values.asText()
-                }
+                }.domNode
                 stackUp({
                     alignItems { start }
                     width { full }
                 }) {
                     spacing { none }
                     items {
-                        control(this)
+                        control(this).apply {
+                            label.addEventListener("click", {
+                                this.domNode.focus()
+                            })
+                        }
                         component.renderHelperText(this)
                         component.renderValidationMessages(this)
                     }
@@ -72,7 +75,7 @@ class ControlGroupRenderer(private val component: FormControlComponent) : Contro
         id: String?,
         prefix: String,
         context: RenderContext,
-        control: RenderContext.() -> Unit
+        control: RenderContext.() -> RenderContext
     ) {
         context.div({
             width { full }

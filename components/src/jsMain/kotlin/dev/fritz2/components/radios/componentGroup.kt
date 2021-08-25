@@ -7,7 +7,6 @@ import dev.fritz2.dom.EventContext
 import dev.fritz2.dom.html.Div
 import dev.fritz2.dom.html.RenderContext
 import dev.fritz2.dom.states
-import dev.fritz2.identification.uniqueId
 import dev.fritz2.styling.StyleClass
 import dev.fritz2.styling.div
 import dev.fritz2.styling.params.BasicParams
@@ -86,7 +85,7 @@ import org.w3c.dom.HTMLElement
  * ```
  */
 open class RadioGroupComponent<T>(protected val items: List<T>, protected val value: Store<T>? = null) :
-    Component<Unit>,
+    Component<Div>,
     InputFormProperties by InputFormMixin(),
     SeverityProperties by SeverityMixin(),
     OrientationProperty by OrientationMixin(Orientation.VERTICAL) {
@@ -123,16 +122,16 @@ open class RadioGroupComponent<T>(protected val items: List<T>, protected val va
         baseClass: StyleClass,
         id: String?,
         prefix: String
-    ) {
+    ): Div {
         val internalStore = SingleSelectionStore()
-        val grpId = id ?: uniqueId()
+        val groupName = "radioGroup-${randomId()}"
 
-        context.apply {
+        return with(context) {
             div({
-                layoutOf(this@RadioGroupComponent.orientation.value(OrientationContext))()
                 verticalAlign { top }
                 css("-webkit-box-align: center;")
                 alignItems { center }
+                layoutOf(this@RadioGroupComponent.orientation.value(OrientationContext))()
             }, styling, baseClass, id, prefix) {
                 (this@RadioGroupComponent.value?.data ?: this@RadioGroupComponent.selectedItem.values)
                     .map { selectedItem ->
@@ -141,8 +140,9 @@ open class RadioGroupComponent<T>(protected val items: List<T>, protected val va
 
                 this@RadioGroupComponent.items.withIndex().forEach { (index, item) ->
                     val checkedFlow = internalStore.data.map { it == index }.distinctUntilChanged()
-                    radio(styling = this@RadioGroupComponent.itemStyle.value, id = grpId + "-grp-item-" + uniqueId()) {
+                    radio(styling = this@RadioGroupComponent.itemStyle.value) {
                         this.size { this@RadioGroupComponent.size.value.invoke(Theme().radio.sizes) }
+                        groupName(groupName)
                         labelStyle(this@RadioGroupComponent.labelStyle.value)
                         selectedStyle(this@RadioGroupComponent.selectedStyle.value)
                         label { this@RadioGroupComponent.labelRendering.value(this, item) }

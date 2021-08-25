@@ -559,12 +559,7 @@ open class DefaultTheme : Theme {
 
     override val checkbox = object : CheckboxStyles {
         override val sizes = object : FormSizesStyles {
-            private val basic: Style<BasicParams> = {
-                display { inlineFlex }
-                css("align-items: center;")
-            }
             override val small: Style<BasicParams> = {
-                basic()
                 css("--cb-size: .75rem")
                 css("--cb-svg-size: .50rem")
                 css("--cb-radius:  ${radii.smaller}")
@@ -573,7 +568,6 @@ open class DefaultTheme : Theme {
                 margins { right { tiny } }
             }
             override val normal: Style<BasicParams> = {
-                basic()
                 css("--cb-size: 1.0rem")
                 css("--cb-svg-size: .75rem")
                 css("--cb-radius:  ${radii.small}")
@@ -582,7 +576,6 @@ open class DefaultTheme : Theme {
                 margins { right { smaller } }
             }
             override val large: Style<BasicParams> = {
-                basic()
                 css("--cb-size: 1.5rem")
                 css("--cb-svg-size: 1.25rem")
                 css("--cb-radius:  ${radii.normal}")
@@ -674,26 +667,19 @@ open class DefaultTheme : Theme {
 
     override val radio = object : RadioStyles {
         override val sizes = object : FormSizesStyles {
-            private val basic: Style<BasicParams> = {
-                display { inlineFlex }
-                css("align-items: center;")
-            }
             override val small: Style<BasicParams> = {
-                basic()
                 css("--rb-size: .75rem")
                 fontSize { small }
                 lineHeight { small }
                 margins { right { tiny } }
             }
             override val normal: Style<BasicParams> = {
-                basic()
                 css("--rb-size: 1.0rem")
                 fontSize { normal }
                 lineHeight { normal }
                 margins { right { smaller } }
             }
             override val large: Style<BasicParams> = {
-                basic()
                 css("--rb-size: 1.5rem")
                 fontSize { larger }
                 lineHeight { larger }
@@ -764,12 +750,7 @@ open class DefaultTheme : Theme {
 
     override val switch = object : SwitchStyles {
         override val sizes = object : FormSizesStyles {
-            private val basic: Style<BasicParams> = {
-                display { inlineFlex }
-                css("align-items: center;")
-            }
             override val small: Style<BasicParams> = {
-                basic()
                 css("--sw-width: 1.35rem")
                 css("--sw-height: .75rem")
                 fontSize { small }
@@ -777,7 +758,6 @@ open class DefaultTheme : Theme {
                 margins { right { tiny } }
             }
             override val normal: Style<BasicParams> = {
-                basic()
                 css("--sw-width: 1.85rem")
                 css("--sw-height: 1rem")
                 fontSize { normal }
@@ -785,7 +765,6 @@ open class DefaultTheme : Theme {
                 margins { right { smaller } }
             }
             override val large: Style<BasicParams> = {
-                basic()
                 css("--sw-width: 2.875rem")
                 css("--sw-height: 1.5rem")
                 fontSize { larger }

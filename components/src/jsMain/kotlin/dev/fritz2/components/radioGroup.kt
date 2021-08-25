@@ -43,6 +43,4 @@ fun <T> RenderContext.radioGroup(
     id: String? = null,
     prefix: String = "radioGroupComponent",
     build: RadioGroupComponent<T>.() -> Unit = {}
-) {
-    RadioGroupComponent(items, value).apply(build).render(this, styling, baseClass, id, prefix)
-}
+) = RadioGroupComponent(items, value).apply(build).render(this, styling, baseClass, id, prefix)

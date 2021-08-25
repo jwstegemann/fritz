@@ -34,6 +34,4 @@ fun RenderContext.textArea(
     id: String? = null,
     prefix: String = "textArea",
     build: TextAreaComponent.() -> Unit
-) {
-    TextAreaComponent(value).apply(build).render(this, styling, baseClass, id, prefix)
-}
+) = TextAreaComponent(value).apply(build).render(this, styling, baseClass, id, prefix)

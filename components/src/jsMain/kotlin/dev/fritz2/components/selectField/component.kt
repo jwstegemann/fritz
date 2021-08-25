@@ -4,9 +4,9 @@ import dev.fritz2.binding.Store
 import dev.fritz2.components.foundations.*
 import dev.fritz2.components.icon
 import dev.fritz2.dom.EventContext
+import dev.fritz2.dom.html.Label
 import dev.fritz2.dom.html.RenderContext
 import dev.fritz2.dom.selectedValue
-import dev.fritz2.identification.uniqueId
 import dev.fritz2.styling.*
 import dev.fritz2.styling.params.BasicParams
 import dev.fritz2.styling.params.BoxParams
@@ -69,7 +69,7 @@ import org.w3c.dom.HTMLElement
  * ```
  */
 open class SelectFieldComponent<T>(protected val items: List<T>, protected val value: Store<T>? = null) :
-    Component<Unit>,
+    Component<Label>,
     InputFormProperties by InputFormMixin(),
     SeverityProperties by SeverityMixin() {
 
@@ -122,22 +122,20 @@ open class SelectFieldComponent<T>(protected val items: List<T>, protected val v
         baseClass: StyleClass,
         id: String?,
         prefix: String
-    ) {
+    ): Label {
         val internalStore = SingleSelectionStore()
 
-        val grpId = id ?: uniqueId()
-
-        context.apply {
+        return with(context) {
             (this@SelectFieldComponent.value?.data ?: this@SelectFieldComponent.selectedItem.values)
                 .map { selectedItem ->
                     this@SelectFieldComponent.items.indexOf(selectedItem).let { if (it == -1) null else it }
                 } handledBy internalStore.update
 
-            div({}, styling, baseClass + staticCss, prefix = prefix) {
+            label(styling, baseClass + staticCss, prefix = prefix) {
                 select({
                     this@SelectFieldComponent.variant.value.invoke(Theme().select.variants)()
                     this@SelectFieldComponent.size.value.invoke(Theme().select.sizes)()
-                }, styling, baseClass, grpId) {
+                }, styling, baseClass, id) {
                     disabled(this@SelectFieldComponent.disabled.values)
 
                     internalStore.data.render {

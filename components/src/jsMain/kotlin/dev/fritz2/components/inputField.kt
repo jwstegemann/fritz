@@ -2,8 +2,9 @@ package dev.fritz2.components
 
 
 import dev.fritz2.binding.Store
-import dev.fritz2.components.foundations.*
+import dev.fritz2.components.foundations.ElementMixin
 import dev.fritz2.components.inputField.InputFieldComponent
+import dev.fritz2.dom.html.Input
 import dev.fritz2.dom.html.RenderContext
 import dev.fritz2.styling.StyleClass
 import dev.fritz2.styling.params.BasicParams
@@ -44,6 +45,4 @@ fun RenderContext.inputField(
     id: String? = null,
     prefix: String = "inputField",
     build: InputFieldComponent.() -> Unit = {}
-) {
-    InputFieldComponent(value).apply(build).render(this, styling, baseClass, id, prefix)
-}
+): Input = InputFieldComponent(value).apply(build).render(this, styling, baseClass, id, prefix)

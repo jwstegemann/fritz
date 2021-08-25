@@ -15,7 +15,6 @@ import dev.fritz2.styling.theme.FormSizesStyles
 import dev.fritz2.styling.theme.Theme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import org.w3c.dom.HTMLInputElement
 
 /**
@@ -116,7 +115,7 @@ open class RadioComponent(protected val value: Store<Boolean>? = null) :
     val labelStyle = ComponentProperty(Theme().radio.label)
     val selectedStyle = ComponentProperty(Theme().radio.selected)
     val selected = DynamicComponentProperty(flowOf(false))
-    val groupName = DynamicComponentProperty(flowOf(""))
+    val groupName = ComponentProperty<String?>(null)
 
     override fun render(
         context: RenderContext,
@@ -125,33 +124,24 @@ open class RadioComponent(protected val value: Store<Boolean>? = null) :
         id: String?,
         prefix: String
     ): Label {
-        val inputId = id?.let { "$it-input" }
-        val alternativeGroupname = id?.let { "$it-groupName" }
-        val inputName = groupName.values.map {
-            if (it.isEmpty()) {
-                alternativeGroupname ?: ""
-            } else {
-                it
-            }
-        }
-
         return with(context) {
             label({
+                display { inlineFlex }
+                alignItems { center }
+                verticalAlign { top }
+                css("-webkit-box-align: center;")
                 this@RadioComponent.size.value.invoke(Theme().radio.sizes)()
-            }, baseClass = baseClass, id = id, prefix = prefix) {
-                inputId?.let {
-                    `for`(inputId)
-                }
+            }, baseClass, prefix = prefix) {
                 input({
                     Theme().radio.input()
                     children("&[checked] + div") {
                         this@RadioComponent.selectedStyle.value()
                     }
-                }, baseClass = this@RadioComponent.radioInputStaticCss, prefix = prefix, id = inputId) {
+                }, this@RadioComponent.radioInputStaticCss, prefix = prefix) {
                     disabled(this@RadioComponent.disabled.values)
                     readOnly(this@RadioComponent.readonly.values)
                     type("radio")
-                    name(inputName)
+                    this@RadioComponent.groupName.value?.let { name(it) }
                     checked(this@RadioComponent.value?.data ?: this@RadioComponent.selected.values)
                     value("X")
                     className(this@RadioComponent.severityClassOf(Theme().radio.severity).name)

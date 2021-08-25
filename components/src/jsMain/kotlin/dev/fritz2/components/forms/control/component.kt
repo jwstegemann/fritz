@@ -48,7 +48,7 @@ interface ControlRenderer {
         id: String? = null,
         prefix: String = "formControl",
         context: RenderContext,
-        control: RenderContext.() -> Unit
+        control: RenderContext.() -> RenderContext
     )
 }
 
@@ -104,7 +104,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
     data class Control(
         val id: String?,
         val name: String,
-        val rendering: RenderContext.() -> Unit
+        val rendering: RenderContext.() -> RenderContext
     )
 
     class ControlRegistration {
@@ -115,7 +115,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         fun set(
             controlId: String?,
             controlName: String,
-            component: (RenderContext.() -> Unit),
+            component: RenderContext.() -> RenderContext,
         ): Boolean {
             val control = Control(controlId, controlName, component)
             if (assignee == null) {
@@ -155,7 +155,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
     protected open fun registerControl(
         controlId: String?,
         controlName: String,
-        component: (RenderContext.() -> Unit),
+        component: RenderContext.() -> RenderContext,
         onSuccess: FormControlComponent.() -> Unit = {}
     ) {
         if (controlRegistration.set(controlId, controlName, component)) {
@@ -347,7 +347,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         styling: BasicParams.() -> Unit = {},
         value: Store<String>? = null,
         baseClass: StyleClass = StyleClass.None,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.inputField,
         build: InputFieldComponent.() -> Unit = {}
     ) {
@@ -371,7 +371,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         value: Store<String>? = null,
         items: Proposal,
         baseClass: StyleClass = StyleClass.None,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.typeAhead,
         build: TypeAheadComponent.() -> Unit = {}
     ) {
@@ -394,7 +394,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         styling: BasicParams.() -> Unit = {},
         value: Store<Boolean>? = null,
         baseClass: StyleClass = StyleClass.None,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.switch,
         build: SwitchComponent.() -> Unit = {}
     ) {
@@ -417,7 +417,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         styling: BasicParams.() -> Unit = {},
         value: Store<String>? = null,
         baseClass: StyleClass = StyleClass.None,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.textArea,
         build: TextAreaComponent.() -> Unit = {}
     ) {
@@ -440,7 +440,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         styling: BasicParams.() -> Unit = {},
         baseClass: StyleClass = StyleClass.None,
         value: Store<Boolean>? = null,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.checkbox,
         build: CheckboxComponent.() -> Unit = {}
     ) {
@@ -490,7 +490,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         items: List<T>,
         value: Store<T>? = null,
         baseClass: StyleClass = StyleClass.None,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.radioGroup,
         build: RadioGroupComponent<T>.() -> Unit = {}
     ) {
@@ -514,7 +514,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         items: List<T>,
         value: Store<T>? = null,
         baseClass: StyleClass = StyleClass.None,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.selectField,
         build: SelectFieldComponent<T>.() -> Unit = {}
     ) {
@@ -523,14 +523,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
             id,
             ControlNames.selectField,
             {
-                selectField(
-                    styling,
-                    items,
-                    value,
-                    baseClass,
-                    id,
-                    prefix
-                ) {
+                selectField(styling, items, value, baseClass, id, prefix) {
                     size { this@FormControlComponent.sizeBuilder(this) }
                     severity(validationMessagesBuilder().hasSeverity)
                     build()
@@ -544,7 +537,7 @@ open class FormControlComponent : Component<Unit>, FormProperties by FormMixin()
         styling: BasicParams.() -> Unit = {},
         value: Store<Int>? = null,
         baseClass: StyleClass = StyleClass.None,
-        id: String? = value?.id,
+        id: String? = null,
         prefix: String = ControlNames.slider,
         build: SliderComponent.() -> Unit = {}
     ) {

@@ -3,7 +3,7 @@ package dev.fritz2.components
 import dev.fritz2.binding.Store
 import dev.fritz2.components.selectField.SelectFieldComponent
 import dev.fritz2.dom.html.RenderContext
-import dev.fritz2.styling.*
+import dev.fritz2.styling.StyleClass
 import dev.fritz2.styling.params.BasicParams
 
 /**
@@ -41,6 +41,4 @@ fun <T> RenderContext.selectField(
     id: String? = null,
     prefix: String = "selectField",
     build: SelectFieldComponent<T>.() -> Unit,
-) {
-    SelectFieldComponent(items, value).apply(build).render(this, styling, baseClass, id, prefix)
-}
+) = SelectFieldComponent(items, value).apply(build).render(this, styling, baseClass, id, prefix)

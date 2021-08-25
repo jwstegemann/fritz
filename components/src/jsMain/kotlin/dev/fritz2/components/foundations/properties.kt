@@ -1,6 +1,7 @@
 package dev.fritz2.components.foundations
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
 
 /**
@@ -58,7 +59,7 @@ class ComponentProperty<T>(var value: T) {
  * }
  * ```
  */
-class DynamicComponentProperty<T>(var values: Flow<T>) {
+class DynamicComponentProperty<T>(var values: Flow<T> = emptyFlow()) {
     operator fun invoke(newValue: T) {
         values = flowOf(newValue)
     }

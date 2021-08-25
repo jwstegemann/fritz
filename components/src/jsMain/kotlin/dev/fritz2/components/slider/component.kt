@@ -21,7 +21,6 @@ import dev.fritz2.styling.params.Style
 import dev.fritz2.styling.theme.*
 import kotlinx.coroutines.flow.*
 import org.w3c.dom.DOMRect
-import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
 
@@ -95,7 +94,7 @@ internal class StateStore(
 ) :
     RootStore<State>(initialData) {
 
-    lateinit var sliderElement: HTMLDivElement
+    lateinit var sliderElement: Div
 
     /**
      * Extracted value of the state as ``Flow<Int>`` that forwards values only after final position is reached,
@@ -145,7 +144,7 @@ internal class StateStore(
 
     private fun updateSliderByUi(state: State, event: MouseEvent): State {
         return if (state.interactive) {
-            val containerRect = sliderElement.getBoundingClientRect()
+            val containerRect = sliderElement.domNode.getBoundingClientRect()
             val percentage = percentageFromRect(containerRect, event)
             if (percentage == state.progress.percent) {
                 state
@@ -267,7 +266,7 @@ internal class StateStore(
  * @param store an optional store for setting and accessing the value of the slider
  */
 open class SliderComponent(protected val store: Store<Int>? = null) :
-    Component<Unit>,
+    Component<Div>,
     FormProperties by FormMixin(),
     SeverityProperties by SeverityMixin(),
     OrientationProperty by OrientationMixin(Orientation.HORIZONTAL) {
@@ -327,11 +326,10 @@ open class SliderComponent(protected val store: Store<Int>? = null) :
         baseClass: StyleClass,
         id: String?,
         prefix: String
-    ) {
+    ): Div {
         val internalStore = StateStore(range.value, orientation.value(OrientationContext), State())
 
-        context.apply {
-
+        return with(context) {
             (this@SliderComponent.store?.data ?: this@SliderComponent.value.values).map {
                 it ?: 0
             } handledBy internalStore.updateByValue
@@ -346,6 +344,7 @@ open class SliderComponent(protected val store: Store<Int>? = null) :
                 styling()
             }, baseClass, id, prefix) {
                 className(this@SliderComponent.severityClassOf(Theme().slider.severity).name)
+
                 internalStore.sliderElement = flexBox({
                     this@SliderComponent.size.value.invoke(Theme().slider.sizes)()
                     this@SliderComponent.coreStyles().main(this)
@@ -398,13 +397,16 @@ open class SliderComponent(protected val store: Store<Int>? = null) :
                             }
                         }
                     }
-                }.domNode
+                }
 
                 EventsContext(this, internalStore.value, internalStore.currentValue).apply {
                     this@SliderComponent.events.value(this)
                     this@SliderComponent.store?.let { value handledBy it.update }
                 }
+
             }
+
+            internalStore.sliderElement
         }
     }
 

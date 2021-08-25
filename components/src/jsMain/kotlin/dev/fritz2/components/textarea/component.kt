@@ -69,7 +69,7 @@ import org.w3c.dom.HTMLTextAreaElement
  * ```
  */
 open class TextAreaComponent(protected val valueStore: Store<String>? = null) :
-    Component<Unit>,
+    Component<TextArea>,
     EventProperties<HTMLTextAreaElement> by EventMixin(),
     ElementProperties<TextArea> by ElementMixin(),
     InputFormProperties by InputFormMixin(),
@@ -101,8 +101,8 @@ open class TextAreaComponent(protected val valueStore: Store<String>? = null) :
         baseClass: StyleClass,
         id: String?,
         prefix: String
-    ) {
-        context.apply {
+    ): TextArea {
+        return with(context) {
             textarea({
                 this@TextAreaComponent.resizeBehavior.value.invoke(Theme().textArea.resize)()
                 this@TextAreaComponent.size.value.invoke(Theme().textArea.sizes)()

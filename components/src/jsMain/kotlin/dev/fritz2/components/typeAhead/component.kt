@@ -5,13 +5,15 @@ import dev.fritz2.binding.Store
 import dev.fritz2.components.*
 import dev.fritz2.components.foundations.*
 import dev.fritz2.dom.EventContext
+import dev.fritz2.dom.Tag
+import dev.fritz2.dom.html.Input
 import dev.fritz2.dom.html.RenderContext
 import dev.fritz2.identification.uniqueId
 import dev.fritz2.styling.StyleClass
 import dev.fritz2.styling.params.BoxParams
 import dev.fritz2.styling.theme.Theme
 import kotlinx.coroutines.flow.*
-import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLInputElement
 
 
 /**
@@ -210,7 +212,7 @@ internal class StateStore(private val propose: Proposal, accepted: Accepted, lim
  * @param items a function to create the valid proposals based upon the current [State.draft] value.
  */
 open class TypeAheadComponent(protected val valueStore: Store<String>?, protected val items: Proposal) :
-    Component<Unit>,
+    Component<Input>,
     InputFormProperties by InputFormMixin(),
     SeverityProperties by SeverityMixin(),
     InputFieldProperties by InputFieldMixin() {
@@ -221,8 +223,8 @@ open class TypeAheadComponent(protected val valueStore: Store<String>?, protecte
     val draftThreshold = ComponentProperty(1)
     val debounce = ComponentProperty(250L)
 
-    class EventsContext<String>(private val element: RenderContext, val value: Flow<String>) :
-        EventContext<HTMLElement> by element
+    class EventsContext<String>(private val element: Tag<HTMLInputElement>, val value: Flow<String>) :
+        EventContext<HTMLInputElement> by element
 
     val events = ComponentProperty<EventsContext<String>.() -> Unit> {}
 
@@ -240,16 +242,16 @@ open class TypeAheadComponent(protected val valueStore: Store<String>?, protecte
         baseClass: StyleClass,
         id: String?,
         prefix: String
-    ) {
+    ): Input {
         val accepted = if (strict.value) acceptOnlyProposals else acceptDraft
         val internalStore = StateStore(items, accepted, limit.value, draftThreshold.value)
         val proposalsId = "proposals-{${uniqueId()}}"
 
-        context.apply {
+        return with(context) {
             (this@TypeAheadComponent.valueStore?.data
                 ?: this@TypeAheadComponent.value.values) handledBy internalStore.preselect
 
-            inputField(
+            val input = inputField(
                 {
                     this as BoxParams
                     styling(this)
@@ -303,10 +305,12 @@ open class TypeAheadComponent(protected val valueStore: Store<String>?, protecte
                 }
             }
 
-            EventsContext(this, internalStore.selected).apply {
+            EventsContext(input, internalStore.selected).apply {
                 this@TypeAheadComponent.events.value(this)
                 this@TypeAheadComponent.valueStore?.let { value handledBy it.update }
             }
+
+            input
         }
     }
 }

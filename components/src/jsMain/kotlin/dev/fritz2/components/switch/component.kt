@@ -7,7 +7,6 @@ import dev.fritz2.dom.html.Input
 import dev.fritz2.dom.html.Label
 import dev.fritz2.dom.html.RenderContext
 import dev.fritz2.dom.states
-import dev.fritz2.identification.uniqueId
 import dev.fritz2.styling.*
 import dev.fritz2.styling.params.BasicParams
 import dev.fritz2.styling.params.BoxParams
@@ -115,19 +114,18 @@ open class SwitchComponent(protected val value: Store<Boolean>? = null) :
         id: String?,
         prefix: String
     ): Label {
-        val inputId = (id ?: uniqueId()) + "-input"
-
         return with(context) {
             label({
+                display { inlineFlex }
+                alignItems { center }
                 this@SwitchComponent.size.value.invoke(Theme().switch.sizes)()
-            }, baseClass = baseClass, id = id, prefix = prefix) {
-                `for`(inputId)
+            }, baseClass, prefix = prefix) {
                 input({
                     Theme().switch.input()
                     children("&[checked] + div") {
                         this@SwitchComponent.checkedStyle.value()
                     }
-                }, baseClass = switchInputStaticCss, prefix = prefix, id = inputId) {
+                }, switchInputStaticCss, id, prefix) {
                     disabled(this@SwitchComponent.disabled.values)
                     readOnly(this@SwitchComponent.readonly.values)
                     type("checkbox")

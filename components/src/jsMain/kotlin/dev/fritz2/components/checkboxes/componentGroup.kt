@@ -4,6 +4,7 @@ import dev.fritz2.binding.Store
 import dev.fritz2.components.*
 import dev.fritz2.components.foundations.*
 import dev.fritz2.dom.EventContext
+import dev.fritz2.dom.html.Div
 import dev.fritz2.dom.html.RenderContext
 import dev.fritz2.dom.states
 import dev.fritz2.identification.uniqueId
@@ -98,7 +99,7 @@ import org.w3c.dom.HTMLElement
 open class CheckboxGroupComponent<T>(
     protected val items: List<T>,
     protected val values: Store<List<T>>?
-) : Component<Unit>,
+) : Component<Div>,
     InputFormProperties by InputFormMixin(),
     SeverityProperties by SeverityMixin(),
     OrientationProperty by OrientationMixin(Orientation.VERTICAL) {
@@ -140,11 +141,11 @@ open class CheckboxGroupComponent<T>(
         baseClass: StyleClass,
         id: String?,
         prefix: String
-    ) {
+    ): Div {
         val multiSelectionStore: MultiSelectionStore<T> = MultiSelectionStore()
         val grpId = id ?: uniqueId()
 
-        context.apply {
+        return with(context) {
             div({
                 layoutOf(this@CheckboxGroupComponent.orientation.value(OrientationContext))()
             }, styling, baseClass, id, prefix) {
@@ -170,7 +171,6 @@ open class CheckboxGroupComponent<T>(
                         }
                     }
                 }
-
                 EventsContext(this, multiSelectionStore.toggle).apply {
                     this@CheckboxGroupComponent.events.value(this)
                     this@CheckboxGroupComponent.values?.let { selected handledBy it.update }

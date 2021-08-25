@@ -42,7 +42,5 @@ fun <T> RenderContext.checkboxGroup(
     id: String? = null,
     prefix: String = "checkboxGroupComponent",
     build: CheckboxGroupComponent<T>.() -> Unit = {}
-) {
-    CheckboxGroupComponent(items, values).apply(build).render(this, styling, baseClass, id, prefix)
-}
+) = CheckboxGroupComponent(items, values).apply(build).render(this, styling, baseClass, id, prefix)
 
