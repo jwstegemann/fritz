@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Event Handling</title>
+    <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter:200,300,400&display=swap" rel="stylesheet"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    
+        <meta name="description" content="Dealing with events in fritz2">
+    
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#333333">
+</head>
+<body class="bg-bg font-sans">
+
+
+<!-- Background color split screen for large screens -->
+<div class="fixed top-0 left-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="fixed top-0 right-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="relative flex flex-col bg-bg">
+<!-- Navbar -->
+<nav class="fixed h-16 px-4 z-20 w-full font-nunito text-white bg-bg bg-gray-800">
+  <div class="relative flex items-center justify-between h-16">
+    <a class="flex items-center justify-start px-0 w-48 hover:text-gray-300 min-w-fit" href="/">
+      <!-- fritz2 logo -->
+      <svg class="ml-1 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+           fill="currentColor" stroke="none" >
+          <path d="M 9.987 0.229 C 4.469 0.236 0 4.61 0 10.003 C 0 15.401 4.477 19.777 10 19.777 C 15.523 19.777 20 15.401 20 10.003 C 20 4.605 15.523 0.229 10 0.229 C 9.996 0.229 9.992 0.229 9.987 0.229 Z M 14.678 2.662 C 15.144 2.665 15.52 3.043 15.517 3.506 L 15.5 6.862 C 15.497 7.325 15.118 7.699 14.652 7.696 C 14.187 7.694 13.811 7.316 13.813 6.853 L 12.126 6.844 C 11.661 6.842 11.281 7.216 11.278 7.679 L 11.274 8.501 L 12.052 8.501 C 12.072 8.499 12.092 8.499 12.112 8.499 C 12.575 8.499 12.952 8.882 12.952 9.356 C 12.952 9.829 12.575 10.213 12.112 10.213 C 12.089 10.213 12.066 10.212 12.043 10.21 L 7.111 10.21 L 7.111 10.207 C 7.097 10.208 7.084 10.208 7.071 10.208 C 6.607 10.208 6.231 9.825 6.231 9.353 C 6.231 8.881 6.607 8.498 7.071 8.498 C 7.091 8.498 7.111 8.499 7.131 8.501 L 7.9 8.501 L 7.909 6.823 C 7.918 4.969 9.437 3.474 11.3 3.484 L 13.83 3.497 C 13.833 3.034 14.212 2.66 14.678 2.662 Z M 7.887 10.644 L 11.261 10.662 L 11.248 13.179 C 11.238 15.032 9.72 16.527 7.857 16.517 L 6.17 16.509 C 6.167 16.972 5.787 17.346 5.322 17.343 C 4.856 17.341 4.48 16.963 4.483 16.5 L 4.5 13.144 C 4.502 12.681 4.882 12.307 5.348 12.309 C 5.813 12.312 6.189 12.69 6.187 13.153 L 7.031 13.157 C 7.496 13.159 7.876 12.786 7.878 12.322 Z"/>
+        </svg>
+        <div class="ml-3">
+          <span class="text-2xl">fritz2</span>
+          <span class="ml-1 text-xs">1.0-SNAPSHOT</span>
+        </div>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="-mr-2 flex items-center md:hidden">
+      <!-- Mobile menu button -->
+      <button type="button" id="mobile-menu-button" onclick="toggleMenu()"
+              class="p-2 inline-flex items-center justify-center bg-gray-800 rounded-md text-gray-400 hover:bg-gray-900 focus:outline-none focus:ring-1 focus-ring-inset focus:ring-gray-400"
+              aria-controls="mobile-menu" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <span class="mobile-icon block h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="menu" data-heroicon-style="outline"><title>open main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </span>
+        <span class="mobile-icon hidden h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="x" data-heroicon-style="outline"><title>close main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </span>
+      </button>
+    </div>
+    <!-- Links section -->
+    <div class="hidden md:block w-24 md:w-48 lg:w-64 ">
+      <div class="flex items-center justify-end hover:text-gray-200">
+        <!-- Github -->
+        <div class="ml-4 relative flex-shrink-0">
+          <div>
+            <a target="_blank" href="https://github.com/jwstegemann/fritz2">
+              <svg class="mr-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor" stroke="none" >
+                <path d="M 9.983 0 C 4.458 0 -0.017 4.478 -0.017 10 C -0.017 14.419 2.848 18.167 6.821 19.488 C 7.321 19.582 7.504 19.273 7.504 19.007 C 7.504 18.769 7.496 18.14 7.492 17.307 C 4.71 17.91 4.123 15.965 4.123 15.965 C 3.668 14.811 3.011 14.503 3.011 14.503 C 2.105 13.883 3.081 13.895 3.081 13.895 C 4.085 13.965 4.613 14.925 4.613 14.925 C 5.504 16.454 6.953 16.013 7.525 15.757 C 7.615 15.11 7.873 14.669 8.158 14.419 C 5.938 14.169 3.603 13.309 3.603 9.478 C 3.603 8.386 3.991 7.494 4.633 6.794 C 4.52 6.542 4.183 5.525 4.72 4.148 C 4.72 4.148 5.558 3.879 7.47 5.173 C 8.27 4.95 9.12 4.84 9.97 4.835 C 10.82 4.84 11.67 4.95 12.47 5.173 C 14.37 3.879 15.208 4.148 15.208 4.148 C 15.745 5.525 15.408 6.542 15.308 6.794 C 15.945 7.494 16.333 8.386 16.333 9.478 C 16.333 13.319 13.995 14.165 11.77 14.411 C 12.12 14.711 12.445 15.324 12.445 16.261 C 12.445 17.599 12.433 18.674 12.433 18.999 C 12.433 19.262 12.608 19.574 13.12 19.474 C 17.121 18.163 19.983 14.413 19.983 10 C 19.983 4.478 15.506 0 9.983 0"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div id="mobile-menu" class="fixed z-10 w-full bg-bg top-16 -translate-y-[100vh] transition-transform duration-250 ease-in md:hidden pb-2 border-b border-b-fg px-2 pt-2 pb-3 h-[calc(100vh-4rem)] overflow-y-auto">
+    
+    
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/start/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Getting Started
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/fundamentals/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Fundamentals
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/render/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Render HTML
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/createstores/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Creation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/events/"
+   class=" pl-12 bg-bg-highlight border-fg text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Event Handling
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/storemapping/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Mapping
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/routing/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Routing
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/validation/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Validation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/http/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Http
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/websockets/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Websockets
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/web-components/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Web Components
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/checkboxgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        CheckboxGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/combobox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Combobox
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/datacollection/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        DataCollection
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/disclosure/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Disclosure
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/inputfield/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        InputField
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/listbox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Listbox (Select)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/menu/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Menu
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/modal/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Modal
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/popover/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        PopOver
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/radioGroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        RadioGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/switch/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Switch (Toggle)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tabgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TabGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/textarea/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TextArea
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/toast/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Toast
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tooltip/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Tooltip
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+            
+        
+    
+</nav>
+
+    
+  </div>
+
+  <!-- 3 column wrapper -->
+<div class="mt-16 h-[calc(100vh-4rem)] flex-grow w-full mx-auto md:flex">
+  <!-- Left sidebar & main wrapper -->
+    <div class="min-w-fit h-full overscroll-none overflow-y-auto w-64 xl:border-b-0 bg-bg hidden md:block">
+        <!-- Start left column area -->
+        <div class="mt-6 relative" style="min-height: 12rem;">
+          
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/start/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Getting Started
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/fundamentals/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Fundamentals
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/render/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Render HTML
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/createstores/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Creation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/events/"
+   class=" pl-12 bg-bg-highlight border-fg text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Event Handling
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/storemapping/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Mapping
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/routing/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Routing
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/validation/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Validation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/http/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Http
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/websockets/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Websockets
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/web-components/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Web Components
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+    
+</nav>
+
+        </div>
+        <!-- End left column area -->
+    </div>
+
+
+    
+<div class="bg-bg md:min-w-0 md:flex-1 h-full">
+  <div class="h-full py-6 px-5 sm:px-6 lg:px-8 h-full overscroll-none overflow-y-auto bg-bg lg:pr-72">
+    <!-- Start main area-->
+    <div class="relative content prose prose-invert max-w-prose pb-10">
+
+      <h1>Event Handling</h1>
+
+      
+
+      
+
+      <h2 id="overview" tabindex="-1">Overview</h2>
+<p>In fritz2, all HTML-Events are either encapsulated within a <code>Tag</code>-scope or within the special <code>Window</code>-object, which both
+offer access to all global events. A complete list can be found in the
+<a href="https://github.com/jwstegemann/fritz2/blob/master/core/src/jsMain/kotlin/dev/fritz2/core/Events.kt">Events.kt</a> file.</p>
+<p>The most important aspect to understand is that an event in fritz2 is just a type derived by <code>Flow</code>. You can
+use all events as the source of an action which should be handled by a handler-function.</p>
+<p>Take the <code>click</code>-event as a simple example:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span> <br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Click me!"</span></span><br>        clicks handledBy <span class="token punctuation">{</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Button was clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>    <span class="token comment">//  ^^^^^^</span><br>    <span class="token comment">//  this is just a `Flow` that can be handled     </span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As a naming convention, all HTML events will be suffixed with an <code>s</code> in order to emphasize them being a flow
+transporting all values that are emitted by the DOM API.</p>
+<p>Since events can carry important data and information, events in fritz2 are more or less <code>Flow</code>s that emit <code>Event</code>-objects.
+Their type is called <code>Listener</code>, but that is really just a name. Think of a <code>Listener</code> as a &quot;flow of events&quot;.
+Such a <code>Listener</code> will therefore provide those data as the value of its own flow:</p>
+<pre class="language-kotlin"><code class="language-kotlin">div <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedName <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">""</span></span><span class="token punctuation">)</span><br>    input <span class="token punctuation">{</span><br>        <span class="token function">type</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"text"</span></span><span class="token punctuation">)</span><br>        changes<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> it<span class="token punctuation">.</span>target<span class="token punctuation">.</span>unsafeCast<span class="token operator">&lt;</span>HTMLInputElement<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value <span class="token punctuation">}</span> handledBy storedName<span class="token punctuation">.</span>update<br>        <span class="token comment">//            ^^</span><br>        <span class="token comment">//            grab the value of type `Event` and access its fields</span><br>        <span class="token comment">//            there are different sub-types of `Event` like `PointerEvent`, `KeyboardEvent` or `InputEvent`</span><br>        <span class="token comment">//            in this case</span><br>    <span class="token punctuation">}</span><br>    storedName<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">renderText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<p>Depending on the <code>Event</code>-type, you can access its special fields. For common use cases like getting the value of the
+input-element, there are special convenience functions to make event handling more pleasant:</p>
+<pre class="language-kotlin"><code class="language-kotlin">div <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedName <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">""</span></span><span class="token punctuation">)</span><br>    input <span class="token punctuation">{</span><br>        <span class="token function">type</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"text"</span></span><span class="token punctuation">)</span><br>        changes<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span> handledBy storedName<span class="token punctuation">.</span>update<br>        <span class="token comment">//      ^^^^^^^^</span><br>        <span class="token comment">//      extracts the value of the `InputEvent`</span><br>    <span class="token punctuation">}</span><br>    storedName<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">renderText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="essentials" tabindex="-1">Essentials</h2>
+<h3 id="controlling-the-event-flow" tabindex="-1">Controlling the Event-Flow</h3>
+<p>Besides using some UI-event as source of action to modify application state, there are two types of dedicated event
+functions that enable further operations to control the event-flow within the DOM:</p>
+<ul>
+<li>Stopping the propagation and preventing the default behaviour.</li>
+<li>Filtering the event and in certain cases preventing that values are emitted</li>
+</ul>
+<h4 id="stop-propagation" tabindex="-1">Stop Propagation</h4>
+<p>In order to stop an event from bubbling up the tree (or down by <code>capture</code>), the DOM-API exposes these two methods
+upon the <code>Event</code>-objects:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation">stopPropagation</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopImmediatePropagation">stopImmediatePropagation</a></li>
+</ul>
+<p>In order to apply those methods before the <code>Event</code> is emitted on the <code>Flow</code>, fritz2 offers two variants of factory
+functions to create the event-flow:</p>
+<ul>
+<li>one is named exactly like the <code>property</code> itself: <code>clicks(init: MouseEvent.() -&gt; Unit)</code></li>
+<li>the other adds an <code>If</code>-suffix like this: <code>clicksIf(selector: MouseEvent.() -&gt; Boolean)</code></li>
+</ul>
+<p>Those two factories enable a user to control the further processing (in addition to the custom written <code>Flow</code>-<code>Handler</code>-binding).</p>
+<p>Look at the example below:</p>
+<pre class="language-kotlin"><code class="language-kotlin">div <span class="token punctuation">{</span><br>    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Parent"</span></span><br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"default propagation"</span></span><br>        <span class="token function">type</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"button"</span></span><span class="token punctuation">)</span><br>        <span class="token comment">// first event handling</span><br>        clicks handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"default propagation clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token comment">// second event handling</span><br>        clicks handledBy <span class="token punctuation">{</span> window<span class="token punctuation">.</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Button was clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    <span class="token comment">// `clicks` "bubbles" per default -> event will reach the parent DOM-node, so we can react to it:</span><br>    clicks handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"click reached Parent!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>When the button is clicked, a <code>click</code> event is emitted and appears on the <code>clicks</code>-Listener <code>Flow</code>.
+There are two event-handlers defined inside the <code>button</code>-element. The first just logs to the console, the second
+opens an alert-window.</p>
+<p>Inside the parent-<code>div</code>-element, we establish another event handling which also reacts to a <code>click</code>-event.</p>
+<p>The user can now click on the button. The expected result is:</p>
+<ul>
+<li>a log message in the console: <code>default propagation clicked!</code></li>
+<li>an alert window opens with the text message <code>Button was clicked!</code></li>
+<li>and after closing it, there is another log message <code>click reached Parent!</code>, as <code>click</code> bubbles per default.</li>
+</ul>
+<p>Now let uns investigate how the behaviour changes if we use the <code>clicks()</code>-method with the <code>init</code>-parameter on
+the first event-handling in order to call <code>stopPropagation</code> of the <code>Event</code>-object:</p>
+<pre class="language-kotlin"><code class="language-kotlin">div <span class="token punctuation">{</span><br>    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Parent"</span></span><br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"stopPropagation"</span></span><br>        <span class="token comment">// We use the `clicks(init: MouseEvent.() -> Unit)` variant here:</span><br>        clicks <span class="token punctuation">{</span> <span class="token function">stopPropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"stopPropagation clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token comment">//       ^^^^^^^^^^^^^^^^^</span><br>        <span class="token comment">//       we want the event processing to stop bubbling to its parent.</span><br>        <span class="token comment">//       as the receiver type is `MouseEvent`, which derives from `Event`, we can call</span><br>        <span class="token comment">//       its method directly</span><br>        clicks handledBy <span class="token punctuation">{</span> window<span class="token punctuation">.</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Button was clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    <span class="token comment">// no value will appear on this `clicks`-Listener anymore!</span><br>    clicks handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"click reached Parent!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>The user can now click on the button. The expected result is:</p>
+<ul>
+<li>a log message in the console: <code>stopPropagation clicked!</code></li>
+<li>an alert window opens with the text message <code>Button was clicked!</code></li>
+</ul>
+<p>The log message of the parent-<code>div</code> does no longer appear!</p>
+<p>This is the desired effect of the <code>Event.stopPropagation()</code>-call: All event handling within the DOM-Element itself will
+be executed, but the bubbling stops after that.</p>
+<p>It is not important on which event-processing code the call is made. We could easily call the <code>stopPropagation</code> within
+the alert-handling without getting a different behaviour.</p>
+<pre class="language-kotlin"><code class="language-kotlin">clicks handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"stopPropagation clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>clicks <span class="token punctuation">{</span> <span class="token function">stopPropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> window<span class="token punctuation">.</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Button was clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><span class="token comment">//       ^^^^^^^^^^^^^^^^^</span><br><span class="token comment">//       the sequence of the call is not important!</span></code></pre>
+<p>Now let us investigate the <code>stopImmediatePropagation</code>-method and how it differs from the none immediate variant:</p>
+<pre class="language-kotlin"><code class="language-kotlin">div <span class="token punctuation">{</span><br>    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Parent"</span></span><br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"stopImmediatePropagation"</span></span><br>        clicks <span class="token punctuation">{</span> <span class="token function">stopImmediatePropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"stopImmediatePropagation clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token comment">//       ^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br>        <span class="token comment">//       we want the event processing to stop bubbling to its parent *and* all following handlers</span><br>        <br>        <span class="token comment">// this listener follows the `stopImmediatePropagation` -> no value will appear on its `clicks`-Listener </span><br>        <span class="token comment">// anymore</span><br>        clicks handledBy <span class="token punctuation">{</span> window<span class="token punctuation">.</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Button was clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    <span class="token comment">// no value will appear on this `clicks`-Listener anymore!</span><br>    clicks handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"click reaches Parent!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>The user can now click on the button. The expected result is:</p>
+<ul>
+<li>a log message in the console: <code>stopImmediatePropagation clicked!</code> - nothing more!</li>
+</ul>
+<p>The difference becomes obvious now: All listeners following the <code>stopImmediatePropagation</code> call will not get any of the
+emitted values. Additionally, the bubbling also is stopped, so no handlers of any parent-elements will be called.</p>
+<p>So this time, the sequential order is important! If we switch the sequence, the alert will appear again, but
+other events will not:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// this handler will be called -> stopping is not applied yet</span><br>clicks handledBy <span class="token punctuation">{</span> window<span class="token punctuation">.</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Button was clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><br>clicks <span class="token punctuation">{</span> <span class="token function">stopImmediatePropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"stopImmediatePropagation clicked!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><br><span class="token comment">// this listener follows the `stopImmediatePropagation` -> no value will appear on its `clicks`-Listener anymore!</span><br>clicks handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"This will not be logged!"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span></code></pre>
+<div class="info">
+<p>The same behaviour applies to <em>event capturing</em> - it then works the other way round, so the event values won't appear
+on handlers within child-elements any longer.</p>
+</div>
+<h4 id="prevent-default-behaviour" tabindex="-1">Prevent Default Behaviour</h4>
+<p>Just like the propagation stopping, the <code>preventDefault()</code>-method can be easily called on an <code>Event</code> by using the
+dedicated factory-functions with an <code>init</code>-parameter:</p>
+<pre class="language-kotlin"><code class="language-kotlin">clicks <span class="token punctuation">{</span> <span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token operator">..</span><span class="token punctuation">.</span> <span class="token punctuation">}</span></code></pre>
+<h4 id="filtering-events" tabindex="-1">Filtering events</h4>
+<p>Sometimes it is useful to filter certain events based on the  individual event's values. Good examples are all kinds of
+<code>KeyboardEvent</code>s, like <code>keydowns</code> driving the behaviour of a component, such as reacting specifically to keys like
+<code>Enter</code>, <code>Escape</code> or alike only.</p>
+<p>For those cases, specialized event-factories marked with an <code>If</code> suffix are provided.
+<code>keydownsIf(selector: KeyboardEvent.() -&gt; Boolean)</code> is one of them.</p>
+<p>As you can see, they require a <code>selector</code>, so the underlying mechanism will emit the <code>Event</code> only if the selector
+resolves to <code>true</code>, but drop it otherwise.</p>
+<pre class="language-kotlin"><code class="language-kotlin">keydownsIf <span class="token punctuation">{</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">==</span> Keys<span class="token punctuation">.</span>Space <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token operator">..</span><span class="token punctuation">.</span> <span class="token punctuation">}</span><br><span class="token comment">//           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="token comment">//           Boolean expression: If "Space" is pressed, resolve to `true` -> emit the event, so it can be handled. </span><br><span class="token comment">//           (This syntax is explained in a following section about "Keyboard-Events and Shortcut-API")</span></code></pre>
+<p>Often you need to combine this with <code>Event</code>-modifying calls like <code>preventDefault</code> or <code>stopPropagation</code>. This can be
+easily done here, too:</p>
+<pre class="language-kotlin"><code class="language-kotlin">keydownsIf <span class="token punctuation">{</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">==</span> Keys<span class="token punctuation">.</span>Space<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// if "Space" was pressed manipulate the event processing</span><br>        <span class="token function">stopImmediatePropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <br>        <span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>        <span class="token boolean">true</span> <br>    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token boolean">false</span><br><span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token operator">..</span><span class="token punctuation">.</span> <span class="token punctuation">}</span></code></pre>
+<h3 id="global-event-handling-with-the-window-object" tabindex="-1">Global Event-Handling With the Window-Object</h3>
+<p>In order to bind events to a handler reacting on the top outermost level, fritz2 offers the <code>Window</code>-object.</p>
+<p>It offers all events that regular DOM-elements expose as well, without the need to be called within a specific node;
+those events can be called from everywhere inside the initial <code>render</code>-function.</p>
+<p>This can be useful to react to certain actions on a global level, like specific keys a user might press.</p>
+<p>For example, imagine an app which prohibits vertical scrolling by hitting the &quot;Space&quot; key.
+This can be realized with the following code snippet:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    Window<span class="token punctuation">.</span><span class="token function">keydowns</span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">==</span> Keys<span class="token punctuation">.</span>Space<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="keyboard-events-and-shortcut-api" tabindex="-1">Keyboard-Events and Shortcut-API</h3>
+<p>fritz2 offers a handy shortcut API that allows easy combination of shortcuts with modifier shortcuts, constructing
+those from a <code>KeyboardEvent</code>, and also prevents meaningless combinations of different shortcuts:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// Constructing a shortcut by hand</span><br><span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">)</span> <br><span class="token comment">// -> Shortcut(key = "K", ctrl = false, alt = false, shift = false, meta = false)</span><br><br><span class="token comment">// Or use factory function:</span><br><span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">)</span><br><br><span class="token comment">// Set modifier states, need to use constructor:</span><br><span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">,</span> ctrl <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment">// Shortcut(key= "K", ctrl = true, alt = false, shift = false, meta = false)</span><br><br><span class="token comment">// Constructing a shortcut from a KeyboardEvent</span><br>div <span class="token punctuation">{</span><br>    keydowns<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token comment">/* use shortcut-object for further processing */</span> <span class="token punctuation">}</span><br>    <span class="token comment">//                        ^^</span><br>    <span class="token comment">//                        use KeyboardEvent to construct a Shortcut-object with all potential</span><br>    <span class="token comment">//                        modifier key states reflected</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// Using predefined shortcuts from Keys object</span><br>Keys<span class="token punctuation">.</span>Enter <span class="token comment">// named-key for the enter keystroke, a `Shortcut`</span><br>Keys<span class="token punctuation">.</span>Alt <span class="token comment">// `ModifierShortcut` -> needs to be combined with a "real" shortcut in order to use it for further processing</span><br><span class="token comment">// The same but more cumbersome and prone to typos</span><br><span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Enter"</span></span><span class="token punctuation">)</span><br><span class="token comment">// Not the same (!)</span><br><span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Alt"</span></span><span class="token punctuation">)</span> <span class="token comment">// -> Shortcut(key= "Alt", ..., alt = false)</span><br>Keys<span class="token punctuation">.</span>Alt <span class="token comment">// -> ModifierKey-object with alt = true property!</span><br><br><span class="token comment">// Constructing a shortcut with some modifier shortcuts</span><br><span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">)</span> <span class="token operator">+</span> Keys<span class="token punctuation">.</span>Control<br><span class="token comment">// Same result, but much more readable the other way round:</span><br>Keys<span class="token punctuation">.</span>Control <span class="token operator">+</span> <span class="token string-literal singleline"><span class="token string">"K"</span></span><br><br><span class="token comment">// Defining some common combination:</span><br><span class="token keyword">val</span> searchKey <span class="token operator">=</span> Keys<span class="token punctuation">.</span>Control <span class="token operator">+</span> Keys<span class="token punctuation">.</span>Shift <span class="token operator">+</span> <span class="token string-literal singleline"><span class="token string">"F"</span></span><br><span class="token comment">//              ^^^^^^^^^^^^</span><br><span class="token comment">//              You can start with a modifier shortcut.</span><br><span class="token comment">//              Appending a String to a ModifierKey will finally lead to a `Shortcut`.</span><br><br><span class="token keyword">val</span> tabbing <span class="token operator">=</span> <span class="token function">setOf</span><span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>Tab<span class="token punctuation">,</span> Keys<span class="token punctuation">.</span>Shift <span class="token operator">+</span> Keys<span class="token punctuation">.</span>Tab<span class="token punctuation">)</span><br><br><span class="token comment">// API prevents accidental usage: WON'T COMPILE because real shortcuts can't be combined</span><br><span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"F"</span></span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"P"</span></span><span class="token punctuation">)</span> <br><br><span class="token comment">// Shortcut is a data class → equality is total:</span><br>Keys<span class="token punctuation">.</span>Control <span class="token operator">+</span> Keys<span class="token punctuation">.</span>Shift <span class="token operator">+</span> <span class="token string-literal singleline"><span class="token string">"K"</span></span> <span class="token operator">==</span> <span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">,</span> shift <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> ctrl<span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> alt <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> meta <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span><br><span class="token comment">// But</span><br>Keys<span class="token punctuation">.</span>Control <span class="token operator">+</span> Keys<span class="token punctuation">.</span>Shift <span class="token operator">+</span> <span class="token string-literal singleline"><span class="token string">"K"</span></span> <span class="token operator">!=</span> <span class="token function">Shortcut</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">,</span> shift <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> ctrl<span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> alt <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> meta <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span><br><span class="token comment">//             ^^^^^^^^^^                        ^^^^^^^^^^^^^</span><br><span class="token comment">//                 +-----------------------------------+</span><br><br><span class="token comment">// Case sensitive, too. Further impact is explained in next section.</span><br><span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"k"</span></span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">)</span></code></pre>
+<p>Be aware of the fact that the key-property is taken from the event as it is. This is important for all upper case keys:
+The browser will always send an event with shift-property set to true, so in order to match it, you must construct
+the matching shortcut with the Shift-Modifier:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// Goal: Match upper case "K" (or to be more precise: "Shift + K")</span><br><br><span class="token comment">// Failing attempt</span><br>keydownsIf <span class="token punctuation">{</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"K"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span><br><span class="token comment">//           ^^^^^^^^^^^^^^    ^^^^^^^^^^^^^^^</span><br><span class="token comment">//           |                 Shortcut(key = "K", shift = false, ...)</span><br><span class="token comment">//           |                                     ^^^^^^^^^^^^</span><br><span class="token comment">//           |                                 +-> will never match the event based shortcut!</span><br><span class="token comment">//           |                                 |   the modifier for shift needs to be added!</span><br><span class="token comment">//           Shortcut("K", shift = true, ...)--+</span><br><span class="token comment">//           upper case "K" is (almost) always send with enabled shift modifier.</span><br><br><span class="token comment">// Working example</span><br>keydownsIf <span class="token punctuation">{</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token operator">==</span> Keys<span class="token punctuation">.</span>Shift <span class="token operator">+</span> <span class="token string-literal singleline"><span class="token string">"K"</span></span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span></code></pre>
+<p>Since most of the time you will be using the keys within the handling of a <code>KeyboardEvent</code>, there are some
+common patterns to apply:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// Pattern #1: Only execute on specific shortcut:</span><br>keydownsIf <span class="token punctuation">{</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">==</span> Keys<span class="token punctuation">.</span>Shift <span class="token operator">+</span> <span class="token string-literal singleline"><span class="token string">"K"</span></span> <span class="token punctuation">}</span><br>    <span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token comment">/* further processing if needed */</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span><br><br><span class="token comment">// Variant of #1: Only execute the same for a set of shortcuts:</span><br>keydownsIf <span class="token punctuation">{</span> <span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token function">setOf</span><span class="token punctuation">(</span>Keys<span class="token punctuation">.</span>Enter<span class="token punctuation">,</span> Keys<span class="token punctuation">.</span>Space<span class="token punctuation">)</span> <span class="token punctuation">}</span><br>    <span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token comment">/* further processing if needed */</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span><br><br><span class="token comment">// Pattern #2: Handle a group of shortcuts with similar tasks (navigation for example)</span><br>keydownsIf <span class="token punctuation">{</span><br>    <span class="token keyword">when</span> <span class="token punctuation">(</span><span class="token function">shortcutOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        Keys<span class="token punctuation">.</span>ArrowDown <span class="token operator">-></span> <span class="token comment">/* create / modify something to be handled */</span> <span class="token boolean">true</span><br>        Keys<span class="token punctuation">.</span>ArrowUp <span class="token operator">-></span> <span class="token comment">/* ... */</span> <span class="token boolean">true</span> <br>        Keys<span class="token punctuation">.</span>Home <span class="token operator">-></span> <span class="token comment">/* ... */</span> <span class="token boolean">true</span> <br>        Keys<span class="token punctuation">.</span>End <span class="token operator">-></span> <span class="token comment">/* ... */</span> <span class="token boolean">true</span> <br>        <span class="token keyword">else</span> <span class="token operator">-></span> <span class="token boolean">false</span> <span class="token comment">// all other key presses should be ignored, so return `false` to stop flow processing</span><br>    <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">also</span> <span class="token punctuation">{</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// page itself should not scroll up or down! }</span><br>    <span class="token comment">//           ^^</span><br>    <span class="token comment">//           Only if a shortcut was matched</span><br><span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span></code></pre>
+<h2 id="advanced-topics" tabindex="-1">Advanced Topics</h2>
+<h3 id="event-capturing" tabindex="-1">Event Capturing</h3>
+<p>Event capturing is less commonly used within UI-Code. Nevertheless, fritz2 supports it via dedicated
+event-factory-variants suffixed with the <code>Captured</code>-suffix.</p>
+<p>Internally, they set the <code>capture</code>-flag within the <code>addEventListener</code>-function of a DOM-element.</p>
+<p>Look at the following example:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    div <span class="token punctuation">{</span><br>        clicksCaptured <span class="token punctuation">{</span> <span class="token function">stopPropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"outer"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><span class="token comment">//      ^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^</span><br><span class="token comment">//      |                stop event handling at this level above the child</span><br><span class="token comment">//      |</span><br><span class="token comment">//      bind to event in `capture` mode        </span><br><br>        <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> innerId<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            clicks handledBy <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"inner"</span></span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><span class="token comment">//          ^^^^^^</span><br><span class="token comment">//          will never reach this DOM level because of the captured event of the parent element.</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<div class="info">
+<p>For all regular events, a sibling function with the <code>Captured</code>-suffix is provided as well.</p>
+</div>
+<h3 id="custom-events" tabindex="-1">Custom events</h3>
+<p>You can easily create a custom event in fritz2 by using the appropriate DOM-API types and functions, combined with
+the core function <code>subscribe</code> for lifting the dispatched DOM-Event into a fritz2 <code>Listener</code> (<code>Flow</code>) for further
+processing.</p>
+<p>Have a look at its signature:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token operator">&lt;</span>E <span class="token operator">:</span> Event<span class="token punctuation">,</span> T <span class="token operator">:</span> EventTarget<span class="token operator">></span> T<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><br>    name<span class="token operator">:</span> String<span class="token punctuation">,</span><br>    capture<span class="token operator">:</span> Boolean <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span><br>    selector<span class="token operator">:</span> E<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Boolean <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><br><span class="token punctuation">)</span><span class="token operator">:</span> Listener<span class="token operator">&lt;</span>E<span class="token punctuation">,</span> T<span class="token operator">></span></code></pre>
+<p>As a minimum, you must provide the event's name, but you can tune the handling with the other parameters.
+You should have learned about those in the <a href="#essentials">essentials</a>-section.</p>
+<p>Have a look at a simple example, demonstrating the usage of <code>subscribe</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// just a simple data class for simulating a specific payload</span><br><span class="token keyword">data</span> <span class="token keyword">class</span> <span class="token function">Framework</span><span class="token punctuation">(</span><span class="token keyword">val</span> name<span class="token operator">:</span> String<span class="token punctuation">,</span> <span class="token keyword">val</span> version<span class="token operator">:</span> String<span class="token punctuation">)</span><br><br><span class="token comment">// Create an event</span><br><span class="token keyword">val</span> myEvent <span class="token operator">=</span> <span class="token function">CustomEvent</span><span class="token punctuation">(</span><br>    <span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">,</span><br>    <span class="token function">CustomEventInit</span><span class="token punctuation">(</span>detail <span class="token operator">=</span> <span class="token function">Framework</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"1-0-RC18"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">)</span><br><br>div <span class="token punctuation">{</span><br>    subscribe<span class="token operator">&lt;</span>CustomEvent<span class="token operator">></span><span class="token punctuation">(</span>myEvent<span class="token punctuation">.</span>type<span class="token punctuation">)</span> handledBy <span class="token punctuation">{</span><br><span class="token comment">//  ^^^^^^^^^ ^^^^^^^^^^^  ^^^^^^^^^^^^</span><br><span class="token comment">//  |             |        at least provide the name</span><br><span class="token comment">//  |          Specify the type</span><br><span class="token comment">//  create a listener</span><br>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"My custom event occurred with data: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token expression">it<span class="token punctuation">.</span>detail <span class="token keyword">as</span> Framework</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Dispatch Event"</span></span><br>        clicks handledBy <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token label symbol">@div</span><span class="token punctuation">.</span>domNode<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>myEvent<span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token comment">//  ^^^^^^                          ^^^^^^^^^^^^^</span><br>        <span class="token comment">//  |                               call DOM-API to dispatch the event</span><br>        <span class="token comment">//  use another event to trigger       </span><br>        <span class="token comment">//  the custom one - could also be</span><br>        <span class="token comment">//  based upon any other `Flow`-source`</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+
+
+    </div>
+    <a class="group flex items-center px-1 py-1 pb-6 text-sm text-cyan-300 hover:underline" href="https://github.com/jwstegemann/fritz2/blob/master/www/src/pages/docs/45_EventHandling.md" target="_blank">
+      <span class="mr-1 flex-shrink-0 h-4 w-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+      </span>
+      Edit this page on Github
+    </a>
+    <!-- End main area -->
+  </div>
+</div>
+
+<div
+    class="fixed lg:block top-0 right-0 pt-16 h-full hidden pr-4 sm:pr-6 lg:pr-8 lg:pr-2">
+    <div class="w-64 h-full overscroll-none overflow-y-auto pl-6 py-6">
+        <!-- Start right column area -->
+        <div class="h-full relative" style="min-height: 16rem;">
+
+            <h2 class="text-sm font-bold capitalize text-fg-highlight mb-4">On this Page</h2>
+
+            <nav class="toc" >
+        <ul><li><a href="#overview">Overview</a></li><li><a href="#essentials">Essentials</a><ul><li><a href="#controlling-the-event-flow">Controlling the Event-Flow</a><ul><li><a href="#stop-propagation">Stop Propagation</a></li><li><a href="#prevent-default-behaviour">Prevent Default Behaviour</a></li><li><a href="#filtering-events">Filtering events</a></li></ul></li><li><a href="#global-event-handling-with-the-window-object">Global Event-Handling With the Window-Object</a></li><li><a href="#keyboard-events-and-shortcut-api">Keyboard-Events and Shortcut-API</a></li></ul></li><li><a href="#advanced-topics">Advanced Topics</a><ul><li><a href="#event-capturing">Event Capturing</a></li><li><a href="#custom-events">Custom events</a></li></ul></li></ul>
+      </nav>
+
+        </div>
+        <!-- End right column area -->
+    </div>
+</div>
+
+
+  </div>
+</div>
+
+
+<script src="/assets/main.js"></script>
+</body>
+</html>

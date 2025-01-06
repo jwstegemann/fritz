@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Headless Components</title>
+    <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter:200,300,400&display=swap" rel="stylesheet"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    
+        <meta name="description" content="Documentation of fritz2 headless components">
+    
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#333333">
+</head>
+<body class="bg-bg font-sans">
+
+
+<!-- Background color split screen for large screens -->
+<div class="fixed top-0 left-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="fixed top-0 right-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="relative flex flex-col bg-bg">
+<!-- Navbar -->
+<nav class="fixed h-16 px-4 z-20 w-full font-nunito text-white bg-bg bg-gray-800">
+  <div class="relative flex items-center justify-between h-16">
+    <a class="flex items-center justify-start px-0 w-48 hover:text-gray-300 min-w-fit" href="/">
+      <!-- fritz2 logo -->
+      <svg class="ml-1 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+           fill="currentColor" stroke="none" >
+          <path d="M 9.987 0.229 C 4.469 0.236 0 4.61 0 10.003 C 0 15.401 4.477 19.777 10 19.777 C 15.523 19.777 20 15.401 20 10.003 C 20 4.605 15.523 0.229 10 0.229 C 9.996 0.229 9.992 0.229 9.987 0.229 Z M 14.678 2.662 C 15.144 2.665 15.52 3.043 15.517 3.506 L 15.5 6.862 C 15.497 7.325 15.118 7.699 14.652 7.696 C 14.187 7.694 13.811 7.316 13.813 6.853 L 12.126 6.844 C 11.661 6.842 11.281 7.216 11.278 7.679 L 11.274 8.501 L 12.052 8.501 C 12.072 8.499 12.092 8.499 12.112 8.499 C 12.575 8.499 12.952 8.882 12.952 9.356 C 12.952 9.829 12.575 10.213 12.112 10.213 C 12.089 10.213 12.066 10.212 12.043 10.21 L 7.111 10.21 L 7.111 10.207 C 7.097 10.208 7.084 10.208 7.071 10.208 C 6.607 10.208 6.231 9.825 6.231 9.353 C 6.231 8.881 6.607 8.498 7.071 8.498 C 7.091 8.498 7.111 8.499 7.131 8.501 L 7.9 8.501 L 7.909 6.823 C 7.918 4.969 9.437 3.474 11.3 3.484 L 13.83 3.497 C 13.833 3.034 14.212 2.66 14.678 2.662 Z M 7.887 10.644 L 11.261 10.662 L 11.248 13.179 C 11.238 15.032 9.72 16.527 7.857 16.517 L 6.17 16.509 C 6.167 16.972 5.787 17.346 5.322 17.343 C 4.856 17.341 4.48 16.963 4.483 16.5 L 4.5 13.144 C 4.502 12.681 4.882 12.307 5.348 12.309 C 5.813 12.312 6.189 12.69 6.187 13.153 L 7.031 13.157 C 7.496 13.159 7.876 12.786 7.878 12.322 Z"/>
+        </svg>
+        <div class="ml-3">
+          <span class="text-2xl">fritz2</span>
+          <span class="ml-1 text-xs">1.0-SNAPSHOT</span>
+        </div>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="-mr-2 flex items-center md:hidden">
+      <!-- Mobile menu button -->
+      <button type="button" id="mobile-menu-button" onclick="toggleMenu()"
+              class="p-2 inline-flex items-center justify-center bg-gray-800 rounded-md text-gray-400 hover:bg-gray-900 focus:outline-none focus:ring-1 focus-ring-inset focus:ring-gray-400"
+              aria-controls="mobile-menu" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <span class="mobile-icon block h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="menu" data-heroicon-style="outline"><title>open main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </span>
+        <span class="mobile-icon hidden h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="x" data-heroicon-style="outline"><title>close main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </span>
+      </button>
+    </div>
+    <!-- Links section -->
+    <div class="hidden md:block w-24 md:w-48 lg:w-64 ">
+      <div class="flex items-center justify-end hover:text-gray-200">
+        <!-- Github -->
+        <div class="ml-4 relative flex-shrink-0">
+          <div>
+            <a target="_blank" href="https://github.com/jwstegemann/fritz2">
+              <svg class="mr-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor" stroke="none" >
+                <path d="M 9.983 0 C 4.458 0 -0.017 4.478 -0.017 10 C -0.017 14.419 2.848 18.167 6.821 19.488 C 7.321 19.582 7.504 19.273 7.504 19.007 C 7.504 18.769 7.496 18.14 7.492 17.307 C 4.71 17.91 4.123 15.965 4.123 15.965 C 3.668 14.811 3.011 14.503 3.011 14.503 C 2.105 13.883 3.081 13.895 3.081 13.895 C 4.085 13.965 4.613 14.925 4.613 14.925 C 5.504 16.454 6.953 16.013 7.525 15.757 C 7.615 15.11 7.873 14.669 8.158 14.419 C 5.938 14.169 3.603 13.309 3.603 9.478 C 3.603 8.386 3.991 7.494 4.633 6.794 C 4.52 6.542 4.183 5.525 4.72 4.148 C 4.72 4.148 5.558 3.879 7.47 5.173 C 8.27 4.95 9.12 4.84 9.97 4.835 C 10.82 4.84 11.67 4.95 12.47 5.173 C 14.37 3.879 15.208 4.148 15.208 4.148 C 15.745 5.525 15.408 6.542 15.308 6.794 C 15.945 7.494 16.333 8.386 16.333 9.478 C 16.333 13.319 13.995 14.165 11.77 14.411 C 12.12 14.711 12.445 15.324 12.445 16.261 C 12.445 17.599 12.433 18.674 12.433 18.999 C 12.433 19.262 12.608 19.574 13.12 19.474 C 17.121 18.163 19.983 14.413 19.983 10 C 19.983 4.478 15.506 0 9.983 0"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div id="mobile-menu" class="fixed z-10 w-full bg-bg top-16 -translate-y-[100vh] transition-transform duration-250 ease-in md:hidden pb-2 border-b border-b-fg px-2 pt-2 pb-3 h-[calc(100vh-4rem)] overflow-y-auto">
+    
+    
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/start/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Getting Started
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/fundamentals/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Fundamentals
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/render/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Render HTML
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/createstores/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Creation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/events/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Event Handling
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/storemapping/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Mapping
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/routing/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Routing
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/validation/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Validation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/http/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Http
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/websockets/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Websockets
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/web-components/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Web Components
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  bg-bg-highlight border-fg text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/checkboxgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        CheckboxGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/combobox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Combobox
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/datacollection/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        DataCollection
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/disclosure/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Disclosure
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/inputfield/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        InputField
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/listbox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Listbox (Select)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/menu/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Menu
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/modal/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Modal
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/popover/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        PopOver
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/radioGroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        RadioGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/switch/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Switch (Toggle)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tabgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TabGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/textarea/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TextArea
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/toast/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Toast
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tooltip/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Tooltip
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+            
+        
+    
+</nav>
+
+    
+  </div>
+
+  <!-- 3 column wrapper -->
+<div class="mt-16 h-[calc(100vh-4rem)] flex-grow w-full mx-auto md:flex">
+  <!-- Left sidebar & main wrapper -->
+    <div class="min-w-fit h-full overscroll-none overflow-y-auto w-64 xl:border-b-0 bg-bg hidden md:block">
+        <!-- Start left column area -->
+        <div class="mt-6 relative" style="min-height: 12rem;">
+          
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  bg-bg-highlight border-fg text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/checkboxgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        CheckboxGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/combobox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Combobox
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/datacollection/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        DataCollection
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/disclosure/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Disclosure
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/inputfield/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        InputField
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/listbox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Listbox (Select)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/menu/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Menu
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/modal/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Modal
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/popover/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        PopOver
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/radioGroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        RadioGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/switch/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Switch (Toggle)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tabgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TabGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/textarea/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TextArea
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/toast/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Toast
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tooltip/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Tooltip
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+    
+</nav>
+
+        </div>
+        <!-- End left column area -->
+    </div>
+
+
+    
+<div class="bg-bg md:min-w-0 md:flex-1 h-full">
+  <div class="h-full py-6 px-5 sm:px-6 lg:px-8 h-full overscroll-none overflow-y-auto bg-bg lg:pr-72">
+    <!-- Start main area-->
+    <div class="relative content prose prose-invert max-w-prose pb-10">
+
+      <h1>Headless Components</h1>
+
+      
+
+      
+
+      <p>Instead of the classic approach of providing taylor-made, fully functional, and styled components,
+fritz2 takes a different approach: so-called headless components.</p>
+<p>They represent a modular system which empowers the user to easily build user interfaces supporting typical
+functionalities. These include functions like multiple and single selection of elements from a
+given list, modal dialogs, pop-up windows, input fields, and many more.</p>
+<p>The pure functionality of such elements, in particular user interaction and the corresponding data handling, such as
+navigating within a selection list or clicking a button, is controlled and encapsulated by the
+headless components. The user has to worry about the pure display aspects only, i.e. the structure of the required tags
+and the styling.</p>
+<p>For background information on why we think headless components are the optimal way to go for fritz2 users, we refer you
+to this detailed <a href="/blog/posts/paradigm-shift-for-components/">blog post</a>.</p>
+<div class="info">
+<p>Note: Our examples use the <a href="https://tailwindcss.com">tailwindcss</a> framework for styling. Since
+fritz2 is agnostic about styling information, you can of course use other frameworks such as
+<a href="https://getbootstrap.com">Bootstrap</a>, or simply some plain CSS.</p>
+</div>
+<h2 id="setup" tabindex="-1">Setup</h2>
+<p>In order to use headless components in your project, replace the dependency to the fritz2 <code>core</code> with
+<code>headless</code> in the <code>commonMain</code> source-set of your <code>build.gradle.kts</code> file:</p>
+<pre class="language-kotlin"><code class="language-kotlin">kotlin <span class="token punctuation">{</span><br>    <span class="token comment">// ...</span><br>    sourceSets <span class="token punctuation">{</span><br>        commonMain <span class="token punctuation">{</span><br>            dependencies <span class="token punctuation">{</span><br>                <span class="token comment">// always add the dependency to headless in the commonMain section</span><br>                <span class="token function">implementation</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"dev.fritz2:headless:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$</span><span class="token expression">fritz2Version</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>        <span class="token comment">// ...</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<div class="info">
+<p>If you want to use fritz2 together with <a href="https://tailwindcss.com/">tailwindcss</a> for the styling, clone
+our <a href="https://github.com/jwstegemann/fritz2-tailwind-template">tailwind specific template</a> from GitHub.</p>
+</div>
+<h2 id="structure-of-a-component" tabindex="-1">Structure of a Component</h2>
+<p>Each component is created using a factory function. In rare cases, there are variants of factory functions
+(e.g. with <a href="switch/#switchwithlabel">switch</a>). In the following sections, the word &quot;component&quot; always refers to
+the associated factory function as well, and vice versa.</p>
+<p>Components in turn consist of building blocks called &quot;bricks&quot; which are often more deeply nested. They are also
+represented by factory functions.</p>
+<p>All components and many of the building blocks have their own scope in which the user configures the functionality of
+the component. There are essentially three concepts for this configuration: simple <code>var</code> fields
+(&quot;simple configuration&quot;), <a href="#properties"><code>Property</code>s</a> and <a href="#hooks"><code>Hook</code>s</a>. All three allow adaptation of structure,
+behavior, and function in general of a component to the context in a meaningful way. These concepts of configuration are
+discussed in detail in a <a href="#basic-concepts-for-configuration">dedicated section</a>.</p>
+<p>Almost without exception, all factories of both components and bricks always generate a <code>Tag</code>, giving the user
+access to all attributes of the generated tag, such as <code>className</code> or <code>attr</code>.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token function">someComponent</span><span class="token punctuation">(</span><span class="token comment">/* params */</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// Scope of `someComponent` == a `Tag` + specific extra props (`initialize`-Parameter)</span><br><br>    <span class="token function">someBrick</span><span class="token punctuation">(</span><span class="token comment">/* params */</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// Scope of `SomeBrick` == a `Tag` + specific extra props + props from outer Scope (`initialize`-Parameter)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Block names are always prefixed with the distinctive part or the full name of the component to which they belong,
+e.g. <code>radioGroupLabel</code> for a label within the <code>radioGroup</code> component.</p>
+<p>Almost all factory functions of components and building blocks have the same signature, which intentionally resembles
+the signature of a <code>Tag</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token operator">&lt;</span>C <span class="token operator">:</span> HTMLElement<span class="token operator">></span> RenderContext<span class="token punctuation">.</span><span class="token function">someComponent</span><span class="token punctuation">(</span><br>    classes<span class="token operator">:</span> String<span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// modify the styling</span><br>    id<span class="token operator">:</span> String<span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// set an explicit ID; will be autogenerated in cases where this is needed</span><br>    scope<span class="token operator">:</span> <span class="token punctuation">(</span>ScopeContext<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// set some key-value-pairs for the scope</span><br>    tag<span class="token operator">:</span> TagFactory<span class="token operator">&lt;</span>Tag<span class="token operator">&lt;</span>C<span class="token operator">></span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token comment">// provide a factory to create a `Tag&lt;C>` (there is *always* an overloaded function with a default `Tag`) </span><br>    initialize<span class="token operator">:</span> SomeComponent<span class="token operator">&lt;</span>C<span class="token operator">></span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit <span class="token comment">// the builder function which enables the component designer to define the content and access the scope of a component / brick</span><br><span class="token punctuation">)</span><span class="token operator">:</span> Tag<span class="token operator">&lt;</span>C<span class="token operator">></span></code></pre>
+<p>In the API sections of the components documentation, these standard parameters are listed as a short, untyped list only.
+Blocks do not usually provide the option of explicitly setting an ID.
+The additional parameters that some bricks require are more important, so those are described with
+emphasis and thus easy to recognize. In most cases, these are mandatory parameters.</p>
+<h2 id="api-description" tabindex="-1">API-Description</h2>
+<p>Since each component consists of different bricks which in turn have some fields with <code>Hook</code>s, <code>Property</code>s, or
+simple <code>var</code> types, a strongly abstract overview is offered to show the big picture. It focuses on the special
+headless aspects and also indicates helpful patterns in comments. Standard parameters or fields of the default tags, on
+the other hand, are omitted.</p>
+<p>The following example clarifies this approach to documentation. While the following lines of code are explained with
+additional commentary, the real component documentation omits this meta information.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// component factory</span><br><span class="token function">someComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// fields</span><br>    <span class="token keyword">val</span> value<span class="token operator">:</span> DatabindingProperty<span class="token operator">&lt;</span>Int<span class="token operator">></span><br>    <span class="token keyword">var</span> visibleItems<span class="token operator">:</span> Int<br><br>    <span class="token comment">// bricks</span><br>    <span class="token function">someBrick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><br>    <span class="token function">someOtherBrick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// own scope with further fields and bricks</span><br>        <span class="token keyword">val</span> msgs<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Messages<span class="token operator">></span><span class="token operator">></span><br>    <span class="token punctuation">}</span><br>    <span class="token comment">// Suggestion of a relevant pattern:</span><br>    <span class="token comment">// for each item {</span><br>    <span class="token function">someRepeatingBrick</span><span class="token punctuation">(</span>item<span class="token operator">:</span> T<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">//                 ^^^^^^^</span><br>    <span class="token comment">//                 mandatory additional parameter!</span><br><br>        <span class="token comment">// own field</span><br>        <span class="token keyword">val</span> selected<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>Boolean<span class="token operator">></span><br>    <span class="token punctuation">}</span><br>    <span class="token comment">// }</span><br><br><span class="token punctuation">}</span></code></pre>
+<h2 id="ui-%3D-headless-%2B-tags-%2B-styling" tabindex="-1">UI = Headless + Tags + Styling</h2>
+<p>In order to create a functioning UI out of headless components and their building blocks, the given
+factory functions can be nested and combined with other <code>Tag</code>s to create the overall structure. In addition, the
+appearance must be defined by adding styling.</p>
+<p>The headless components and modules offer the following starting points for specifying the function and
+representation of a component:</p>
+<ul>
+<li>Use a specific brick</li>
+<li>Determine the <code>tag</code> to be generated in factory functions</li>
+<li>Set styling specifications in factory functions</li>
+<li>Configure the scope of the component or block</li>
+</ul>
+<h3 id="use-a-specific-brick" tabindex="-1">Use a specific Brick</h3>
+<p>Bricks often have a functionality in themselves which is achieved solely through their use within a component. Examples
+of this are the various <code>labels</code>, which usually set certain
+<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">ARIA</a> attributes or trigger established functions.</p>
+<p>A good example of this are the labels on the text components <a href="#inputField">InputField</a> and <a href="#textArea">TextArea</a>.
+A mouse click on these elements automatically focuses the associated input field.</p>
+<p>This function is available without additional efforts as soon as the corresponding <code>Label</code> brick is called inside
+the component's scope.</p>
+<p>Other examples can be found in the various <code>Toggle</code> blocks (e.g.
+<a href="#checkboxgroupcheckboxgroupoptiontoggle">checkboxGroupOptionToggle</a>), which automatically select or deselect items
+based on defined user inputs. The user needs do no more than applying these bricks accordingly in his component.</p>
+<h3 id="determine-the-tag-to-be-generated-in-factory-functions" tabindex="-1">Determine the <code>Tag</code> to be generated in Factory Functions</h3>
+<p>The headless components and their bricks always offer a default type for the <code>Tag</code> to be generated. However, in order to
+achieve the greatest possible flexibility, the user can freely to choose the type of tag to generate something that is
+semantically appropriate for the specific context.</p>
+<p>Again, the <code>Label</code> attributes can serve as an example. They mostly generate HTML
+<code>label</code>-tags - however, simply specifying the <code>tag</code> parameter is enough to override this behavior:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token function">inputField</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token function">inputFieldLabel</span><span class="token punctuation">(</span>tag <span class="token operator">=</span> RenderContext<span class="token operator">::</span>span<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Scope of `HTMLSpanElement`</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Label Text"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="set-styling-specifications-in-factory-functions" tabindex="-1">Set Styling Specifications in Factory Functions</h3>
+<p>Almost every factory function accepts a <code>classes</code> parameter in order to set arbitrary CSS classes to the created <code>Tag</code>.
+This fine-grained control over the styling for nearly every brick allows the user to easily shape the desired visual
+result.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token function">inputField</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token function">inputFieldLabel</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"text-indigo-500 p-8 mh-4"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">//           ^^^^^^^^^^^^^^^^^^^^^^^^</span><br>        <span class="token comment">//           Some Styling, almost always first parameter</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Label Text"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="configure-the-scope-of-the-component-or-block" tabindex="-1">Configure the Scope of the Component or Block</h3>
+<p>As the last and extremely powerful aspect, the components and bricks provide readily accessible fields for the user
+through which the configuration is carried out.</p>
+<p>Reminder: the three common configuration concepts are simple configuration via <code>public var</code> fields,
+<a href="#properties"><code>Property</code>s</a>, and <a href="#hooks"><code>Hook</code>s</a>.</p>
+<p>These configuration properties often have direct impact on the inner state of the component. This is especially true for
+the (two-way) data binding aspects lots of components offer. This includes, for example, information about the current
+selection in selection components (<a href="#radioGroup">RadioGroup</a>, <a href="#checkboxGroup">CheckboxGroup</a>, or
+<a href="#listBox">ListBox</a>), but also the input values for text field components (<a href="#inputField">InputField</a>
+and <a href="#textArea">TextArea</a>).</p>
+<p>In addition, a lot of scopes offer flows and handlers for the handling of special states (selected, disabled, focused, or
+open), or for the behavior on data change events (e.g. user clicks on a close button). Most of the time, these are
+derived from the data binding, so this is a very important and powerful aspect of our headless components.</p>
+<p>Typical patterns are the dynamic setting of CSS classes depending on a specific state via <code>className</code>,
+or the complete creation/deletion of DOM structures:</p>
+<pre class="language-kotlin"><code class="language-kotlin">checkboxGroup <span class="token punctuation">{</span><br>    <span class="token comment">// special data binding property for the selection management.</span><br>    <span class="token comment">// component will automatically use the current selections and also set or remove those by user interaction. </span><br>    <span class="token function">value</span><span class="token punctuation">(</span>someStore<span class="token punctuation">)</span><br><br>    <span class="token function">checkboxGroupOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// offers `selected: Flow&lt;Boolean>` property -> style checked and unchecked options differently</span><br>        <span class="token function">className</span><span class="token punctuation">(</span>selected<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span><br>            <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"ring-2 ring-indigo-500 border-transparent"</span></span><br>            <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"border border-gray-300"</span></span><br>        <span class="token punctuation">}</span><span class="token punctuation">)</span><br><br>        <span class="token comment">// conditionally modify the whole sub-structure: show an icon only if option is selected</span><br>        selected<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span><br>            <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token function">svg</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"h-5 w-5 text-indigo-600"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                    <span class="token function">content</span><span class="token punctuation">(</span>HeroIcons<span class="token punctuation">.</span>check_circle<span class="token punctuation">)</span><br>                    <span class="token function">fill</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"currentColor"</span></span><span class="token punctuation">)</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="basic-concepts-for-configuration" tabindex="-1">Basic concepts for configuration</h2>
+<p>Headless components and modules often require similar mechanisms, regardless of the specific way they require and
+maintain certain data inputs from a user. Beyond pure data management, the user must be able to
+directly modify the rendering or pass customized behaviour to the component or the brick.</p>
+<p>There are two basic concepts for this which will be presented in more detail below:</p>
+<ul>
+<li>Properties</li>
+<li>Hooks</li>
+</ul>
+<p>Since the data binding <code>Property</code> is a particularly important and special one, its implementation is explained later in a
+dedicated section.</p>
+<h3 id="properties" tabindex="-1">Properties</h3>
+<p>A <code>Property</code> serves as a container for data used by a component or brick for the fulfillment of its relevant task and
+can or must be configured externally by the user. The property is always created by the respective headless instance and
+exposed to the user within its scope.</p>
+<p>In order to tailor this public API as appropriately as possible, the concept proposes to create tailored <code>invoke</code>
+methods. Their parameter lists should reflect the need of the component's or brick's functionality, but should also be
+tailored to the typical kind of data types of the user's context. This is easily achieved by providing different <code>invoke</code>
+methods for different data types.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> UserProperty <span class="token operator">:</span> Property<span class="token operator">&lt;</span>User<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// the only visible "modifying" API for the client - hides the complex type by offering the parameters directly</span><br>    <span class="token keyword">operator</span> <span class="token keyword">fun</span> <span class="token function">invoke</span><span class="token punctuation">(</span>name<span class="token operator">:</span> String<span class="token punctuation">,</span> alias<span class="token operator">:</span> String<span class="token punctuation">,</span> mail<span class="token operator">:</span> String<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        value <span class="token operator">=</span> <span class="token function">User</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> alias<span class="token punctuation">,</span> mail<span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token comment">// optional: other `invoke`s with convenience parameters</span><br>    <span class="token keyword">operator</span> <span class="token keyword">fun</span> <span class="token function">invoke</span><span class="token punctuation">(</span>ldapData<span class="token operator">:</span> LdapPrincipal<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        value <span class="token operator">=</span> <span class="token function">User</span><span class="token punctuation">(</span><span class="token comment">/* extract the relevant parameters from `LdapPrincipal` instance */</span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// set the data within a headless-component:</span><br>someComponentOrBrick <span class="token punctuation">{</span><br>    <span class="token function">user</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Christian"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Chris"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"chris@fritz2.org"</span></span><span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<p>A property should be used whenever it is clear from the context that the required data emerges from different types. A
+suitable <code>invoke</code> function should be provided for each type resulting in a comfortable API for the user.</p>
+<p>The component itself can then solve the following tasks elegantly thanks to the <code>Property</code> interface:</p>
+<ul>
+<li>Check with <code>isSet</code> if a value was set. This is important in order to be able to fall back on a default value if
+necessary.</li>
+<li>Pass the managed data to another property instance via <code>use(item: T)</code>. This is crucial for use cases where the
+headless component is encapsulated in another component-like container which itself exposes this data as public API.
+This data has to be forwarded to the underlying headless component or brick.</li>
+</ul>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> SomeSpecificComponent <span class="token punctuation">{</span><br><br>    <span class="token comment">// create property instance so external user can provide user data</span><br>    <span class="token keyword">val</span> user <span class="token operator">=</span> <span class="token function">UserProperty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><br>    <span class="token keyword">fun</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token function">someHeadlessComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br><br>            <span class="token comment">// transfer data into the headless component which requires it</span><br>            user<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token label symbol">@SomeSpecificComponent</span><span class="token punctuation">.</span>user<span class="token punctuation">.</span>value<span class="token punctuation">)</span><br><br>            <span class="token function">someBrick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token comment">// `someBrick` might check if `user.isSet` and use some default fallback data by itself</span><br>                <span class="token comment">// often the component can check and act in the same way too:</span><br>                <span class="token keyword">if</span> <span class="token punctuation">(</span>user<span class="token punctuation">.</span>isSet<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                    <span class="token comment">// apply user data</span><br>                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span><br>                    <span class="token comment">// act without user data provided</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<div class="info">
+<p><strong>Tip:</strong> If there is only one data type as a source, you should not use a property implementation, but instead prefer the
+simple configuration (cf. <a href="tabgroup/#vertical-tabgroup">Vertical TabGroups</a> where there is only one <code>Enum</code> value to
+pass).</p>
+</div>
+<h3 id="data-binding" tabindex="-1">Data Binding</h3>
+<p>Some headless components support data binding. This means that the component reacts to dynamic data from the outside,
+processes and uses this data internally if necessary, and is also able to communicate changes to the outside world.
+This corresponds to the classic two-way data binding that makes up the core of fritz2.</p>
+<p>Due to the importance of this mechanism, there is a specialized <code>Property</code> called <code>DatabindingProperty&lt;T&gt;</code> which is
+suitable for most data binding scenarios.</p>
+<p>This property requires the following parameters via <code>invoke</code>:</p>
+<ul>
+<li><code>id: String? = null</code>: An optional ID which forms the basis for the IDs of a headless component's substructures.</li>
+<li><code>data: Flow&lt;T&gt;</code>: This mandatory data stream delivers the dynamic data from the outside to which the component must
+react.</li>
+<li><code>messages: Flow&lt;List&lt;ComponentValidationMessage&gt;&gt;? = null</code>: This data stream allows for the optional propagation of
+validation messages. Many headless components already support this aspect natively.</li>
+<li><code>handler: ((Flow&lt;T&gt;) -&gt; Unit)? = null</code>: An optional handler that defines how the component propagates internally made
+changes to the outside world.</li>
+</ul>
+<p>Since all this information can be derived from a <code>Store</code>, the property offers a corresponding overloaded <code>invoke</code>
+method.</p>
+<p>Summing up, this special property allows the user to expose and manage their data binding very easily and with greatly
+reduced boilerplate code.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> name <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">,</span> job <span class="token operator">=</span> <span class="token function">Job</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br>inputField <span class="token punctuation">{</span><br><br>    <span class="token comment">// pass the store into the data binding-property `value`, so that the input-field can be preset with external data</span><br>    <span class="token comment">// and also react to user input to update the external store.</span><br>    <span class="token function">value</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><br><br>    <span class="token comment">// ...</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="hooks" tabindex="-1">Hooks</h3>
+<p>The hook concept is really just a specialized <a href="#properties">property</a> at its core, which instead of arbitrary data
+encapsulates a so-called <em>effect</em>. An effect is simply a behavior that directly affects the user interface in some way,
+be it through structures in the DOM, or through reacting to events, or even generating events.</p>
+<p>In case of a hook, the effect is precisely the configuration that must be specified by the user, but is applied by the
+headless component or brick in a specific place or situation.</p>
+<p>Therefore, it makes sense to choose a <code>Property</code> as the base interface: The public API for setting the effect works in
+the same way as all other configurations thanks to the property concept. The effect itself, on the other hand, is
+designed to be applicable as extension function on a <code>Tag</code> with some payload parameter, so it can be called anywhere
+within the <code>RenderContext</code>. On top of that, the effect also has a generic return type, so that the latter can be
+processed further if needed. The signature looks like this: <code>typealias Effect&lt;C, R, P&gt; = C.(P) -&gt; R</code></p>
+<p>This allows the effect to handle all facets of a UI within the DOM.</p>
+<p>As usual with our headless components, the configuration is done via custom tailored <code>invoke</code> methods.</p>
+<p>A recurring pattern in hooks can be traced back to the duality of static and dynamic data:
+Sometimes a value to be rendered is static, other times it comes from a <code>Flow</code>. Both can be processed by
+dedicated <code>invoke</code> functions that create the specific effect accordingly and put into the <code>value</code> field of
+the <code>Property</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> LabelHook <span class="token operator">:</span> Hook<span class="token operator">&lt;</span>HTMLElement<span class="token punctuation">,</span> Unit<span class="token punctuation">,</span> Unit<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">operator</span> <span class="token keyword">fun</span> <span class="token function">invoke</span><span class="token punctuation">(</span>content<span class="token operator">:</span> String<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">{</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token punctuation">{</span><br>            <span class="token comment">// render static content into a label</span><br>            label <span class="token punctuation">{</span> <span class="token operator">+</span>content <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">operator</span> <span class="token keyword">fun</span> <span class="token function">invoke</span><span class="token punctuation">(</span>content<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">{</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token punctuation">{</span><br>            <span class="token comment">// render dynamic content into a label</span><br>            label <span class="token punctuation">{</span> content<span class="token punctuation">.</span><span class="token function">renderText</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>A component exposes the previously developed <code>Hook</code> via its public API for user configuration and can then easily apply
+the effect via a global <code>hook</code> function:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">class</span> SomeComponent <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> label <span class="token operator">=</span> <span class="token function">LabelHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><br>    <span class="token keyword">fun</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        div <span class="token punctuation">{</span><br>            <span class="token comment">// apply hook where needed</span><br>            <span class="token function">hook</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><br>            <span class="token comment">// further structure...</span><br>            input <span class="token punctuation">{</span><br>                <span class="token comment">// ...</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// the user can configure the hook with static content</span><br>someCoponent <span class="token punctuation">{</span><br>    <span class="token function">label</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Hooks are great!"</span></span><span class="token punctuation">)</span><br><span class="token punctuation">}</span><br><br><span class="token comment">// ... or with dynamic content:</span><br><span class="token keyword">val</span> content <span class="token operator">=</span> storeOf<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token comment">/* some initial value */</span><span class="token punctuation">,</span> job <span class="token operator">=</span> <span class="token function">Job</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br>someComponent <span class="token punctuation">{</span><br>    <span class="token function">label</span><span class="token punctuation">(</span>content<span class="token punctuation">.</span>data<span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<div class="info">
+<p><strong>Tip:</strong> There is an abstract base class for rendering something based upon one value as static <code>T</code> or <code>Flow&lt;T&gt;</code>
+called <code>TagHook</code>. So implementing such a <code>LabelHook</code> as in the example above should be built upon this foundation
+class for real projects.</p>
+</div>
+<h2 id="shared-base-classes" tabindex="-1">Shared base classes</h2>
+<h3 id="closable-content---openclose" tabindex="-1">Closable Content - OpenClose</h3>
+<p>Some headless components can be opened and closed, for example, content expands (<a href="disclosure">Disclosure</a>) in open state,
+or a popup appears (<a href="popover">PopOver</a>). These components implement the abstract class <code>OpenClose</code>.</p>
+<p>In the scope of these components, there are various <code>Flow</code>s and <code>Handler</code>s available for reacting to or manipulating
+the open-state of the component:</p>
+<table>
+<thead>
+<tr>
+<th>Scope property</th>
+<th>Typ</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openState</code></td>
+<td><code>DatabindingProperty&lt;Boolean&gt;</code></td>
+<td>Optional (two-way) data binding for opening and closing.</td>
+</tr>
+<tr>
+<td><code>opened</code></td>
+<td><code>Flow&lt;Boolean&gt;</code></td>
+<td>Data stream that provides Boolean values related to the &quot;open&quot; state.</td>
+</tr>
+<tr>
+<td><code>close</code></td>
+<td><code>SimpleHandler&lt;Unit&gt;</code></td>
+<td>Handler to close the disclosure from inside.</td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td><code>SimpleHandler&lt;Unit&gt;</code></td>
+<td>Handler to open.</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td><code>SimpleHandler&lt;Unit&gt;</code></td>
+<td>Handler for switching between open and closed.</td>
+</tr>
+</tbody>
+</table>
+<p>The open state of such a component can be set via the data binding property <code>openState</code>, e.g. to an external <code>Store</code>
+or <code>Flow</code>. This can be used, for example, to control the visibility of the selection list of a <code>listbox</code> divergent from the standard behavior, e.g. always kept open:</p>
+<pre class="language-kotlin"><code class="language-kotlin">listbox<span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span><br>    <span class="token comment">//...</span><br><br>    listboxItems <span class="token punctuation">{</span><br>        <span class="token function">openClose</span><span class="token punctuation">(</span><span class="token keyword">data</span> <span class="token operator">=</span> <span class="token function">flowOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br>        characters<span class="token punctuation">.</span><span class="token function">forEach</span> <span class="token punctuation">{</span> entry <span class="token operator">-></span><br>            <span class="token function">listboxItem</span><span class="token punctuation">(</span>entry<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token comment">//...</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="floating-content---popuppanel" tabindex="-1">Floating Content - PopUpPanel</h3>
+<p>Some bricks of the headless components (e.g. the <code>popOverPanel</code> or the <code>listboxItem</code>) are positioned dynamically
+and hover over the rest of the content. These are often faded in and out dynamically.</p>
+<p>These blocks are implemented using the library <a href="https://floating-ui.com/">Floating UI</a>. Accordingly, they offer a unified
+configuration interface to the most important attributes.</p>
+<p>The following configurations are available in the scope of such a brick that implements the abstract class <code>PopUpPanel</code>
+in order to influence the positioning of the content:</p>
+<table>
+<thead>
+<tr>
+<th>Scope property</th>
+<th>Typ</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size</code></td>
+<td><code>PopUpPanelSize</code></td>
+<td>Defines the width restrictions of the building block, e.g. <code>PopUpPanelSize.Min</code>, <code>PopUpPanelSize.Max</code>, etc.</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>PlacementValues</code></td>
+<td>Defines the position of the building block, e.g. <code>PlacementValues.top</code>, <code>PlacementValues.bottom</code>, etc.</td>
+</tr>
+<tr>
+<td><code>strategy</code></td>
+<td><code>Strategy</code></td>
+<td>Determines whether the block should be positioned <code>absolute</code> (default) or <code>fixed</code>.</td>
+</tr>
+<tr>
+<td><code>middleware</code></td>
+<td><code>Array&lt;Middleware&gt;</code></td>
+<td>Middleware are plain objects that modify the positioning coordinates in some fashion, or provide useful data for rendering, as calculated by the positioning cycle.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition, an arrow can be added pointing to the reference element. By default, the arrow is 8 pixels wide and
+inherits the background color of the panel. You are recommended to only change its <code>width</code> or <code>height</code> by providing
+any valid CSS expression for that for its <code>size</code>parameter. Alongside of changing the size, you usually also have to
+adapt the <code>offset</code> too, so there is also a parameter to provide the value in pixels:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token function">popOverPanel</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"bg-gray-200"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">//...</span><br>    <span class="token function">arrow</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"h-3 w-3"</span></span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token comment">// w-3 -> 12px in tailwindcss, use at least the half of the arrow size for the offset</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="portalling" tabindex="-1">Portalling</h3>
+<p>Headless Components, which are rendered as a overlay above other elements are rendered using a portalling mechanism.
+With portalling the Element is not rendered in-place, instead it is rendered in a <code>portalRoot</code>, which is a container
+at the end of the Document-Body.</p>
+<p>To use portalling we have to render the portalRoot manually in our main <code>render {}</code> Block like this:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">//...</span><br><br>    render <span class="token punctuation">{</span><br>        <span class="token comment">// custom content</span><br>        <span class="token comment">// ...</span><br>        <br>        <span class="token function">portalRoot</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// should be the last rendered element</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Portalling is already implemented in the Headless-Components <code>listBox</code>, <code>menu</code>, <code>modal</code>, <code>popOver</code>, <code>toast</code>
+and <code>tooltip</code>. If your are using one of these components, you have only to render the <code>portalRoot</code> like above.</p>
+<p>For custom components you have to wrap your render code with a <code>portal</code> like this:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> Tag<span class="token operator">&lt;</span>HTMLElement<span class="token operator">></span><span class="token punctuation">.</span><span class="token function">myCustomOverlay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> portal <span class="token punctuation">{</span> close<span class="token operator">:</span> <span class="token keyword">suspend</span> <span class="token punctuation">(</span>Unit<span class="token punctuation">)</span> <span class="token operator">-></span> Unit <span class="token operator">-></span> <span class="token comment">// a handler to close the portal </span><br>    <span class="token comment">// ...</span><br><span class="token punctuation">}</span></code></pre>
+<p>Beware that there is no <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/z-index">z-index</a> handling managed by the
+portal mechanism - following the zen of headless, the portalling is totally styling agnostic.</p>
+
+
+    </div>
+    <a class="group flex items-center px-1 py-1 pb-6 text-sm text-cyan-300 hover:underline" href="https://github.com/jwstegemann/fritz2/blob/master/www/src/pages/headless/headlessComponents.md" target="_blank">
+      <span class="mr-1 flex-shrink-0 h-4 w-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+      </span>
+      Edit this page on Github
+    </a>
+    <!-- End main area -->
+  </div>
+</div>
+
+<div
+    class="fixed lg:block top-0 right-0 pt-16 h-full hidden pr-4 sm:pr-6 lg:pr-8 lg:pr-2">
+    <div class="w-64 h-full overscroll-none overflow-y-auto pl-6 py-6">
+        <!-- Start right column area -->
+        <div class="h-full relative" style="min-height: 16rem;">
+
+            <h2 class="text-sm font-bold capitalize text-fg-highlight mb-4">On this Page</h2>
+
+            <nav class="toc" >
+        <ul><li><a href="#setup">Setup</a></li><li><a href="#structure-of-a-component">Structure of a Component</a></li><li><a href="#api-description">API-Description</a></li><li><a href="#ui-%3D-headless-%2B-tags-%2B-styling">UI = Headless + Tags + Styling</a><ul><li><a href="#use-a-specific-brick">Use a specific Brick</a></li><li><a href="#determine-the-tag-to-be-generated-in-factory-functions">Determine the Tag to be generated in Factory Functions</a></li><li><a href="#set-styling-specifications-in-factory-functions">Set Styling Specifications in Factory Functions</a></li><li><a href="#configure-the-scope-of-the-component-or-block">Configure the Scope of the Component or Block</a></li></ul></li><li><a href="#basic-concepts-for-configuration">Basic concepts for configuration</a><ul><li><a href="#properties">Properties</a></li><li><a href="#data-binding">Data Binding</a></li><li><a href="#hooks">Hooks</a></li></ul></li><li><a href="#shared-base-classes">Shared base classes</a><ul><li><a href="#closable-content---openclose">Closable Content - OpenClose</a></li><li><a href="#floating-content---popuppanel">Floating Content - PopUpPanel</a></li><li><a href="#portalling">Portalling</a></li></ul></li></ul>
+      </nav>
+
+        </div>
+        <!-- End right column area -->
+    </div>
+</div>
+
+
+  </div>
+</div>
+
+
+<script src="/assets/main.js"></script>
+</body>
+</html>

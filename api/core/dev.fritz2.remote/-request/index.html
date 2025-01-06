@@ -1,0 +1,894 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Request</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            fritz2
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":core:dokkaHtmlPartial/jsMain">js</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="core::dev.fritz2.remote/Request///PointingToDeclaration//139861046">
+  <div class="breadcrumbs"><a href="../../index.html">core</a><span class="delimiter">/</span><a href="../index.html">dev.fritz2.remote</a><span class="delimiter">/</span><span class="current">Request</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Request</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Request</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>method<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>headers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyMap()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>body<span class="token operator">: </span>dynamic<span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>referrer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>referrerPolicy<span class="token operator">: </span>dynamic<span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-mode/index.html">RequestMode</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>credentials<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-credentials/index.html">RequestCredentials</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cache<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-cache/index.html">RequestCache</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>redirect<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-redirect/index.html">RequestRedirect</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>integrity<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>keepalive<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>reqWindow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>middlewares<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-middleware/index.html">Middleware</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyList()</span></span><span class="token punctuation">)</span></div><p class="paragraph">Represents the common fields and attributes of an HTTP request.</p><p class="paragraph">Use it to define common headers, error-handling, base url, etc. for a specific API for example. By calling one of the executing methods like <a href="get.html">get</a> or <a href="post.html">post</a> a specific request is built from the template and send to the server.</p></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-754263791%2FConstructors%2F139861046" anchor-label="Request" id="-754263791%2FConstructors%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-request.html"><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-754263791%2FConstructors%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">method<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyMap()<span class="token punctuation">, </span></span><span class="parameter ">body<span class="token operator">: </span>dynamic<span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">referrer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">referrerPolicy<span class="token operator">: </span>dynamic<span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-mode/index.html">RequestMode</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">credentials<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-credentials/index.html">RequestCredentials</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">cache<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-cache/index.html">RequestCache</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">redirect<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-redirect/index.html">RequestRedirect</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">integrity<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">keepalive<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">reqWindow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator"> = </span>undefined<span class="token punctuation">, </span></span><span class="parameter ">middlewares<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-middleware/index.html">Middleware</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyList()</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="478140856%2FProperties%2F139861046" anchor-label="body" id="478140856%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="body.html"><span><span>body</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="478140856%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="body.html">body</a><span class="token operator">: </span>dynamic</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1240530754%2FProperties%2F139861046" anchor-label="cache" id="-1240530754%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cache.html"><span><span>cache</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1240530754%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="cache.html">cache</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-cache/index.html">RequestCache</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="512789572%2FProperties%2F139861046" anchor-label="credentials" id="512789572%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="credentials.html"><span><span>credentials</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="512789572%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="credentials.html">credentials</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-credentials/index.html">RequestCredentials</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="912328826%2FProperties%2F139861046" anchor-label="headers" id="912328826%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="headers.html"><span><span>headers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="912328826%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="headers.html">headers</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2056216109%2FProperties%2F139861046" anchor-label="integrity" id="-2056216109%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="integrity.html"><span><span>integrity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056216109%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="integrity.html">integrity</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-805065448%2FProperties%2F139861046" anchor-label="keepalive" id="-805065448%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="keepalive.html"><span><span>keepalive</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-805065448%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="keepalive.html">keepalive</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="481539097%2FProperties%2F139861046" anchor-label="method" id="481539097%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="method.html"><span><span>method</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="481539097%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="method.html">method</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-274867777%2FProperties%2F139861046" anchor-label="middlewares" id="-274867777%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="middlewares.html"><span><span>middlewares</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-274867777%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="middlewares.html">middlewares</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-middleware/index.html">Middleware</a><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1108071209%2FProperties%2F139861046" anchor-label="mode" id="-1108071209%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mode.html"><span><span>mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1108071209%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="mode.html">mode</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-mode/index.html">RequestMode</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1792784958%2FProperties%2F139861046" anchor-label="redirect" id="1792784958%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="redirect.html"><span><span>redirect</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1792784958%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="redirect.html">redirect</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-redirect/index.html">RequestRedirect</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="998733659%2FProperties%2F139861046" anchor-label="referrer" id="998733659%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="referrer.html"><span><span>referrer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="998733659%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="referrer.html">referrer</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1985279945%2FProperties%2F139861046" anchor-label="referrerPolicy" id="1985279945%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="referrer-policy.html"><span>referrer</span><wbr><span><span>Policy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1985279945%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="referrer-policy.html">referrerPolicy</a><span class="token operator">: </span>dynamic</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="124378642%2FProperties%2F139861046" anchor-label="reqWindow" id="124378642%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="req-window.html"><span>req</span><wbr><span><span>Window</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="124378642%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="req-window.html">reqWindow</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1609550799%2FProperties%2F139861046" anchor-label="url" id="-1609550799%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="url.html"><span><span>url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1609550799%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="url.html">url</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-877519758%2FFunctions%2F139861046" anchor-label="accept" id="-877519758%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="accept.html"><span><span>accept</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-877519758%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="accept.html"><span class="token function">accept</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">adds the given <a href="https://developer.mozilla.org/en/docs/Web/HTTP/Headers/Accept">Accept</a> value to the http headers, e.g "application/pdf"</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-651608246%2FFunctions%2F139861046" anchor-label="acceptJson" id="-651608246%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="accept-json.html"><span>accept</span><wbr><span><span>Json</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-651608246%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="accept-json.html"><span class="token function">acceptJson</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">adds a header to accept JSON as response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1847781116%2FFunctions%2F139861046" anchor-label="append" id="-1847781116%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="append.html"><span><span>append</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1847781116%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="append.html"><span class="token function">append</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">appends the given <a href="append.html">subUrl</a> to the <a href="url.html">url</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="820265879%2FFunctions%2F139861046" anchor-label="arrayBuffer" id="820265879%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="array-buffer.html"><span>array</span><wbr><span><span>Buffer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="820265879%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="array-buffer.html"><span class="token function">arrayBuffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.khronos.webgl/-array-buffer/index.html">ArrayBuffer</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.khronos.webgl/-array-buffer/index.html">ArrayBuffer</a> content to the request</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2144811615%2FFunctions%2F139861046" anchor-label="basicAuth" id="2144811615%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="basic-auth.html"><span>basic</span><wbr><span><span>Auth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2144811615%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="basic-auth.html"><span class="token function">basicAuth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">username<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">password<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">Adds the basic <a href="https://developer.mozilla.org/en/docs/Web/HTTP/Headers/Authorization">Authorization</a> header for the given username and password.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1973407576%2FFunctions%2F139861046" anchor-label="blob" id="1973407576%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="blob.html"><span><span>blob</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1973407576%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="blob.html"><span class="token function">blob</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.files/-blob/index.html">Blob</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.files/-blob/index.html">Blob</a> content to the request</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1481491020%2FFunctions%2F139861046" anchor-label="body" id="1481491020%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="body.html"><span><span>body</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1481491020%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="body.html"><span class="token function">body</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the body content to the request</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="944721958%2FFunctions%2F139861046" anchor-label="cache" id="944721958%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cache.html"><span><span>cache</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="944721958%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="cache.html"><span class="token function">cache</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-cache/index.html">RequestCache</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the cache property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-578280859%2FFunctions%2F139861046" anchor-label="cacheControl" id="-578280859%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cache-control.html"><span>cache</span><wbr><span><span>Control</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-578280859%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="cache-control.html"><span class="token function">cacheControl</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">adds the given <a href="https://developer.mozilla.org/en/docs/Web/HTTP/Headers/Cache-Control">Cache-Control</a> value to the http headers</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1884307595%2FFunctions%2F139861046" anchor-label="connect" id="-1884307595%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="connect.html"><span><span>connect</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1884307595%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="connect.html"><span class="token function">connect</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a connect request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-381826473%2FFunctions%2F139861046" anchor-label="contentType" id="-381826473%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="content-type.html"><span>content</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-381826473%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="content-type.html"><span class="token function">contentType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">adds the given <a href="https://developer.mozilla.org/en/docs/Web/HTTP/Headers/Content-Type">Content-Type</a> value to the http headers</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-712345603%2FFunctions%2F139861046" anchor-label="copy" id="-712345603%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="copy.html"><span><span>copy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-712345603%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="copy.html"><span class="token function">copy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>this.url<span class="token punctuation">, </span></span><span class="parameter ">method<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>this.method<span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator"> = </span>this.headers<span class="token punctuation">, </span></span><span class="parameter ">body<span class="token operator">: </span>dynamic<span class="token operator"> = </span>this.body<span class="token punctuation">, </span></span><span class="parameter ">referrer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>this.referrer<span class="token punctuation">, </span></span><span class="parameter ">referrerPolicy<span class="token operator">: </span>dynamic<span class="token operator"> = </span>this.referrerPolicy<span class="token punctuation">, </span></span><span class="parameter ">mode<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-mode/index.html">RequestMode</a><span class="token operator">?</span><span class="token operator"> = </span>this.mode<span class="token punctuation">, </span></span><span class="parameter ">credentials<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-credentials/index.html">RequestCredentials</a><span class="token operator">?</span><span class="token operator"> = </span>this.credentials<span class="token punctuation">, </span></span><span class="parameter ">cache<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-cache/index.html">RequestCache</a><span class="token operator">?</span><span class="token operator"> = </span>this.cache<span class="token punctuation">, </span></span><span class="parameter ">redirect<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-redirect/index.html">RequestRedirect</a><span class="token operator">?</span><span class="token operator"> = </span>this.redirect<span class="token punctuation">, </span></span><span class="parameter ">integrity<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>this.integrity<span class="token punctuation">, </span></span><span class="parameter ">keepalive<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>this.keepalive<span class="token punctuation">, </span></span><span class="parameter ">reqWindow<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator"> = </span>this.reqWindow<span class="token punctuation">, </span></span><span class="parameter ">middlewares<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-middleware/index.html">Middleware</a><span class="token operator">&gt;</span><span class="token operator"> = </span>this.middlewares</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">creates a copy of the <a href="index.html">Request</a>.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="651856306%2FFunctions%2F139861046" anchor-label="credentials" id="651856306%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="credentials.html"><span><span>credentials</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="651856306%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="credentials.html"><span class="token function">credentials</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-credentials/index.html">RequestCredentials</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the credentials property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1692538542%2FFunctions%2F139861046" anchor-label="delete" id="1692538542%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete.html"><span><span>delete</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1692538542%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete.html"><span class="token function">delete</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a delete request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1783233387%2FFunctions%2F139861046" anchor-label="execute" id="1783233387%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="execute.html"><span><span>execute</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1783233387%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="execute.html"><span class="token function">execute</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">executes the HTTP call and sends it to the server, awaits the response (async) and returns a <a href="../-response/index.html">Response</a>.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2000404801%2FFunctions%2F139861046" anchor-label="formData" id="2000404801%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="form-data.html"><span>form</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2000404801%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="form-data.html"><span class="token function">formData</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">content<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.xhr/-form-data/index.html">FormData</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.xhr/-form-data/index.html">FormData</a> content to the request</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="612234281%2FFunctions%2F139861046" anchor-label="get" id="612234281%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get.html"><span><span>get</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="612234281%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get.html"><span class="token function">get</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a get request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="959635481%2FFunctions%2F139861046" anchor-label="head" id="959635481%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="head.html"><span><span>head</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="959635481%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="head.html"><span class="token function">head</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a head request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1063603492%2FFunctions%2F139861046" anchor-label="header" id="-1063603492%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="header.html"><span><span>header</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1063603492%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="header.html"><span class="token function">header</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">adds the given http header to the request</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="222707217%2FFunctions%2F139861046" anchor-label="integrity" id="222707217%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="integrity.html"><span><span>integrity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="222707217%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="integrity.html"><span class="token function">integrity</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the integrity property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1712245341%2FFunctions%2F139861046" anchor-label="keepalive" id="1712245341%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="keepalive.html"><span><span>keepalive</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1712245341%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="keepalive.html"><span class="token function">keepalive</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the keepalive property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-253333695%2FFunctions%2F139861046" anchor-label="options" id="-253333695%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="options.html"><span><span>options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-253333695%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="options.html"><span class="token function">options</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a options request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1418321687%2FFunctions%2F139861046" anchor-label="patch" id="1418321687%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="patch.html"><span><span>patch</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1418321687%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="patch.html"><span class="token function">patch</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a patch request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="39091545%2FFunctions%2F139861046" anchor-label="post" id="39091545%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="post.html"><span><span>post</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="39091545%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="post.html"><span class="token function">post</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a post request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-865489104%2FFunctions%2F139861046" anchor-label="put" id="-865489104%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="put.html"><span><span>put</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-865489104%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="put.html"><span class="token function">put</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">subUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-response/index.html">Response</a></div><div class="brief "><p class="paragraph">issues a put request returning a flow of it's response</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1360903138%2FFunctions%2F139861046" anchor-label="queryParameters" id="1360903138%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="query-parameters.html"><span>query</span><wbr><span><span>Parameters</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1360903138%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="query-parameters.html"><span class="token function">queryParameters</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parameters<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">appends the given <a href="query-parameters.html">parameters</a> to the <a href="url.html">url</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2089181694%2FFunctions%2F139861046" anchor-label="redirect" id="2089181694%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="redirect.html"><span><span>redirect</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2089181694%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="redirect.html"><span class="token function">redirect</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-redirect/index.html">RequestRedirect</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the redirect property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-242965111%2FFunctions%2F139861046" anchor-label="referrer" id="-242965111%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="referrer.html"><span><span>referrer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-242965111%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="referrer.html"><span class="token function">referrer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the referrer property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-910181494%2FFunctions%2F139861046" anchor-label="referrerPolicy" id="-910181494%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="referrer-policy.html"><span>referrer</span><wbr><span><span>Policy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-910181494%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="referrer-policy.html"><span class="token function">referrerPolicy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the referrerPolicy property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2046081511%2FFunctions%2F139861046" anchor-label="requestMode" id="2046081511%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-mode.html"><span>request</span><wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2046081511%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="request-mode.html"><span class="token function">requestMode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.fetch/-request-mode/index.html">RequestMode</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the requestMode property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-6022509%2FFunctions%2F139861046" anchor-label="reqWindow" id="-6022509%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="req-window.html"><span>req</span><wbr><span><span>Window</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-6022509%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="req-window.html"><span class="token function">reqWindow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">sets the reqWindow property of the <a href="index.html">Request</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="619109944%2FFunctions%2F139861046" anchor-label="use" id="619109944%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="use.html"><span><span>use</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="619109944%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="use.html"><span class="token function">use</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">middleware<span class="token operator">: </span><a href="../-middleware/index.html">Middleware</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">adds an <a href="../-middleware/index.html">Middleware</a> to handle all requests and responses.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="use.html"><span class="token function">use</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>middlewares<span class="token operator">: </span><a href="../-middleware/index.html">Middleware</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Request</a></div><div class="brief "><p class="paragraph">adds <a href="../-middleware/index.html">Middleware</a>s to handle all requests and responses.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

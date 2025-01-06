@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>What we have learned about reuse and components in web front-end development.</title>
+    <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter:200,300,400&display=swap" rel="stylesheet"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    
+        <meta name="description" content="This article is about how we built and delivered components with fritz2 so far, the problems we noticed more and more and why a new approach is the solution for us. At the same time we&#39;re saying goodbye to the components  delivered with fritz2 up to version 0.14 and introduce their new and improved replacement.">
+    
+    
+    
+        <meta name="author" content="chausknecht">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#333333">
+</head>
+<body class="bg-bg font-sans">
+
+
+<!-- Background color split screen for large screens -->
+<div class="fixed top-0 left-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="fixed top-0 right-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="relative flex flex-col bg-bg">
+<!-- Navbar -->
+<nav class="fixed h-16 px-4 z-20 w-full font-nunito text-white bg-bg bg-gray-800">
+  <div class="relative flex items-center justify-between h-16">
+    <a class="flex items-center justify-start px-0 w-48 hover:text-gray-300 min-w-fit" href="/">
+      <!-- fritz2 logo -->
+      <svg class="ml-1 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+           fill="currentColor" stroke="none" >
+          <path d="M 9.987 0.229 C 4.469 0.236 0 4.61 0 10.003 C 0 15.401 4.477 19.777 10 19.777 C 15.523 19.777 20 15.401 20 10.003 C 20 4.605 15.523 0.229 10 0.229 C 9.996 0.229 9.992 0.229 9.987 0.229 Z M 14.678 2.662 C 15.144 2.665 15.52 3.043 15.517 3.506 L 15.5 6.862 C 15.497 7.325 15.118 7.699 14.652 7.696 C 14.187 7.694 13.811 7.316 13.813 6.853 L 12.126 6.844 C 11.661 6.842 11.281 7.216 11.278 7.679 L 11.274 8.501 L 12.052 8.501 C 12.072 8.499 12.092 8.499 12.112 8.499 C 12.575 8.499 12.952 8.882 12.952 9.356 C 12.952 9.829 12.575 10.213 12.112 10.213 C 12.089 10.213 12.066 10.212 12.043 10.21 L 7.111 10.21 L 7.111 10.207 C 7.097 10.208 7.084 10.208 7.071 10.208 C 6.607 10.208 6.231 9.825 6.231 9.353 C 6.231 8.881 6.607 8.498 7.071 8.498 C 7.091 8.498 7.111 8.499 7.131 8.501 L 7.9 8.501 L 7.909 6.823 C 7.918 4.969 9.437 3.474 11.3 3.484 L 13.83 3.497 C 13.833 3.034 14.212 2.66 14.678 2.662 Z M 7.887 10.644 L 11.261 10.662 L 11.248 13.179 C 11.238 15.032 9.72 16.527 7.857 16.517 L 6.17 16.509 C 6.167 16.972 5.787 17.346 5.322 17.343 C 4.856 17.341 4.48 16.963 4.483 16.5 L 4.5 13.144 C 4.502 12.681 4.882 12.307 5.348 12.309 C 5.813 12.312 6.189 12.69 6.187 13.153 L 7.031 13.157 C 7.496 13.159 7.876 12.786 7.878 12.322 Z"/>
+        </svg>
+        <div class="ml-3">
+          <span class="text-2xl">fritz2</span>
+          <span class="ml-1 text-xs">1.0-SNAPSHOT</span>
+        </div>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="-mr-2 flex items-center md:hidden">
+      <!-- Mobile menu button -->
+      <button type="button" id="mobile-menu-button" onclick="toggleMenu()"
+              class="p-2 inline-flex items-center justify-center bg-gray-800 rounded-md text-gray-400 hover:bg-gray-900 focus:outline-none focus:ring-1 focus-ring-inset focus:ring-gray-400"
+              aria-controls="mobile-menu" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <span class="mobile-icon block h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="menu" data-heroicon-style="outline"><title>open main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </span>
+        <span class="mobile-icon hidden h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="x" data-heroicon-style="outline"><title>close main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </span>
+      </button>
+    </div>
+    <!-- Links section -->
+    <div class="hidden md:block w-24 md:w-48 lg:w-64 ">
+      <div class="flex items-center justify-end hover:text-gray-200">
+        <!-- Github -->
+        <div class="ml-4 relative flex-shrink-0">
+          <div>
+            <a target="_blank" href="https://github.com/jwstegemann/fritz2">
+              <svg class="mr-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor" stroke="none" >
+                <path d="M 9.983 0 C 4.458 0 -0.017 4.478 -0.017 10 C -0.017 14.419 2.848 18.167 6.821 19.488 C 7.321 19.582 7.504 19.273 7.504 19.007 C 7.504 18.769 7.496 18.14 7.492 17.307 C 4.71 17.91 4.123 15.965 4.123 15.965 C 3.668 14.811 3.011 14.503 3.011 14.503 C 2.105 13.883 3.081 13.895 3.081 13.895 C 4.085 13.965 4.613 14.925 4.613 14.925 C 5.504 16.454 6.953 16.013 7.525 15.757 C 7.615 15.11 7.873 14.669 8.158 14.419 C 5.938 14.169 3.603 13.309 3.603 9.478 C 3.603 8.386 3.991 7.494 4.633 6.794 C 4.52 6.542 4.183 5.525 4.72 4.148 C 4.72 4.148 5.558 3.879 7.47 5.173 C 8.27 4.95 9.12 4.84 9.97 4.835 C 10.82 4.84 11.67 4.95 12.47 5.173 C 14.37 3.879 15.208 4.148 15.208 4.148 C 15.745 5.525 15.408 6.542 15.308 6.794 C 15.945 7.494 16.333 8.386 16.333 9.478 C 16.333 13.319 13.995 14.165 11.77 14.411 C 12.12 14.711 12.445 15.324 12.445 16.261 C 12.445 17.599 12.433 18.674 12.433 18.999 C 12.433 19.262 12.608 19.574 13.12 19.474 C 17.121 18.163 19.983 14.413 19.983 10 C 19.983 4.478 15.506 0 9.983 0"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div id="mobile-menu" class="fixed z-10 w-full bg-bg top-16 -translate-y-[100vh] transition-transform duration-250 ease-in md:hidden pb-2 border-b border-b-fg px-2 pt-2 pb-3 h-[calc(100vh-4rem)] overflow-y-auto">
+    
+    
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/start/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Getting Started
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/fundamentals/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Fundamentals
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/render/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Render HTML
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/createstores/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Creation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/events/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Event Handling
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/storemapping/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Mapping
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/routing/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Routing
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/validation/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Validation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/http/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Http
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/websockets/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Websockets
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/web-components/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Web Components
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/checkboxgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        CheckboxGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/combobox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Combobox
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/datacollection/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        DataCollection
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/disclosure/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Disclosure
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/inputfield/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        InputField
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/listbox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Listbox (Select)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/menu/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Menu
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/modal/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Modal
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/popover/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        PopOver
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/radioGroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        RadioGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/switch/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Switch (Toggle)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tabgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TabGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/textarea/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TextArea
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/toast/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Toast
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tooltip/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Tooltip
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+            
+        
+    
+</nav>
+
+    
+  </div>
+
+  <!-- 3 column wrapper -->
+<div class="mt-16 h-[calc(100vh-4rem)] flex-grow w-full mx-auto md:flex">
+  <!-- Left sidebar & main wrapper -->
+    <div class="min-w-fit h-full overscroll-none overflow-y-auto w-64 xl:border-b-0 bg-bg hidden md:block">
+        <!-- Start left column area -->
+        <div class="mt-6 relative" style="min-height: 12rem;">
+          
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+    
+</nav>
+
+        </div>
+        <!-- End left column area -->
+    </div>
+
+
+    
+<div class="bg-bg lg:min-w-0 lg:flex-1 h-full">
+    <div class="h-full py-6 px-5 sm:px-6 lg:px-8 h-full overscroll-none overflow-y-auto bg-bg lg:pr-72">
+        <h2 class="text-white font-bold text-4xl my-8">
+            What we have learned about reuse and components in web front-end development.
+        </h2>
+        <div class="text-gray-300">
+            <div class="flex space-x-1 mb-1 text-sm">
+                <time datetime="2022-03-01">01-03-2022</time>
+                <span aria-hidden="true"> · </span>
+                <span>15 min read </span>
+            </div>
+            <div class="mb-12">
+                by <a href="https://github.com/chausknecht" target="_blank" class="text-fg-highlight hover:underline">chausknecht</a>
+            </div>
+        </div>
+        <article class="prose prose-invert max-w-prose pb-12"><h2 id="history" tabindex="-1">History</h2>
+<p>Since early 2020, we have been developing a frontend library at and for <a href="https://www.oeffentliche.de">Öffentliche Versicherung</a>
+for Web UI development in Kotlin: <strong>fritz2</strong>.</p>
+<p>fritz2 is a reactive UI framework. At its core, it provides functions for reactively linking a data model to a
+corresponding user interface. This means that changes to the data model immediately lead to changes to the user
+interface, and events from the browser in turn change the data model. fritz2 provides the necessary tools to manage the
+data model, the UI, and the cyclic, reactive connection between both aspects using a declarative syntax.</p>
+<p>fritz2 sees itself as a lightweight framework, which is why the core relies on a few Kotlin features basic for reactive
+programming like <a href="https://kotlinlang.org/docs/coroutines-basics.html">Coroutines</a>
+and especially <a href="https://kotlinlang.org/docs/flow.html">Flows</a>. The central fritz2 concepts, like stores, handler, events,
+and tags rely on and integrate these Kotlin building blocks and do not hide them, but on the contrary expose them
+as part of the framework API. So a user does not primarily have to learn fritz2, but much more the universal Kotlin core
+concepts of coroutines and flows.</p>
+<p>By focusing on the reactive connection of model and UI, the few concepts necessary for this and the resulting
+lightweight API, fritz2 allows to easily and elegantly develop modern browser-based UIs.</p>
+<h2 id="motivation-for-reuse" tabindex="-1">Motivation for reuse</h2>
+<p>A web application is of course based on HTML and CSS at its core. However, for many applications you need the same or
+very similar UI patterns and structures, commonly called <em>components</em>. Such components form self-contained units that
+encapsulate function, presentation and, in some cases, data handling.</p>
+<p>The use - and thus also the development of such components - is worthwhile in itself due to the following
+aspects:</p>
+<ul>
+<li>Scarce resources: The focus of an application usually lies on the domain and thus on a higher level than the
+small-scale generation of a good and functional DOM structure. When developing multiple applications within an
+organization, it is even more worthwhile to reuse basic building blocks.</li>
+<li>Minimization of maintenance: In case of errors or new features, not all places in an application or in all
+applications that implement an affected UI feature need to be touched; it is sufficient to improve the components in a
+central location.</li>
+<li>Uniform UX: Many organizations require a uniform appearance, structures, and operation within their own
+applications. Centrally built and maintained components are therefore a simple and efficient way to implement such
+requirements.</li>
+</ul>
+<h2 id="naive-approach" tabindex="-1">Naive approach</h2>
+<p>It was therefore obvious to us to integrate such a component library directly into fritz2, in order to use it as the
+basis for the applications of the &quot;Öffentliche Versicherung&quot;.</p>
+<p>We started with version <a href="https://github.com/jwstegemann/fritz2/releases/tag/v0.8">0.8</a>, to integrate
+a <a href="https://components.fritz2.dev/#Welcome">component library</a> into fritz2, which then - including a custom declarative
+language for styling - has been extended in the following versions.</p>
+<p>This library consisted of 20 different components, which covered the range from the simple layout, over typical,
+simple form elements, up to complex generic data tables and whole page frames.</p>
+<p>A basic idea was that each component must still be individually styleable in order to adapt it to the specific context
+of use within the application.</p>
+<p>In addition, we tried to incorporate a theme structure as the basis for the look and feel. This made it possible to
+adapt the components for all applications of an organization to a uniform corporate identity design on the basis of a
+central styling document (style system). In addition, we took it one step further and derived from the
+central organization theme, to create and use customized themes for different areas of the company. This actually made
+it possible to implement two different design concepts with the same components.</p>
+<h2 id="problems-of-the-naive-approach" tabindex="-1">Problems of the naive approach</h2>
+<p>Unfortunately, we now consider this approach a failure.</p>
+<p>We have identified the following problems with it:</p>
+<ul>
+<li>Our components allow their appearance to be customized via the theme. This includes styling
+information to a large extent, but corresponds to <em>certain</em> HTML tags or an entire DOM substructure. Because of this
+strong relation between structure and presentation, it is difficult to make components really flexible:
+<ul>
+<li>If there are different variants of the structure, there must also be styling definitions for each variant. This
+increases the complexity of the components and the theme - even if only one variant is used within an application.
+An example is the position of the label in a FormControl: it is either always above the input element or always to
+the left of it.</li>
+<li>Often styling needs to be applied to several tags for a special state to achieve a desired effect. An example of
+this is the deactivation of form elements, where you can style the label and input element in different ways for
+such an effect. There is a great risk of the user undoing the special styling with his specifications when
+customizing the theme.</li>
+<li>It also gets complicated when the styling is dependent on a status. This must be made available accordingly in the
+sections in the theme. A component specific type can not be passed on directly because it is not available at the
+package level of the theme. So you must fall back to base types as a workaround, with the cost of loosing
+expressive semantic types and thus a loss of intention revealing.</li>
+<li>The user will always face the problem of not being able to make really meaningful adjustments to the theme without
+in-depth knowledge of the final DOM structure of a component, because he has to understand to which tag a styling
+from the theme would be applied. This cannot be achieved by good naming alone and is anything but trivial.</li>
+<li>If it comes to fixing bugs or adding new features which require a change of the styling in the theme, the worst case
+scenario is that a customized theme no longer works properly. Finally, the user must
+carefully analyze the changes made to the default theme in order to adapt the new, relevant styling definitions to
+his own theme.</li>
+</ul>
+</li>
+<li>The components consist of code that is relatively difficult to understand. As already indicated, much is dependent on
+the theme and thus only comprehensible by reading the code there.
+<ul>
+<li>Despite the components having been planned and implemented from ground up to be flexible and customizable, the need
+to build &quot;completely different&quot; components for a similar use case soon arose - they turned out to be way less
+adaptable than anticipated, despite the complexity of the code. See previous item.</li>
+</ul>
+</li>
+<li>Our focus during component creation was primarily on the design, which is in general no core competence of the developers,
+instead of focusing on usability (ARIA, keyboard support, standard functions, etc.).</li>
+<li>It takes immense effort to provide and maintain just 20 components alone in this flexibility with good defaults, not
+factoring in the need for additional, not yet implemented components. In addition,
+urgently needed functions or features of existing components are still missing (keyboard support, ARIA attributes, and
+much more).</li>
+</ul>
+<p>The most important conclusion we derived from these problems is that presentation and functionality of components
+strongly depend on each other.</p>
+<p>Trying to separate both aspects in a way that the component encapsulates the functionality and the structure,
+but exposes the styling in a fully customizable way via a public API in the theme, is ultimately just a fallacy.
+In truth, both parts are still strongly coupled and not independent of each other.</p>
+<p>In our opinion, this makes it impossible to create components which guarantee perfect functionality on one hand, while
+being really flexible and adaptable on the other.</p>
+<p>But what is the solution to this dilemma? To build innumerable, rigid special components, which, in addition to the
+immense initial effort, would also result in a high level of code duplication and thus even greater maintenance effort?
+Or go without central components at all, but build everything from scratch for every application?</p>
+<p>We finally came across a concept that seems to provide a solution for combining both extreme alternatives in
+an elegant way: <strong>Headless</strong> Components!</p>
+<h2 id="headless" tabindex="-1">Headless</h2>
+<p>In search of a replacement for the previous component library of fritz2, we found the
+brilliant <a href="https://headlessui.com/">headlessui</a> which served as inspiration
+and template for us at the same time.</p>
+<p>The idea behind it is as simple as the benefit is hard to grasp:</p>
+<div class="info">
+<p>A component is solely defined by its functionality and <strong>not</strong> by DOM structure and presentation.</p>
+</div>
+<p>This requires explanation: If one considers only the basic function in the core, but the representation (DOM
+structure and styling), the myriads of UI components out there can be reduced to a few like:</p>
+<ul>
+<li>a single selection from a list of options</li>
+<li>a multiple selection from a list of options</li>
+<li>showing and hiding panels like dialogs, popovers or action menus</li>
+<li>the fading in of associated content to a selected option</li>
+<li>the typing of text</li>
+</ul>
+<p>The headless concept takes advantage of this fact and defines components solely by their functionality. Thus, the number
+of such disjunctive components is reduced to relatively few: Currently, we have identified 15 of them that we have
+already implemented or are about to implement.</p>
+<p>These components are composed of smaller, well-defined building blocks (we call them <em>bricks</em>). Thus, the minimal
+functional structure of a simple selection can be decomposed as follows:</p>
+<pre class="language-text"><code class="language-text">- single selection<br>    - two-way data binding (→ What is selected? → Preselection)<br>    // for each option<br>        - option (→ Is this option selected?)<br>            - toggle (→ changes selextion)<br>            - label</code></pre>
+<p>In practice, we supplement the functionality with a few often useful, but still optional additional functions:</p>
+<pre class="language-text"><code class="language-text">- single selection<br>    - two-way data binding<br>    - label (optional)<br>    - description (optional)<br>    - validation (optional) (→ Is this selection valid? → Messages)<br>    // for each option<br>        - option<br>            - toggle<br>            - label<br>            - description (optional)</code></pre>
+<p>Using these functions, you can build a classic RadioGroup based on native <code>&lt;input type=&quot;radio&quot;&gt;</code> tags,
+but also any <a href="https://tailwindui.com/components/application-ui/forms/radio-groups#component-45612766894822db447a2837d79355f5">other variants</a>
+can be realized with it. They differ only in the selection method and structure of the HTML tags and styling.</p>
+<p>fritz2's headless components consist of such context-sensitive component and module functions. These must be combined in
+a way that suits the application and, if necessary, supplemented with standard HTML elements to create the desired
+structure. Special fields are used to manipulate statuses and functions in the context of the module.</p>
+<p>The following (partly reduced) examples show two possible implementations of a RadioGroup.</p>
+<p>The first example uses all tags created by default, is based upon the native <code>&lt;input type=&quot;radio&quot;&gt;</code> tag and is
+generally minimal:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> frameworks <span class="token operator">=</span> <span class="token function">listOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Spring"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"flask"</span></span><span class="token punctuation">)</span><br><span class="token keyword">val</span> storedChoice <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span>frameworks<span class="token punctuation">.</span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> job <span class="token operator">=</span> <span class="token function">Job</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token comment">// headless start</span><br>radioGroup<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;div></span><br>    <span class="token function">value</span><span class="token punctuation">(</span>storedChoice<span class="token punctuation">)</span> <span class="token comment">// data binding</span><br>    frameworks<span class="token punctuation">.</span><span class="token function">forEach</span> <span class="token punctuation">{</span> option <span class="token operator">-></span><br>        <span class="token function">radioGroupOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;div></span><br>            <span class="token function">radioGroupOptionToggle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;input type=radio></span><br>                <span class="token function">radioGroupOptionLabel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;label></span><br>                    <span class="token operator">+</span>option <br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As a second example, a selection is shown that replaces some tags created by default with other types - e.g. it
+dispenses with <code>&lt;input&gt;</code> elements as a basis for the toggle - and in addition supports a special data type for the
+selection:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">data</span> <span class="token keyword">class</span> <span class="token function">Framework</span><span class="token punctuation">(</span><span class="token keyword">val</span> name<span class="token operator">:</span> String<span class="token punctuation">,</span> <span class="token keyword">val</span> info<span class="token operator">:</span> String<span class="token punctuation">)</span><br><span class="token keyword">val</span> frameworks <span class="token operator">=</span> <span class="token function">listOf</span><span class="token punctuation">(</span><br>  <span class="token function">Framework</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Kotlin based, reactive, frontend based web framework"</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>  <span class="token comment">// ... and some more...</span><br><span class="token punctuation">)</span><br><span class="token keyword">val</span> storedChoice <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> job <span class="token operator">=</span> <span class="token function">Job</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token comment">// headless start</span><br>radioGroup<span class="token operator">&lt;</span>Framework<span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;div></span><br>    <span class="token function">value</span><span class="token punctuation">(</span>storedChoice<span class="token punctuation">)</span> <span class="token comment">// data binding</span><br>    <span class="token function">radioGroupLabel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;label></span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Choose some framework please"</span></span> <br>    <span class="token punctuation">}</span><br>    frameworks<span class="token punctuation">.</span><span class="token function">forEach</span> <span class="token punctuation">{</span> option <span class="token operator">-></span><br>        <span class="token function">radioGroupOption</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;div></span><br>            <span class="token function">radioGroupOptionToggle</span><span class="token punctuation">(</span>tag <span class="token operator">=</span> RenderContext<span class="token operator">::</span>div<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;div></span><br>                div <span class="token punctuation">{</span> <span class="token comment">// mix HTML tags as custom structure inside!</span><br>                    <span class="token function">radioGroupOptionLabel</span><span class="token punctuation">(</span>tag <span class="token operator">=</span> RenderContext<span class="token operator">::</span>span<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;span></span><br>                        <span class="token operator">+</span>option<span class="token punctuation">.</span>name<br>                    <span class="token punctuation">}</span><br>                    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">" * "</span></span><br>                    <span class="token function">radioGroupOptionDescription</span><span class="token punctuation">(</span>tag <span class="token operator">=</span> RenderContext<span class="token operator">::</span>span<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;span></span><br>                        <span class="token operator">+</span>option<span class="token punctuation">.</span>info<br>                    <span class="token punctuation">}</span>                    <br>                    selected<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> <span class="token comment">// use some headless function: access current state!</span><br>                        <span class="token keyword">if</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span> span <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"(selected)"</span></span> <span class="token punctuation">}</span><br>                    <span class="token punctuation">}</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>The key insight here is the following: We can build two variants of a single selection aka RadioGroup with the same
+building blocks. The effort is relatively low in relation to the functionality: Between ten and 25 lines of code are
+necessary. But both components support keyboard operation, set appropriate ARIA attributes and, of course, deliver the
+guaranteed functionality of the single selection by passing a 'store'. All the heavy work of the state handling is done
+by the headless component itself, like reacting to user actions for selecting, setting a preselected option, indicating
+the selected or active (mouse hovered) option and so on. This is a huge benefit compared to crafting this by yourself!</p>
+<p>The individual components help the user with their expressive naming and thus also foster a better understanding
+of the code as well.</p>
+<p>In addition, one would still have to style each building block accordingly within the code in order to have a finished
+and fully functional surface unit, which was omitted here for reasons of space and simplicity. In principle, one injects
+the styling into the function block as the first parameter, analogous to the known tag factory functions. The source
+code of
+the <a href="https://github.com/jwstegemann/fritz2/blob/master/headless-demo/src/jsMain/kotlin/dev/fritz2/headlessdemo/components/RadioGroup.kt">example for a RadioGroup</a>
+from the <code>headless-demo</code> project clearly shows that the styling specifications make the whole thing only slightly more
+complex.</p>
+<p>To emphasize it again: If you do not pass any styling to the brick functions, the resulting HTML tags will be rendered
+without any styling!</p>
+<p>The deliberate omission of internal styling for headless components has yet another advantage, which is immense in the
+ecosystem of the web: Such components are open for any kind of styling and CSS framework, be
+it <a href="https://tailwindcss.com/">tailwindcss</a>, <a href="https://getbootstrap.com/">Bootstrap</a>
+or native CSS styling. Each user can choose the technology he is used to and that suits him.</p>
+<h2 id="and-where-are-the-components-now%3F" tabindex="-1">And where are the components now?</h2>
+<p>As you can easily guess from the <a href="#problems-of-the-naive-approach">problems described in the introduction</a>, from now on
+fritz2 will no longer ship styled components ready to use.</p>
+<p>Instead, as described before, fritz2 provides the <a href="/headless">headless components</a> in the new module <code>headless</code>, which
+can be used as a basis for creating your own components.</p>
+<p>To develop a ready styled and reusable component from the headless components and their bricks, fritz2 provides
+additional tools in the package <code>dev.fritz2.headless.foundation</code>, which also form the foundation for the headless
+components themselves. Particularly noteworthy are the concepts of
+<a href="/headless/#basic-concepts-for-configuration"><em>properties</em> and <em>hooks</em></a>. For the component construction, these aids
+support the user to create an outwardly understandable and at the same time comfortable API, thereby preserving so much
+flexibility and control in the component itself.</p>
+<p>For the conception of an individual, styled and ready to use component, one should rely on these tools. They
+can also be optimally combined with the headless components: Properties have a dedicated mechanism to pass on data to an
+underlying property of a headless component.</p>
+<h2 id="outlook" tabindex="-1">Outlook</h2>
+<p>In addition to the headless components implemented so far, we already have a few more in the pipeline that will further
+complement our portfolio and cover missing functionalities, for example the <em>TypeAhead</em> (aka ComboBox). They serve as
+basis for (single) selections with large data sets that can be filtered by typing.</p>
+<p>We hope that we have made you curious and that you will give our concept a chance! Of course, we would also be very happy
+about your feedback.</p>
+<p>To get started, please refer to the <a href="/headless">documentation</a> of the headless components, which also explains some of
+the most relevant basic concepts. Furthermore, have a look at
+the <a href="https://github.com/jwstegemann/fritz2/tree/master/headless-demo/src/jsMain/kotlin/dev/fritz2/headlessdemo"><code>headless-demo</code> module</a>
+which contains all the demos from the docs.</p>
+<p>For an easier introduction to the combination of fritz2 and tailwindcss, we have
+created a dedicated <a href="https://github.com/jwstegemann/fritz2-tailwind-template">template project</a>
+in addition to the <a href="https://github.com/jwstegemann/fritz2-template">well known</a> one. We encourage you to use those
+templates as basis for your own fritz2 based applications.</p>
+<p>In the future, there will be more blog articles around the topic &quot;component building with headless&quot;.</p>
+<h2 id="warm-words-about-the-retired-components" tabindex="-1">Warm words about the retired components</h2>
+<p>As already clearly mentioned, the old components (and the styling API) are no longer part of fritz2. By the end of 2022,
+we also stopped patches on the 0.14 branch.</p>
+<p>We would love to hear some feedback about the migration path you take!</p>
+<p>If you have specific questions about the headless approach, its documentation so far, or probably you create your own
+headless based components with fritz2, please let us know!</p>
+<p>For now, we wave goodbye to the old components and welcome the exciting new headless components!</p>
+</article>
+    </div>
+</div>
+
+
+  </div>
+</div>
+
+
+<script src="/assets/main.js"></script>
+</body>
+</html>

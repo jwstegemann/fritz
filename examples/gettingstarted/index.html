@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Getting started</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/github-embed.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
+    <script src="/assets/github-embed.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Getting started</h1>
+        <p class="lead">This example shows the one- and two-way data binding in fritz2.</p>
+        <hr class="my-4"/>
+        <div class="card">
+            <div id="target" class="card-body"></div>
+        </div>
+        <hr class="my-4"/>
+        <div class="card">
+            <div class="card-body">
+                <div id="code" style="height: 650px"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center text-muted my-2">
+        <small>Styled with <a href="https://getbootstrap.com/">Bootstrap CSS</a> and
+            created with &#10084; by <a href="https://github.com/jwstegemann/fritz2">jwstegemann & jamowei</a></small>
+    </footer>
+</div>
+<script src="gettingstarted.js"></script>
+<script>
+    githubEmbed('#code', {
+        "owner": "jwstegemann",
+        "repo": "fritz2",
+        "ref": "master",
+        "embed": [
+            {
+                "path": "/examples/gettingstarted/src/jsMain/kotlin/dev/fritz2/examples/gettingstarted/GettingStarted.kt",
+                "type": "kotlin",
+                "label": "GettingStarted.kt"
+            },
+            {
+                "path": "/examples/gettingstarted/src/jsMain/resources/index.html",
+                "type": "html",
+                "label": "index.html"
+            }
+        ]
+    });
+</script>
+</body>
+</html>

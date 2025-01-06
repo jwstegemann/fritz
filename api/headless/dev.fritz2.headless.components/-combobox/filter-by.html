@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>filterBy</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            fritz2
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":headless:dokkaHtmlPartial/jsMain">js</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageids="headless::dev.fritz2.headless.components/Combobox/filterBy/#/PointingToDeclaration//1056475164">
+  <div class="breadcrumbs"><a href="../../index.html">headless</a><span class="delimiter">/</span><a href="../index.html">dev.fritz2.headless.components</a><span class="delimiter">/</span><a href="index.html">Combobox</a><span class="delimiter">/</span><span class="current">filterBy</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>filter</span><wbr><span><span>By</span></span></h1>
+  </div>
+  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="filter-by.html">filterBy</a><span class="token operator">: </span><a href="-filter-function-property/index.html">Combobox.FilterFunctionProperty</a><span class="token operator">&lt;</span><a href="index.html">E</a><span class="token punctuation">, </span><a href="index.html">T</a><span class="token operator">&gt;</span></div><p class="paragraph">Filter function used to query the available <a href="items.html">items</a> based on the user's input.</p><p class="paragraph">By default, the <a href="../../../headless/dev.fritz2.headless.components/-combobox/to-string.html">toString</a> representation of each item is used to find items matching the current query. In most cases, however, a specific field (e.g. a country's name) is needed in order to get meaningful results!</p><p class="paragraph">The <code class="lang-kotlin">filterBy</code> property takes any function with the following signature: <code class="lang-kotlin">(Sequence&lt;Country&gt;, String) -&gt; Sequence&lt;Country&gt;</code>.</p><p class="paragraph">Since in practice many filterings rely on a single <code class="lang-kotlin">String</code> property, a getter function returning a <code class="lang-kotlin">String</code> (<code class="lang-kotlin">T.() -&gt; String</code>) can be passed as well.</p><blockquote class="quotation"><p class="paragraph"><strong>Important:</strong> Using non-String items and not providing a specialized filter function may result in undefined behavior regarding the filter results! This is due to default implementation using <code class="lang-kotlin">toString()</code> to find matching items for each query. If you still need to use the default filter function it can explicitly be set via <a href="-filter-function-property/default.html">filterBy.default</a>.</p></blockquote><blockquote class="quotation"><p class="paragraph"><strong>Important:</strong> The <code class="lang-kotlin">filterBy</code> function handles the un-shortened, full amount of available items and is highly time-critical! Try to use efficient <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence/index.html">Sequence</a>-based operations whenever possible. Functions like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html">fold</a> or <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html">sortedBy</a> do still iterate over the whole Sequence internally, which is why they should be used with caution here.</p></blockquote><p class="paragraph">Example:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">data class Country(val code: String, val name: String)<br><br>// ...<br><br>filterBy(Country::name)<br><br>// OR<br><br>filterBy { countries, query -&gt;<br>    countries.filter { country -&gt;<br>        country.name.contains(query, ignoreCase = true)<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div>  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

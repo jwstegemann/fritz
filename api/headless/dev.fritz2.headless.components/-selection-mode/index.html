@@ -1,0 +1,265 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>SelectionMode</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            fritz2
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":headless:dokkaHtmlPartial/jsMain">js</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="headless::dev.fritz2.headless.components/SelectionMode///PointingToDeclaration//1056475164">
+  <div class="breadcrumbs"><a href="../../index.html">headless</a><span class="delimiter">/</span><a href="../index.html">dev.fritz2.headless.components</a><span class="delimiter">/</span><span class="current">SelectionMode</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Selection</span><wbr><span><span>Mode</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">SelectionMode</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>job<span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Job///PointingToDeclaration/">Job</span></span></span><span class="token punctuation">)</span> : <a href="../../../core/dev.fritz2.core/-with-job/index.html">WithJob</a></div><p class="paragraph">This <a href="../../dev.fritz2.headless.foundation/-property/index.html">Property</a> alike class exposes the selection configuration of a data collection. There are two modes available:</p><ul><li><p class="paragraph"><a href="single.html">single</a> which needs a <a href="../../dev.fritz2.headless.foundation/-databinding-property/index.html">DatabindingProperty</a> of <a href="index.html">T</a></p></li><li><p class="paragraph"><a href="multi.html">multi</a> which needs a <a href="../../dev.fritz2.headless.foundation/-databinding-property/index.html">DatabindingProperty</a> of <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> of <a href="index.html">T</a></p></li></ul><p class="paragraph">Of course both can be omitted if no selection is needed.</p></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1762827049%2FConstructors%2F1056475164" anchor-label="SelectionMode" id="-1762827049%2FConstructors%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-selection-mode.html"><span>Selection</span><wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1762827049%2FConstructors%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">job<span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Job///PointingToDeclaration/">Job</span></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1781313711%2FProperties%2F1056475164" anchor-label="isSet" id="1781313711%2FProperties%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-set.html"><span>is</span><wbr><span><span>Set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1781313711%2FProperties%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-set.html">isSet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1226099178%2FProperties%2F1056475164" anchor-label="job" id="1226099178%2FProperties%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="job.html"><span><span>job</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1226099178%2FProperties%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="job.html">job</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Job///PointingToDeclaration/">Job</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1957541522%2FProperties%2F1056475164" anchor-label="multi" id="-1957541522%2FProperties%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="multi.html"><span><span>multi</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1957541522%2FProperties%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="multi.html">multi</a><span class="token operator">: </span><a href="../../dev.fritz2.headless.foundation/-databinding-property/index.html">DatabindingProperty</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1539424491%2FProperties%2F1056475164" anchor-label="single" id="1539424491%2FProperties%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="single.html"><span><span>single</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1539424491%2FProperties%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="single.html">single</a><span class="token operator">: </span><a href="../../dev.fritz2.headless.foundation/-databinding-property/index.html">DatabindingProperty</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">?</span><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="2108498438%2FFunctions%2F1056475164" anchor-label="errorHandler" id="2108498438%2FFunctions%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#2108498438%2FFunctions%2F1056475164"><span>error</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2108498438%2FFunctions%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#2108498438%2FFunctions%2F1056475164"><span class="token function">errorHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cause<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1496552899%2FFunctions%2F1056475164" anchor-label="handledBy" id="1496552899%2FFunctions%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-205860385%2FFunctions%2F1056475164"><span>handled</span><wbr><span><span>By</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1496552899%2FFunctions%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">infix </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-205860385%2FFunctions%2F1056475164">A</a><span class="token operator">&gt; </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-205860385%2FFunctions%2F1056475164">A</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-205860385%2FFunctions%2F1056475164"><span class="token function">handledBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><a href="../../../core/dev.fritz2.core/-handler/index.html">Handler</a><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-205860385%2FFunctions%2F1056475164">A</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">infix </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-315301116%2FFunctions%2F1056475164">A</a><span class="token operator">&gt; </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-315301116%2FFunctions%2F1056475164">A</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-315301116%2FFunctions%2F1056475164"><span class="token function">handledBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">execute<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-315301116%2FFunctions%2F1056475164">A</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Job///PointingToDeclaration/">Job</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">infix </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-2056339740%2FFunctions%2F1056475164">E</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom.events/-event/index.html">Event</a><span class="token operator">&gt; </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-2056339740%2FFunctions%2F1056475164">E</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-2056339740%2FFunctions%2F1056475164"><span class="token function">handledBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><a href="../../../core/dev.fritz2.core/-handler/index.html">Handler</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">infix </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-324439008%2FFunctions%2F1056475164">E</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom.events/-event/index.html">Event</a><span class="token operator">&gt; </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-324439008%2FFunctions%2F1056475164">E</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-324439008%2FFunctions%2F1056475164"><span class="token function">handledBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">execute<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><a href="../../dev.fritz2.headless.foundation/-validation-messages/index.html#-324439008%2FFunctions%2F1056475164">E</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Job///PointingToDeclaration/">Job</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1390657060%2FFunctions%2F1056475164" anchor-label="sanitizeSelection" id="-1390657060%2FFunctions%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sanitize-selection.html"><span>sanitize</span><wbr><span><span>Selection</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1390657060%2FFunctions%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="sanitize-selection.html"><span class="token function">sanitizeSelection</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">availableItems<span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="../-collection-data/index.html">CollectionData</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Calling this function will connect the provided <span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span> of <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> of <a href="index.html">T</a> with the current selection flow (one single item <a href="index.html">T</a> for mode <span data-unresolved-link="kotlinx.coroutines.flow//single/kotlinx.coroutines.flow.Flow[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/">single</span> and some <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> of <a href="index.html">T</a> for mode <a href="multi.html">multi</a>). On every change of the external items flow, the current selection will be sanitized in the following way: If the selection contains some item, that is not part of the items flow, it will be removed from the selection.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1336474976%2FFunctions%2F1056475164" anchor-label="selectItem" id="-1336474976%2FFunctions%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="select-item.html"><span>select</span><wbr><span><span>Item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1336474976%2FFunctions%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="select-item.html"><span class="token function">selectItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">itemToSelect<span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="../-collection-data/index.html">CollectionData</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This function connects some <span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span> of <a href="index.html">T</a> with a defined selection, either for <span data-unresolved-link="kotlinx.coroutines.flow//single/kotlinx.coroutines.flow.Flow[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/">single</span> or <a href="multi.html">multi</a> mode.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1915340780%2FFunctions%2F1056475164" anchor-label="use" id="-1915340780%2FFunctions%2F1056475164" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="use.html"><span><span>use</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1915340780%2FFunctions%2F1056475164"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="use.html"><span class="token function">use</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="index.html">SelectionMode</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

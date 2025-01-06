@@ -1,0 +1,125 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>WithScope</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            fritz2
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":core:dokkaHtmlPartial/jsMain">js</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="core::dev.fritz2.core/WithScope///PointingToDeclaration//139861046">
+  <div class="breadcrumbs"><a href="../../index.html">core</a><span class="delimiter">/</span><a href="../index.html">dev.fritz2.core</a><span class="delimiter">/</span><span class="current">WithScope</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>With</span><wbr><span><span>Scope</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">WithScope</a></div><p class="paragraph">Marks a class that it has <a href="../-scope/index.html">Scope</a> which can be transferred for adding/receiving additional information.</p><p class="paragraph">The concept of the <a href="../-scope/index.html">Scope</a> is to provide a consistent mechanism to pass arbitrary data down the DOM tree from a hierarchical higher node to "unknown" consumer nodes down the tree. This is very important for all kind of dev.fritz2.headless.components (not necessarily fritz2's dev.fritz2.headless.components!), that should adapt to its context. Some higher node places some information tagged by a unique key into the scope and passes this further down to its children, which themselves just passes this scope further down, optionally adding or manipulating the scope for their children on their own. Somewhere down the tree a node can evaluate the scope passed to him and look out for some key it want to react to. If the key is present it can then apply its value or just behave in some specific way different to its default. If there is no key, the node just applies its default behaviour.</p><p class="paragraph">To give a practical example: Imagine some button component, which normally uses the "primary" color as background. This works fine for most of the time. But now imagine a buttons-bar on the bottom edge of a modal for example to provide the typical buttons like "ok", "cancel", "yes", "no" or alike. This bar uses the primary color as background too, to have a high contrast against the content above. The two dev.fritz2.headless.components do not work well together this way! The user would have to manually apply some other color to the buttons when using them inside the bar, in order to preserve a good contrast to it. To achieve this behaviour automatically, the scope comes to the rescue: The buttons-bar component can define a global scope-key <code class="lang-kotlin">buttonsBar</code> by using the <a href="../-scope/-companion/key-of.html">Scope.keyOf</a> function. Then it can add some key-value pair to the scope like <code class="lang-kotlin">set(buttonsBar, true)</code> in order to signal all child nodes that they appear within the context of a buttons bar. The button component could be aware of the key and implement some different behaviour concerning the color, if it detects that it is used within a buttons-bar.</p><p class="paragraph">The scope only changes conformal to the node hierarchy. That is the scope is empty at the top level <a href="../render.html">render</a> function call and may be filled or changed by each child. But a change by some node is only propagated to the children of that node. The children of the next siblings of the changing node are not affected and do not see those scope values!</p><p class="paragraph">Example:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">div { // initial scope -&gt; empty!<br>    val sizes = keyOf&lt;String&gt;("sizes") // normally define scope-keys globally<br>    div(scope = {<br>        set(sizes, "small") // add some key-value to the scope<br>    }) {<br>        // all children will get this scope instance<br>        p {<br>            scope.asDataAttr() // -&gt; { "sizes": "small" }<br>        }<br>        section {<br>            when (scope[sizes]) {<br>                "small" -&gt; div({ fontSize { "0.8rem" } }) { +"small text" }<br>                "normal" -&gt; div({ fontSize { "1rem" } }) { +"normal text" }<br>                "large" -&gt; div({ fontSize { "1.2rem" } }) { +"large text" }<br>                else -&gt; div { +"no size scope available" }<br>            }<br>        }<br>        // end of children<br>    }<br>    // next sibling -&gt; only parent scope available, which is empty!<br>    p {<br>        scope.asDataAttr() // -&gt; {}<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">It is intentional that the key is not tied to some component or restricted in any other way. A client should strive for a key management, that is driven by the "producing" node, not the "consuming" one! That means one should prefer to encode that some specific context now exist or that some value is now available, instead of setting a client node tailored rule. This enables more freedom for future usages and adaptions by other consuming dev.fritz2.headless.components.</p><p class="paragraph">To continue the first example: A buttons-bar component should better not inject some "buttonsColor" into the scope, but better just some "buttonsBar" key without any value (Unit). As a creator you just cannot anticipate all situations and future usage of the buttons-bar component. It might be possible that a client wants to put something different to a button into the bar, that also should react to the context. Then a key (and value) tailored to the button does not make sense anymore.</p><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-scope/index.html"><span><span>Scope</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span>dev.</span><wbr><span>fritz2.</span><wbr><span>browser.</span><wbr><span>Tag</span></div></span></div><div></div></div></div></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-render-context/index.html">RenderContext</a></div></span></div><div></div></div></div></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="25713204%2FProperties%2F139861046" anchor-label="scope" id="25713204%2FProperties%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scope.html"><span><span>scope</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="25713204%2FProperties%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="scope.html">scope</a><span class="token operator">: </span><a href="../-scope/index.html">Scope</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-139237568%2FFunctions%2F139861046" anchor-label="mountPoint" id="-139237568%2FFunctions%2F139861046" data-filterable-set=":core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../mount-point.html"><span>mount</span><wbr><span><span>Point</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-139237568%2FFunctions%2F139861046"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":core:dokkaHtmlPartial/jsMain" data-filterable-set=":core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WithScope</a><span class="token punctuation">.</span><a href="../mount-point.html"><span class="token function">mountPoint</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-mount-point/index.html">MountPoint</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Allows to access the nearest <a href="../-mount-point/index.html">MountPoint</a> from any <a href="index.html">WithScope</a></p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

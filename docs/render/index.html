@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Render HTML</title>
+    <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter:200,300,400&display=swap" rel="stylesheet"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    
+        <meta name="description" content="Learn how to render HTML with fritz2">
+    
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#333333">
+</head>
+<body class="bg-bg font-sans">
+
+
+<!-- Background color split screen for large screens -->
+<div class="fixed top-0 left-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="fixed top-0 right-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="relative flex flex-col bg-bg">
+<!-- Navbar -->
+<nav class="fixed h-16 px-4 z-20 w-full font-nunito text-white bg-bg bg-gray-800">
+  <div class="relative flex items-center justify-between h-16">
+    <a class="flex items-center justify-start px-0 w-48 hover:text-gray-300 min-w-fit" href="/">
+      <!-- fritz2 logo -->
+      <svg class="ml-1 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+           fill="currentColor" stroke="none" >
+          <path d="M 9.987 0.229 C 4.469 0.236 0 4.61 0 10.003 C 0 15.401 4.477 19.777 10 19.777 C 15.523 19.777 20 15.401 20 10.003 C 20 4.605 15.523 0.229 10 0.229 C 9.996 0.229 9.992 0.229 9.987 0.229 Z M 14.678 2.662 C 15.144 2.665 15.52 3.043 15.517 3.506 L 15.5 6.862 C 15.497 7.325 15.118 7.699 14.652 7.696 C 14.187 7.694 13.811 7.316 13.813 6.853 L 12.126 6.844 C 11.661 6.842 11.281 7.216 11.278 7.679 L 11.274 8.501 L 12.052 8.501 C 12.072 8.499 12.092 8.499 12.112 8.499 C 12.575 8.499 12.952 8.882 12.952 9.356 C 12.952 9.829 12.575 10.213 12.112 10.213 C 12.089 10.213 12.066 10.212 12.043 10.21 L 7.111 10.21 L 7.111 10.207 C 7.097 10.208 7.084 10.208 7.071 10.208 C 6.607 10.208 6.231 9.825 6.231 9.353 C 6.231 8.881 6.607 8.498 7.071 8.498 C 7.091 8.498 7.111 8.499 7.131 8.501 L 7.9 8.501 L 7.909 6.823 C 7.918 4.969 9.437 3.474 11.3 3.484 L 13.83 3.497 C 13.833 3.034 14.212 2.66 14.678 2.662 Z M 7.887 10.644 L 11.261 10.662 L 11.248 13.179 C 11.238 15.032 9.72 16.527 7.857 16.517 L 6.17 16.509 C 6.167 16.972 5.787 17.346 5.322 17.343 C 4.856 17.341 4.48 16.963 4.483 16.5 L 4.5 13.144 C 4.502 12.681 4.882 12.307 5.348 12.309 C 5.813 12.312 6.189 12.69 6.187 13.153 L 7.031 13.157 C 7.496 13.159 7.876 12.786 7.878 12.322 Z"/>
+        </svg>
+        <div class="ml-3">
+          <span class="text-2xl">fritz2</span>
+          <span class="ml-1 text-xs">1.0-SNAPSHOT</span>
+        </div>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="-mr-2 flex items-center md:hidden">
+      <!-- Mobile menu button -->
+      <button type="button" id="mobile-menu-button" onclick="toggleMenu()"
+              class="p-2 inline-flex items-center justify-center bg-gray-800 rounded-md text-gray-400 hover:bg-gray-900 focus:outline-none focus:ring-1 focus-ring-inset focus:ring-gray-400"
+              aria-controls="mobile-menu" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <span class="mobile-icon block h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="menu" data-heroicon-style="outline"><title>open main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </span>
+        <span class="mobile-icon hidden h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="x" data-heroicon-style="outline"><title>close main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </span>
+      </button>
+    </div>
+    <!-- Links section -->
+    <div class="hidden md:block w-24 md:w-48 lg:w-64 ">
+      <div class="flex items-center justify-end hover:text-gray-200">
+        <!-- Github -->
+        <div class="ml-4 relative flex-shrink-0">
+          <div>
+            <a target="_blank" href="https://github.com/jwstegemann/fritz2">
+              <svg class="mr-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor" stroke="none" >
+                <path d="M 9.983 0 C 4.458 0 -0.017 4.478 -0.017 10 C -0.017 14.419 2.848 18.167 6.821 19.488 C 7.321 19.582 7.504 19.273 7.504 19.007 C 7.504 18.769 7.496 18.14 7.492 17.307 C 4.71 17.91 4.123 15.965 4.123 15.965 C 3.668 14.811 3.011 14.503 3.011 14.503 C 2.105 13.883 3.081 13.895 3.081 13.895 C 4.085 13.965 4.613 14.925 4.613 14.925 C 5.504 16.454 6.953 16.013 7.525 15.757 C 7.615 15.11 7.873 14.669 8.158 14.419 C 5.938 14.169 3.603 13.309 3.603 9.478 C 3.603 8.386 3.991 7.494 4.633 6.794 C 4.52 6.542 4.183 5.525 4.72 4.148 C 4.72 4.148 5.558 3.879 7.47 5.173 C 8.27 4.95 9.12 4.84 9.97 4.835 C 10.82 4.84 11.67 4.95 12.47 5.173 C 14.37 3.879 15.208 4.148 15.208 4.148 C 15.745 5.525 15.408 6.542 15.308 6.794 C 15.945 7.494 16.333 8.386 16.333 9.478 C 16.333 13.319 13.995 14.165 11.77 14.411 C 12.12 14.711 12.445 15.324 12.445 16.261 C 12.445 17.599 12.433 18.674 12.433 18.999 C 12.433 19.262 12.608 19.574 13.12 19.474 C 17.121 18.163 19.983 14.413 19.983 10 C 19.983 4.478 15.506 0 9.983 0"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div id="mobile-menu" class="fixed z-10 w-full bg-bg top-16 -translate-y-[100vh] transition-transform duration-250 ease-in md:hidden pb-2 border-b border-b-fg px-2 pt-2 pb-3 h-[calc(100vh-4rem)] overflow-y-auto">
+    
+    
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/start/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Getting Started
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/fundamentals/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Fundamentals
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/render/"
+   class=" pl-12 bg-bg-highlight border-fg text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Render HTML
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/createstores/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Creation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/events/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Event Handling
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/storemapping/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Mapping
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/routing/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Routing
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/validation/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Validation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/http/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Http
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/websockets/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Websockets
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/web-components/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Web Components
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/checkboxgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        CheckboxGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/combobox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Combobox
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/datacollection/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        DataCollection
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/disclosure/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Disclosure
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/inputfield/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        InputField
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/listbox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Listbox (Select)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/menu/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Menu
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/modal/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Modal
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/popover/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        PopOver
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/radioGroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        RadioGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/switch/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Switch (Toggle)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tabgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TabGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/textarea/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TextArea
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/toast/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Toast
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tooltip/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Tooltip
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+            
+        
+    
+</nav>
+
+    
+  </div>
+
+  <!-- 3 column wrapper -->
+<div class="mt-16 h-[calc(100vh-4rem)] flex-grow w-full mx-auto md:flex">
+  <!-- Left sidebar & main wrapper -->
+    <div class="min-w-fit h-full overscroll-none overflow-y-auto w-64 xl:border-b-0 bg-bg hidden md:block">
+        <!-- Start left column area -->
+        <div class="mt-6 relative" style="min-height: 12rem;">
+          
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/start/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Getting Started
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/fundamentals/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Fundamentals
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/render/"
+   class=" pl-12 bg-bg-highlight border-fg text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Render HTML
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/createstores/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Creation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/events/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Event Handling
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/storemapping/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Mapping
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/routing/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Routing
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/validation/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Validation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/http/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Http
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/websockets/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Websockets
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/web-components/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Web Components
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+    
+</nav>
+
+        </div>
+        <!-- End left column area -->
+    </div>
+
+
+    
+<div class="bg-bg md:min-w-0 md:flex-1 h-full">
+  <div class="h-full py-6 px-5 sm:px-6 lg:px-8 h-full overscroll-none overflow-y-auto bg-bg lg:pr-72">
+    <!-- Start main area-->
+    <div class="relative content prose prose-invert max-w-prose pb-10">
+
+      <h1>Render HTML</h1>
+
+      
+
+      
+
+      <h2 id="overview" tabindex="-1">Overview</h2>
+<h3 id="create-a-basic-ui" tabindex="-1">Create a Basic UI</h3>
+<p>fritz2 offers a rich DSL to create the HTML for your application. Simply call the global <code>render</code> function to
+create an initial <code>RenderContext</code>, then use the HTML-Tag factory-functions provided by fritz2,
+like <code>div</code>. All of those factories have to be nested by intention, so this results in a <em>declarative</em> way of creating
+UIs.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    render <span class="token punctuation">{</span> <span class="token comment">// offers created root `RenderContext` - start your UI code in here</span><br>        <br>        <span class="token comment">// create an HTML tag; `div` produces a `Tag` which is also a `RenderContext`.</span><br>        <span class="token comment">// This enables nested calling and therefore the declarative approach</span><br>        <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"header"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <br>        <span class="token punctuation">}</span><br>        <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"container"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            h1 <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Hello World!"</span></span> <span class="token punctuation">}</span><br>            <span class="token comment">//   ^^^^^^^^^^^^^^^</span><br>            <span class="token comment">//   create a text node inside a tag</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"footer"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>This code results in:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello World!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<p>If you compare the result with the code, you will immediately recognize that the DOM structure is reflected by the
+declaring code. This leads to easy to read UI definitions and is a core feature of fritz2.</p>
+<h3 id="make-your-ui-reactive" tabindex="-1">Make Your UI Reactive</h3>
+<p>fritz2 supports reactive UIs as one of its core features, so let us enhance the example with some dynamic content.</p>
+<p>First of all, we need a so-called <code>Store</code> for holding the dynamic data of our application. Such stores are the heart
+of every fritz2 application; they provide the current value in a reactive way and handle all the data changes.</p>
+<div class="info">
+<p>The store creation and its core functionalities will be explained in-depth in <a href="/docs/createstores">chapter</a>.
+So do not fret about the details - the facts relevant to understanding this chapter are explained here.</p>
+</div>
+<p>The store's <code>data</code>-property offers a <code>Flow</code> of the stored value <code>T</code>. To reactively bind this value to the DOM,
+use one of the <code>render*</code>-functions of the data flow on it. The function creates a so-called <em>mount-point</em> which manages
+the automatic update of the DOM on every change of the store's data. The <em>mount-point</em> uses a dedicated tag created in
+the DOM as reference to the node where the deletion and recreation of the defined UI-fragment happens.</p>
+<p>To react to (user) events like the click onto a button, a store provides so-called <code>Handler</code>s, which create the new
+value of the store. The default and built-in handler <code>update</code> simply substitutes the old state with a new value.</p>
+<div class="info">
+<p>Events and reacting to them will be explained in-depth in another chapter. The next example contains short commentary
+on this topic only to help you understand the example.</p>
+</div>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    render <span class="token punctuation">{</span><br>        <span class="token comment">// define a store to hold the dynamic data, in this case a `String`</span><br>        <span class="token keyword">val</span> storedName <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"World"</span></span><span class="token punctuation">)</span><br><br>        <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"header"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"container"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            storedName<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> name <span class="token operator">-></span> <span class="token comment">// current value is provided</span><br>                <span class="token comment">//          ^^^^^^</span><br>                <span class="token comment">//          create a "mount-point" to bind the store's data to a node in the DOM</span><br>                <span class="token comment">//          every time the data changes, this inner UI-subtree gets deleted and newly created</span><br>                h1 <span class="token punctuation">{</span><br>                    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Hello, "</span></span><br>                    <span class="token operator">+</span>name <span class="token comment">// use the provided data here</span><br>                    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"!"</span></span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>        <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"footer"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            button <span class="token punctuation">{</span><br>                <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Greet fritz2"</span></span><br>            <span class="token punctuation">}</span><span class="token punctuation">.</span>clicks<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token string-literal singleline"><span class="token string">"fritz2"</span></span> <span class="token punctuation">}</span> handledBy storedName<span class="token punctuation">.</span>update<br>            <span class="token comment">// ^^^^^^^^^^^^^^^^^^^^^^                      ^^^^^^</span><br>            <span class="token comment">// use the event to send a new                 use store's default handler</span><br>            <span class="token comment">// value to the store                          to replace the old with the new value</span><br>            <span class="token comment">// Event handling will be explained in the chapter about store creation!</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>The DOM structure now looks as follows:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mount-point<span class="token punctuation">"</span></span> <span class="token attr-name">data-mount-point</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello, World!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">></span></span>Greet fritz2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<p>When you click the button, the whole <code>h1</code>-subtree will be removed and changed to <code>&lt;h1&gt;Hello, fritz2!&lt;/h1&gt;</code></p>
+<h3 id="style-and-enrich-your-ui-with-attributes" tabindex="-1">Style and Enrich Your UI with Attributes</h3>
+<p>As a final teaser, we would like to demonstrate the styling of a UI and setting attributes of a tag.</p>
+<p>The tag-factories accept static CSS-classes as a <code>String</code> as first parameter, as this is such a common use case (this is
+why we used the named parameter for the ids throughout previous chapters).
+fritz2 is totally agnostic of any CSS-framework or even handcrafted CSS - use whatever fits your needs!</p>
+<div class="info">
+<p>fritz2 is totally agnostic of any specific CSS technology. At least there are the following possibilities you can apply:</p>
+<ol>
+<li>Use your custom handcrafted static CSS by adding a CSS-file under <code>jsMain/resources</code> and embed it in
+the <code>jsMain/resources/index.html</code> file.</li>
+<li>Use static CSS from <a href="https://developer.mozilla.org/en-US/docs/Glossary/CDN">CDN</a>
+(e.g. <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/#quick-start">Bootstrap</a>) - include it
+appropriately inside the <code>jsMain/resources/index.html</code> file.</li>
+<li>Use dynamic CSS with <a href="https://tailwindcss.com/">tailwindcss</a> by using our
+<a href="https://github.com/jwstegemann/fritz2-tailwind-template">ready-to-use template</a>.</li>
+<li>Use any other dynamic CSS by configuring <a href="https://webpack.js.org/loaders/#styling">webpack</a> appropriately.</li>
+</ol>
+</div>
+<p>Since being reactive is such an important aspect of fritz2, styling and attributes can be set based upon the store's
+state. Example:
+A button is reactively disabled when it is clicked because the click changes the state of the store.
+The changed state (its data) is evaluated inside the <code>disabled</code>-function which sets the related property of
+the <code>&lt;button&gt;</code>-tag.</p>
+<p>All the building blocks we showcased here make fritz2 a fully reactive web framework.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    render <span class="token punctuation">{</span><br>        <span class="token keyword">val</span> storedName <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"World"</span></span><span class="token punctuation">)</span><br><br>        <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"w-48 m-4 flex flex-col gap-2"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token comment">// ^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br>            <span class="token comment">// set (static) CSS classnames as first parameter of a tag factory</span><br>            <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"header"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token punctuation">}</span><br>            <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"container"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                h1 <span class="token punctuation">{</span><br>                    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Hello, "</span></span><br>                    storedName<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> name <span class="token operator">-></span><br>                        <span class="token function">span</span><span class="token punctuation">(</span><span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">==</span> <span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"font-bold"</span></span> <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">""</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                            <span class="token comment">// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br>                            <span class="token comment">// set classname depending on the store's content</span><br>                            <span class="token operator">+</span>name<br>                        <span class="token punctuation">}</span><br>                        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"!"</span></span><br>                    <span class="token punctuation">}</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>            <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"footer"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token function">button</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"p-2 text-white border border-1 border-gray-300 rounded-md"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                    <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Greet fritz2"</span></span><br>                    <span class="token function">className</span><span class="token punctuation">(</span>storedName<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> <span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"bg-gray-500"</span></span> <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"bg-blue-400"</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span><br>                    <span class="token comment">//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br>                    <span class="token comment">//        set CSS classes reactively</span><br>                    <span class="token function">disabled</span><span class="token punctuation">(</span>storedName<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> it <span class="token operator">==</span> <span class="token string-literal singleline"><span class="token string">"fritz2"</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span><br>                    <span class="token comment">//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br>                    <span class="token comment">//       set disabled attribute reactively</span><br>                <span class="token punctuation">}</span><span class="token punctuation">.</span>clicks<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token string-literal singleline"><span class="token string">"fritz2"</span></span> <span class="token punctuation">}</span> handledBy storedName<span class="token punctuation">.</span>update<br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>The final DOM structure now looks like this:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>w-48 m-4 flex flex-col gap-2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello,<br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mount-point<span class="token punctuation">"</span></span> <span class="token attr-name">data-mount-point</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>World<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>!<br>            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>p-2 bg-blue-400 text-white border border-1 border-gray-300 rounded-md<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>            Greet fritz2<br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<p>Clicking the button will change the button section to this:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">disabled</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>p-2 bg-gray-500 text-white border border-1 border-gray-300 rounded-md<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    Greet fritz2<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<p>Pay attention to the changed CSS-classes and the added <code>disabled</code> attribute!</p>
+<p>(tailwindcss users might recognize a better approach for this case: the usage of the <code>disabled:</code> prefix. This would make
+the <code>className</code> call obsolete and shorten the code - so please accept this solution for demonstration purposes
+only.)</p>
+<h2 id="essentials" tabindex="-1">Essentials</h2>
+<p>Before we dive into the essential topics, let us introduce some model types we will use in our upcoming examples:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// example of an entity</span><br><span class="token keyword">data</span> <span class="token keyword">class</span> <span class="token function">Person</span><span class="token punctuation">(</span><br>    <span class="token keyword">val</span> id<span class="token operator">:</span> Int<span class="token punctuation">,</span> <span class="token comment">// stable identifier</span><br>    <span class="token keyword">val</span> name<span class="token operator">:</span> String<span class="token punctuation">,</span><br>    <span class="token keyword">val</span> age<span class="token operator">:</span> Int<br><span class="token punctuation">)</span><br><br><span class="token comment">// example of some value type</span><br><span class="token keyword">enum</span> <span class="token keyword">class</span> Interest <span class="token punctuation">{</span><br>    Programming<span class="token punctuation">,</span><br>    Sports<span class="token punctuation">,</span><br>    History<span class="token punctuation">,</span><br>    WritingDocumentation<br><span class="token punctuation">}</span></code></pre>
+<h3 id="reactive-rendering" tabindex="-1">Reactive Rendering</h3>
+<p>As you already know, all <a href="/docs/fundamentals/#state-handling">state handling</a> is done with <code>Store</code>s in fritz2.</p>
+<p>Based upon the <code>data</code>-property, which provides a <code>Flow</code> of the store's generic data type, there are a variety of
+<code>render*</code>-functions which can be used to create <em>reactive</em> UIs:</p>
+<table>
+<thead>
+<tr>
+<th>Render-Function</th>
+<th>Additional parameters</th>
+<th>Description</th>
+<th>Default Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Flow&lt;T&gt;.render</code></td>
+<td>-</td>
+<td>Creates a mount-point providing the whole store's data value <code>T</code> inside <code>content</code> expression</td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;T&gt;.renderIf</code></td>
+<td>predicate</td>
+<td>Creates a mount-point providing the whole store's data value <code>T</code> inside <code>content</code> expression when <code>predicate</code> is <code>true</code></td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;Boolean&gt;.renderTrue</code></td>
+<td>-</td>
+<td>Creates a mount-point rendering the <code>content</code> expression with no store data provided when the flow's value is <code>true</code></td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;Boolean&gt;.renderFalse</code></td>
+<td>-</td>
+<td>Creates a mount-point rendering the <code>content</code> expression with no store data provided when the flow's value is <code>false</code></td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;T&gt;.renderNotNull</code></td>
+<td>-</td>
+<td>Creates a mount-point providing the whole store's data value <code>T</code> inside <code>content</code> expression when <code>T</code> is not <code>null</code></td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;T&gt;.renderIs</code></td>
+<td>klass</td>
+<td>Creates a mount-point providing the whole store's data value <code>T</code> inside <code>content</code> expression when <code>T</code> is of type <code>klass</code></td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;String&gt;.renderText</code></td>
+<td>-</td>
+<td>Creates a mount-point creating a text-node</td>
+<td><code>span</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;List&lt;T&gt;&gt;.renderEach</code></td>
+<td>-</td>
+<td>Creates a mount-point optimizing changes by <code>T.equals</code>. Provides a <code>T</code> inside the <code>content</code> expression. Use for value objects</td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>Flow&lt;List&lt;T&gt;&gt;.renderEach</code></td>
+<td>idProvider</td>
+<td>Creates a mount-point optimizing changes by <code>idProvider</code>. Provides a <code>T</code> inside the <code>content</code> expression. Use for entities</td>
+<td><code>div</code></td>
+</tr>
+</tbody>
+</table>
+<p>There is one more <code>renderEach</code> variant which is defined as an extension to a <code>Store</code> instead of a <code>Flow</code>.
+This special variant and its application are described in the
+<a href="/docs/storemapping/#reactive-rendering-of-entity-lists-with-auto-mapped-element-store">chapter about store mapping</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Render-Function</th>
+<th>Additional parameters</th>
+<th>Description</th>
+<th>Default Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Store&lt;List&lt;T&gt;&gt;.renderEach</code></td>
+<td>idProvider</td>
+<td>Creates a mount-point optimizing changes by <code>idProvider</code>. Provides a <code>Store&lt;T&gt;</code> inside the <code>content</code> expression. Use for entities</td>
+<td><code>div</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="reactive-rendering-of-t" tabindex="-1">Reactive Rendering of <code>T</code></h4>
+<p>Use the <code>render</code>-function to render the store's data type as a whole.
+It requires a lambda expression with a <code>Tag</code> as receiver (remember that a <code>Tag</code> <em>is</em> a <code>RenderContext</code>), providing the
+data as a parameter and returning <code>Unit</code>. Inside this <code>content</code> parameter, you then have access to the current data
+and can use all HTML tag factories to create the desired UI-fragment.</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token comment">// define a Person and "store" it</span><br>    <span class="token keyword">val</span> storedPerson <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token function">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Fritz"</span></span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br>    storedPerson<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> person <span class="token operator">-></span> <span class="token comment">// the current store's value is injected</span><br>        dl <span class="token punctuation">{</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Id"</span></span> <span class="token punctuation">}</span><br>            <span class="token comment">// use the data type to render its contents by accessing its properties</span><br>            <span class="token comment">// as the DOM consists only of strings, we must take care of the needed type conversion from `Int` to `String`</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Name"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>name <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Age"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>age<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As a result, the following DOM-fragment is rendered:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mount-point<span class="token punctuation">"</span></span> <span class="token attr-name">data-mount-point</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Id<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>Fritz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Age<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>42<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>The <code>render</code>-function creates a <em>mount-point</em> which reactively connects a store's data with
+a node in the DOM-tree. The created mount-point now takes care of reacting to new values and keeps the UI-fragment up
+to date. This is the upper part of fritz2's <a href="/docs/fundamentals/#understanding-the-circle-of-life">circle of life</a>.</p>
+<p>It is important to know the following facts about <code>render</code> and mount-points:</p>
+<ul>
+<li>As default, a special <code>&lt;div&gt;</code> tag is rendered which is marked with the purely informational <code>data-mount-point</code>
+attribute. It also has a special CSS class <code>mount-point</code> which simply sets the display mode to <code>contents</code> in order to
+exclude this artificial tag from the visible UI.</li>
+<li>On every change to the store's data, the <strong>whole subtree</strong> beneath that <code>&lt;div&gt;</code> tag is dropped and rebuilt with the
+new data's content.</li>
+</ul>
+<div class="info">
+<p>As a direct consequence of the last fact, we recommend keeping the reactive UI-fragments as minimal as you can,
+since re-rendering a subtree is work for the browser.</p>
+<p>fritz2 supports you in doing so, for example by</p>
+<ul>
+<li><a href="#minimize-dom-structure-changes-within-reactive-updates-aka-precise-rendering">precisely rendering complex / hierarchical data structure</a></li>
+<li><a href="#reactive-rendering-of-lists-of-value-objects">efficiently rendering lists</a></li>
+<li></li>
+</ul>
+<p>As rule of thumb, the smaller the changing parts are, the faster the result will be.</p>
+</div>
+<p>Also, take a look at our <a href="/examples/gettingstarted/">basic example</a> which demonstrates the <code>render</code> function.</p>
+<h4 id="reactive-rendering-of-text-nodes" tabindex="-1">Reactive Rendering of Text-Nodes</h4>
+<p>Since creating a reactive UI with dynamically rendered texts is a common use case,
+fritz2 offers a <em>dedicated</em> render variant called <code>renderText</code>
+on data flows of type <code>String</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedText <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">)</span><br><br>    div <span class="token punctuation">{</span><br>        <span class="token comment">// attention: needs a *Tag*, not just a `RenderContext`</span><br>        storedText<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">renderText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As result the following DOM-fragment is rendered:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>fritz2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>There is also an extension function <code>asString</code> which converts a <code>Flow&lt;T&gt;</code> to a <code>Flow&lt;String&gt;</code> by calling the
+<code>toString</code> method internally:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedCount <span class="token operator">=</span> storeOf<span class="token operator">&lt;</span>Int<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><br><br>    div <span class="token punctuation">{</span><br>        storedCount<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">asString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">renderText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>The <code>renderText</code> function is useful when long text has smaller dynamic parts.
+Since only the smaller parts will change, the other parts must not be part of the mount-point:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedText <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">)</span><br><br>    p <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"There is an excellent Kotlin based framework named "</span></span><br>        storedText<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">renderText</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// only the dynamic part is here; the other text-nodes are static</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">" which empowers one to easily create reactive SPAs in pure Kotlin."</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Imagine a <code>render</code> based solution on the contrary:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedText <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fritz2"</span></span><span class="token punctuation">)</span><br><br>    p <span class="token punctuation">{</span><br>        storedText<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> frameworkName <span class="token operator">-></span><br>            <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"There is an excellent Kotlin based framework named "</span></span><br>            <span class="token operator">+</span>frameworkName<br>            <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">" which empowers one to easily create reactive SPAs in pure Kotlin."</span></span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Of course the former could also have been written with <code>String</code>-templating instead of separate text-nodes.</p>
+<p>The important advantages of the dedicated <code>renderText</code> solution compared to the general <code>render</code> based solution are:</p>
+<ul>
+<li>The <code>renderText</code> solution fits better to the <em>declarative</em> UI approach, as it better reflects the node structure
+and thus is better to read.</li>
+<li>The mount-point encompasses a much smaller DOM-subtree, so it is more efficient.</li>
+</ul>
+<h4 id="reactive-rendering-of-lists-of-value-objects" tabindex="-1">Reactive Rendering of Lists of Value Objects</h4>
+<p>Since a store of <code>List&lt;T&gt;</code> is a common use case, fritz2 offers a special <code>renderEach</code> function for this as well:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token comment">// define a store with some type of `List&lt;T>`</span><br>    <span class="token keyword">val</span> storedInterests <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span>Interest<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br>    ul <span class="token punctuation">{</span><br>        <span class="token comment">// for every value of store's interest list, the provided `content` expression is executed</span><br>        storedInterests<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">renderEach</span> <span class="token punctuation">{</span> interest <span class="token operator">-></span> <span class="token comment">// the current applied value of the data flow</span><br>            <span class="token comment">// just declare the UI for one item to render the complete list accordingly</span><br>            li <span class="token punctuation">{</span><br>                <span class="token operator">+</span>interest<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As a result, the following DOM-fragment is rendered:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mount-point<span class="token punctuation">"</span></span> <span class="token attr-name">data-mount-point</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Programming<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Sports<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>History<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>WritingDocumentation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>It is important to spot the main difference to the former render-functions: The store's data type is an (ordered)
+collection type, so its value consists of an arbitrary amount of elements of the same type.
+An inherent property of equal types is that their UI-representation is also of the same type. <code>renderEach</code> supports
+this by describing only the UI-fragment for <em>one</em> item of the list with the <code>content</code> parameter.
+The UI-container which holds those items is therefore <em>not</em> part of the reactive expression and thus the
+mount-point.</p>
+<p>Another important aspect of handling the reactive rendering of <code>List</code>s is <em>performance</em>
+optimization.</p>
+<p>In order to gain some understanding for this technical aspect, consider the above example realized with the standard
+<code>render</code>-function:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedInterests <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span>Interest<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br>    ul <span class="token punctuation">{</span><br>        storedInterests<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> interests <span class="token operator">-></span> <span class="token comment">// name suggests a list</span><br>            <span class="token comment">// "manually" create &lt;li> tags for each item</span><br>            interests<span class="token punctuation">.</span><span class="token function">forEach</span> <span class="token punctuation">{</span><br>                li <span class="token punctuation">{</span><br>                    <span class="token operator">+</span>it<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>You cannot spot the difference by looking at the rendered DOM structure because it remains the same for both solutions.
+But looking at the code, we can conclude that the second approach will definitely delete the whole subtree of the
+mount-point and re-create all <code>&lt;li&gt;</code>-tags, even if only <em>one</em> element of the list changes.</p>
+<p><code>renderEach</code> instead creates a specialized mount-point in order to identify elements for re-rendering.
+This mount-point compares the current version of your list with the new one on every change and applies the minimum
+necessary patches to the DOM. Assuming only one item changes, the untouched items can remain in the DOM,
+and only the changed item's DOM subtree needs to be deleted and recreated. As you can imagine, this is a game changer
+concerning performance.</p>
+<p>This <code>renderEach</code> implementation does the patch-determination by applying the standard <code>equals</code>-method of the list's
+type <code>T</code>. This is the reason why it is targeted to <em>value</em> objects - they are implicitly defined by their equality.</p>
+<p>Have a look at its usage in our <a href="/examples/masterdetail/">master detail</a> example.</p>
+<h4 id="reactive-rendering-of-lists-of-entities" tabindex="-1">Reactive Rendering of Lists of Entities</h4>
+<p>Since a <code>List&lt;T&gt;</code> as value of a store is a common use case, <code>T</code> being an <em>entity</em> with a stable identity, fritz2
+offers a specialized <code>renderEach</code>-function for it.
+When dealing with entities, you can pass an additional parameter called <code>idProvider</code>. This expression takes
+one item <code>T</code> and determines its stable identity. Armed with this information, the internal patch-determination is then
+simply based upon the id and not upon the <code>equals</code>-method anymore.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// define some person-entities and store them</span><br><span class="token keyword">val</span> persons <span class="token operator">=</span> <span class="token function">listOf</span><span class="token punctuation">(</span><br>    <span class="token function">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Fritz"</span></span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token function">Person</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Caesar"</span></span><span class="token punctuation">,</span> <span class="token number">66</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token function">Person</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Cleopatra"</span></span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><br><span class="token punctuation">)</span><br><br>render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedPersons <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span>persons<span class="token punctuation">)</span><br><br>    ul <span class="token punctuation">{</span><br>        storedPersons<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">renderEach</span><span class="token punctuation">(</span>Person<span class="token operator">::</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span> person <span class="token operator">-></span><br>            <span class="token comment">//                        ^^^^^^^^^^</span><br>            <span class="token comment">//                        provide a function to determine the stable identity of one `T`</span><br>            li <span class="token punctuation">{</span><br>                dl <span class="token punctuation">{</span><br>                    dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Id"</span></span> <span class="token punctuation">}</span><br>                    dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>                    dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Name"</span></span> <span class="token punctuation">}</span><br>                    dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>name <span class="token punctuation">}</span><br>                    dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Age"</span></span> <span class="token punctuation">}</span><br>                    dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>age<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As the identity is stable, the following properties hold for the rendered items:</p>
+<ul>
+<li>An element is only rendered <em>once</em>, so only adding or deleting items to the store will lead to changes in the UI.</li>
+<li>Any change to an existing item will <em>not</em> trigger any re-rendering action anymore.</li>
+</ul>
+<p>The latter is an important aspect to consider before the use of <code>renderEach</code> for entities. If you still need to reflect
+changes to the data within an entity and want to apply precise rendering, use this application of <code>renderEach</code>,
+but add additional mount-points inside the elements subtrees. You will learn about those in the
+<a href="/docs/storemapping/#reactive-rendering-of-entity-lists-with-auto-mapped-element-store">chapter about store mapping</a>.</p>
+<p>Otherwise, it might be a better choice to stick to the default <code>renderEach</code> application relying on equality.
+Have a look at its application in our <a href="/examples/todomvc/">todomvc</a> example.</p>
+<h3 id="apply-styling-to-your-ui%3A-reactive-or-static" tabindex="-1">Apply Styling to Your UI: Reactive or Static</h3>
+<p>The <code>class</code> attribute of a <code>Tag</code> for working with CSS style-classes is somewhat special. You can set the static values
+of each <code>Tag</code> for <code>class</code> and <code>id</code> by using the optional parameters of its factory function:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"some-static-css-class"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token function">button</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"someId"</span></span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Use this one-liner to add styling and meaning to your elements by using semantic CSS class-names. Also, it keeps your
+code clean when using CSS frameworks like Bootstrap, Tailwind, etc.</p>
+<p>Additionally, the <code>className</code>-function can be used to set static classes:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    div <span class="token punctuation">{</span><br>        <span class="token function">className</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"some-static-css-class"</span></span><span class="token punctuation">)</span><br>        <span class="token function">button</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"someId"</span></span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>To reactively change the styling of a rendered element, you can add dynamic classes by assigning a <code>Flow</code> of strings to
+the <code>className</code>-attribute (like with any other attribute).</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> enabled <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br><br>    <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"common-css-class"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token function">className</span><span class="token punctuation">(</span>enabled<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span><br>            <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"enabled-css-class"</span></span><br>            <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"disabled-css-class"</span></span><br>        <span class="token punctuation">}</span><span class="token punctuation">)</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Some important content"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>You can also combine all of these approaches with arbitrary usages of <code>className</code>-variants to handle different aspects
+separately:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> enabled <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br>    <span class="token keyword">val</span> readonly <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br><br>    <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"common-css-class"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token function">className</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"some-other-static-class"</span></span><span class="token punctuation">)</span><br>        <span class="token function">className</span><span class="token punctuation">(</span>enabled<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span><br>            <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"enabled-css-class"</span></span> <br>            <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"disabled-css-class"</span></span><br>        <span class="token punctuation">}</span><span class="token punctuation">)</span><br>        <span class="token function">className</span><span class="token punctuation">(</span>readonly<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token keyword">if</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"readonly-csss-class"</span></span> <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">""</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Some important content"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Keep in mind that the first value of a <code>Flow</code> might take some time to be consumed and applied to the <code>class</code>
+attribute of a tag. This could lead to flicker effects, for example with floating elements which only become
+visible when activated. The following section explains how to overcome these effets.</p>
+<h3 id="avoid-flicker-effects-with-reactive-styling" tabindex="-1">Avoid Flicker Effects With Reactive Styling</h3>
+<p>In order to avoid flicker effects caused by the delay of the first value becoming available on the flow, an initial
+value must be provided to be applied immediately within the rendering process.</p>
+<p>The previously discussed <code>className</code>-function offers an <code>initial</code> parameter:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">className</span><span class="token punctuation">(</span>value<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">,</span> initial<span class="token operator">:</span> String<span class="token punctuation">)</span><span class="token operator">:</span> Unit</code></pre>
+<p>For single classes or short class name groups, simply pass the appropriate initial classnames as second
+parameter:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> enabled <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br><br>    <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"common-css-class"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token function">className</span><span class="token punctuation">(</span>enabled<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span><br>                <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"enabled-css-class"</span></span><br>                <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"disabled-css-class"</span></span><br>            <span class="token punctuation">}</span><span class="token punctuation">,</span><br>            initial <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"enabled-css-class"</span></span><br>        <span class="token punctuation">)</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Some important content"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>For simple use cases this is fine, as long as the classnames for the initial state remain unchanged.
+Otherwise the <code>initial = &quot;...&quot;</code>-parameter would also have to be changed, which can easily be overlooked.</p>
+<p>That's why there is another <code>className</code>-function variant which might be better suited for more complex or volatile
+initial class name values:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">className</span><span class="token punctuation">(</span>value<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> initial<span class="token operator">:</span> T<span class="token punctuation">,</span> transform<span class="token operator">:</span> <span class="token punctuation">(</span>T<span class="token punctuation">)</span> <span class="token operator">-></span> String<span class="token punctuation">)</span><span class="token operator">:</span> Unit</code></pre>
+<p>This function takes three parameters in order to solve the above problem:</p>
+<ul>
+<li><code>value</code> is a <code>Flow</code> which provides arbitrary values of <code>T</code>. This can be a simple <code>Flow&lt;Boolean&gt;</code>, but also
+combinations or any other type can be provided.</li>
+<li><code>initial</code>: a value of <code>T</code> representing the initial state to be applied immediately.</li>
+<li><code>transform</code>: a lambda expression which uses one value of <code>T</code> in order to generate the appropriate class names for
+this specific value.</li>
+</ul>
+<p>The above problem is now solved by this function as the <code>transform</code>-expression is the <em>single source of truth</em> of all
+class names. First, the <code>initial</code>-parameter is passed to the <code>transform</code>-expression to create the initial class names
+which are immediately applied. Further on, each value appearing on the <code>value</code>-<code>Flow</code> will be used with <code>transform</code>
+to create the appropriate class names.</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> enabled <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br><br>    <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"common-css-class"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token function">className</span><span class="token punctuation">(</span>enabled<span class="token punctuation">.</span>data<span class="token punctuation">,</span> initial <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"enabled-css-class"</span></span><br>            <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"disabled-css-class"</span></span><br>        <span class="token punctuation">}</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Some important content"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="handle-large-class-strings" tabindex="-1">Handle large Class Strings</h3>
+<p>CSS classes strings can become very long and may exceed the limit of a code line. This is especially true when working
+with utility based CSS frameworks like <a href="https://tailwindcss.com/">tailwindcss</a>.</p>
+<p>For such situations you need to split up your string into feasible, shorter parts. For this use-case fritz2 offers
+the dedicated function <code>joinClasses(vararg classes: String?): String</code>. This functions accepts an arbitrary
+amount of <code>String</code>s and concatenates them together taking care of the needed white spaces:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// example uses tailwindcss classes</span><br>render <span class="token punctuation">{</span><br>    <span class="token function">div</span><span class="token punctuation">(</span><br>        <span class="token function">joinClasses</span><span class="token punctuation">(</span><br>            <span class="token string-literal singleline"><span class="token string">"relative z-10 flex justify-between items-start w-full my-2 p-4"</span></span><span class="token punctuation">,</span><br>            <span class="token string-literal singleline"><span class="token string">"bg-primary-800 rounded-lg hover:bg-primary-900"</span></span><span class="token punctuation">,</span><br>            <span class="token string-literal singleline"><span class="token string">"text-left text-white"</span></span><span class="token punctuation">,</span><br>            <span class="token string-literal singleline"><span class="token string">"focus:outline-none focus:ring-4 focus:ring-primary-600"</span></span><span class="token punctuation">,</span><br>        <span class="token punctuation">)</span><br>    <span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// some content</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Using this function, it is also possible to conditionally construct classes strings without having to do dangerous
+string concatenation:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> someState <span class="token operator">=</span> <span class="token operator">..</span><span class="token punctuation">.</span><br><br><span class="token keyword">val</span> classes <span class="token operator">=</span> <span class="token function">joinClasses</span><span class="token punctuation">(</span><br>    <span class="token string-literal singleline"><span class="token string">"class1"</span></span><span class="token punctuation">,</span><br>    <span class="token string-literal singleline"><span class="token string">"class2"</span></span><span class="token punctuation">.</span><span class="token function">takeIf</span> <span class="token punctuation">{</span> it<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token keyword">when</span><span class="token punctuation">(</span>someState<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        something<span class="token punctuation">.</span>A <span class="token operator">-></span> <span class="token string-literal singleline"><span class="token string">"class3 class4 class5"</span></span><br>        something<span class="token punctuation">.</span>B <span class="token operator">-></span> <span class="token string-literal singleline"><span class="token string">"class5"</span></span><br>        <span class="token keyword">else</span> <span class="token operator">-></span> <span class="token string-literal singleline"><span class="token string">"class6 class7"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">)</span></code></pre>
+<div class="warning">
+<p>You may be tempted to use Kotlin's default <a href="https://kotlinlang.org/docs/strings.html#multiline-strings">multiline strings</a>,
+which is generally speaking totally ok. But be aware, that you have to deal with the correct handling of separating
+white spaces by your own! This can be quite error-prone though:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token string-literal multiline"><span class="token string">"""grid grid-rows-3 grid-cols-[auto_1fr] gap-1 p-4<br>   | text-base font-sans cursor-pointer rounded-md<br>   |focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-600"""</span></span><span class="token punctuation">.</span><span class="token function">trimMargin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token comment">//  ^</span><br><span class="token comment">//  Missing Space -> would lead to class with name `rounded-mdfocus:outline-none` which will </span><br><span class="token comment">//                   lead to an error in appearance and might be hard to identify</span></code></pre>
+<p>A better approach could be the <code>joinToString</code>-Method of collection types, but it is unlikely that you already have
+those classes inside some collection, so you would have to create some collection in place first, which is quite
+expensive and ineffective.</p>
+</div>
+<h3 id="apply-attributes-to-your-ui%3A-reactive-or-static" tabindex="-1">Apply Attributes to Your UI: Reactive or Static</h3>
+<p>To create rich HTML interfaces, styling alone is not sufficient - you will need to use a variety of attributes.
+In fritz2 there are several easy ways to do this, depending on your use case.</p>
+<p>You can set all HTML attributes inside the <code>Tag</code>'s content by calling a function of the according name. Every standard
+HTML attribute has two functions. One sets a static value every time the element is re-rendered, the second collects
+dynamic data coming from a <code>Flow</code>. When coming from a <code>Flow</code>, the attribute's value will be updated in the
+DOM whenever a new value appears on the <code>Flow</code>, no re-rendering required:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> flowOfInts <span class="token operator">=</span> <span class="token operator">..</span><span class="token punctuation">.</span> <span class="token comment">// i.e. get it from a store</span><br><br>render <span class="token punctuation">{</span><br>    input <span class="token punctuation">{</span><br>        <span class="token function">placeholder</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"a text"</span></span><span class="token punctuation">)</span><br>        <span class="token function">maxLength</span><span class="token punctuation">(</span>flowOfInts<span class="token punctuation">)</span><br>        <span class="token function">disabled</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>If you want to set a <code>Boolean</code> value, you can use the optional parameter <code>trueValue</code> which will be set as the
+attribute-value when your data is <code>true</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> isLow <span class="token operator">=</span> myStore<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> i <span class="token operator">-></span> i <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token punctuation">}</span><br><br>render <span class="token punctuation">{</span><br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"My button"</span></span><br>        <span class="token function">attr</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"data-low"</span></span><span class="token punctuation">,</span> isLow<span class="token punctuation">,</span> trueValue <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"true"</span></span><span class="token punctuation">)</span><br>        <span class="token comment">// isLow == true  -> &lt;button data-low="true">My button&lt;/button></span><br>        <span class="token comment">// isLow == false -> &lt;button>My button&lt;/button></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>This is sometimes needed for CSS-selection or animations.</p>
+<div class="info">
+<p>The <code>className</code> function you have already encountered is just another way to set a common attribute on a tag.
+Internally, it offers more convenience variants and works a bit differently, due to its overall importance.</p>
+</div>
+<p>To set a value for a custom (data-) attribute, use the <code>attr()</code>-function. It works for static and dynamic (from
+a <code>Flow</code>) values:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    div <span class="token punctuation">{</span><br>        <span class="token function">attr</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"data-something"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"value"</span></span><span class="token punctuation">)</span><br>        <span class="token function">attr</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"data-something"</span></span><span class="token punctuation">,</span> <span class="token function">flowOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"value"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Sometimes it is important for an attribute to only appear if a certain condition is <code>true</code>. For example, some
+<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">ARIA</a> properties like
+<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls">aria-controls</a> should
+preferably appear only if the dependent element exist. The <code>attr</code> functions for <code>Flows</code> behave in such a way - they
+only set an attribute if the value is <em>not</em> <code>null</code>. This behaviour can be used to achieve the desired effect:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> isOpened <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br><br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Toggle"</span></span><br>        clicks handledBy isOpened<span class="token punctuation">.</span><span class="token function">handle</span> <span class="token punctuation">{</span> <span class="token operator">!</span>it <span class="token punctuation">}</span><br><br>        <span class="token function">attr</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"aria-controls"</span></span><span class="token punctuation">,</span> isOpened<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"disclosure"</span></span> <span class="token keyword">else</span> <span class="token keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><br>        <span class="token comment">//                                                                  ^^^^</span><br>        <span class="token comment">//                 attribute disappears if disclosure-div is not rendered</span><br>    <span class="token punctuation">}</span><br><br>    isOpened<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token function">div</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"disclosure"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"I am open!"</span></span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="avoid-unsound-values-with-reactive-attributes" tabindex="-1">Avoid Unsound Values with Reactive Attributes</h3>
+<p>As the first value of a <code>Flow</code> might appear some time after the DOM portion of some tag is already rendered, it is
+possible that the initial value of an attribute is not set or set with the wrong value. This could lead to
+further unwanted side effects if other behaviour or rendering is derived by those attributes. Think of a falsely
+enabled <code>disabled</code> attribute of an <code>input</code> element, for example.</p>
+<p>To immediately set any attribute, the respective attribute-method is simply called twice: First with the
+static value to be set immediately, then with the <code>Flow</code> providing the dynamic values:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> disabled<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>Boolean<span class="token operator">></span> <span class="token operator">=</span> <span class="token operator">..</span><span class="token punctuation">.</span><br><br><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"disabled"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"false"</span></span><span class="token punctuation">)</span><br><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"disabled"</span></span><span class="token punctuation">,</span> disabled<span class="token punctuation">)</span> <span class="token comment">// the first value of the `Flow` will override the static value set before.</span></code></pre>
+<h3 id="minimize-dom-structure-changes-within-reactive-updates%3A-precise-rendering" tabindex="-1">Minimize DOM Structure Changes within Reactive Updates: Precise Rendering</h3>
+<p>In order to improve performance and memory-footprint, you should always try to keep the reactive parts of your
+UI as small as possible. This can be achieved by putting the <code>render*</code>-functions as close to the dynamic subtree
+as possible.</p>
+<p>Let's recap the first reactive rendering example:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedPerson <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token function">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Fritz"</span></span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br>    storedPerson<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> person <span class="token operator">-></span><br>        dl <span class="token punctuation">{</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Id"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Name"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>name <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Age"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>age<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>This code will recreate the whole <code>dl</code>-block when the <code>storedPerson</code> state changes, even if only one of its properties
+changes.</p>
+<p>Let's analyze how this object might change by looking at each property:</p>
+<ul>
+<li><code>id</code>: this must be stable by definition, so it will never change.</li>
+<li><code>name</code>: name changes are very unlikely.</li>
+<li><code>age</code>: this is in fact the only regularly changing property - each passing year it must be increased.</li>
+</ul>
+<p>So we only need to react to changes of one portion of the <code>Person</code> model: the <code>age</code>-property.</p>
+<div class="info">
+<p>The following example uses some concepts that have not yet been explained.</p>
+<p>The function of <a href="(/docs/createstores/#custom-handler-in-depth)">handlers</a> and custom
+<a href="/docs/createstores/#custom-data-flow-property">data-flows</a> are explained in the upcoming chapter
+<a href="/docs/createstores">Store Creation</a>. We do need to tease these functions here in order to show a working example.
+Please accept their function without a deeper understanding of those techniques for now. It's sufficient to
+grasp the general concept.</p>
+</div>
+<p>The age being the only attribute likely to change lets us put the reactive rendering code much closer to the
+corresponding UI-elements. As a result, the whole dynamic subtree will become much smaller. This will improve
+performance and reduce memory-usage:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// define a small helper type to hold all static parts of a `Person`</span><br><span class="token keyword">data</span> <span class="token keyword">class</span> <span class="token function">StaticPerson</span><span class="token punctuation">(</span><span class="token keyword">val</span> id<span class="token operator">:</span> Int<span class="token punctuation">,</span> <span class="token keyword">val</span> name<span class="token operator">:</span> String<span class="token punctuation">)</span><br><br><span class="token keyword">val</span> storedPerson <span class="token operator">=</span> <span class="token keyword">object</span> <span class="token operator">:</span> RootStore<span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token function">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Fritz"</span></span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">,</span> job <span class="token operator">=</span> <span class="token function">Job</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br><br>    <span class="token comment">// collect all static properties of the person into the helper class object</span><br>    <span class="token keyword">val</span> staticPart<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>StaticPerson<span class="token operator">></span> <span class="token operator">=</span> <span class="token keyword">data</span><span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token function">StaticPerson</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>id<span class="token punctuation">,</span> it<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token punctuation">}</span><br><br>    <span class="token comment">// create specific data flow for the `age`-property</span><br>    <span class="token keyword">val</span> age<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>Int<span class="token operator">></span> <span class="token operator">=</span> <span class="token keyword">data</span><span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> it<span class="token punctuation">.</span>age <span class="token punctuation">}</span><br><br>    <span class="token comment">// For now, just accept that this element will change the store's state.</span><br>    <span class="token comment">// The concept of handlers is described in the next chapter "Creating Stores"</span><br>    <span class="token keyword">val</span> increaseAge <span class="token operator">=</span> handle <span class="token punctuation">{</span> state <span class="token operator">-></span> state<span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span>age <span class="token operator">=</span> state<span class="token punctuation">.</span>age <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br>render <span class="token punctuation">{</span><br>    dl <span class="token punctuation">{</span><br>        storedPerson<span class="token punctuation">.</span>staticPart<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> person <span class="token operator">-></span><br>            <span class="token comment">//       ^^^^^^^^^^</span><br>            <span class="token comment">//       the upcoming `render`-function will only react to changes to this data part.</span><br>            <span class="token comment">//       as this data won't change, this will be rendered only once!</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Id"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Name"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>name <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Artificial random value to show that this UI part will not react to age changes."</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>Id<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token comment">// This changes on re-rendering. It won't change in this app though.</span><br>        <span class="token punctuation">}</span><br>        dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Age"</span></span> <span class="token punctuation">}</span><br>        dd <span class="token punctuation">{</span><br>            storedPerson<span class="token punctuation">.</span>age<span class="token punctuation">.</span><span class="token function">renderText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>            <span class="token comment">//           ^^^</span><br>            <span class="token comment">//           Same here: the render function will only react to changes of the `age`-portion</span><br>            <span class="token comment">//           of some `Person`-object. As this might change quite often, this part of the</span><br>            <span class="token comment">//           UI will also change in the same manner.</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    button <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Increase Age"</span></span><br>        clicks handledBy storedPerson<span class="token punctuation">.</span>increaseAge<br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>In the above example, the static aspects are exposed via the separate data-flow <code>staticPart</code> and will be configured
+internally by the <code>render</code>-function. The latter will filter out all values which are equal to their predecessors.
+This way, every change to the store's value exposed by its <code>data</code>-flow will only appear on this flow if and when
+some relevant properties have changed.</p>
+<p>As the example only allows the changing of the <code>age</code>-property, which is <em>not</em> part of the static-parts, the <code>staticPart</code>
+flow will not emit a new value, so the mount-point will not re-render ist subtree.</p>
+<p>On the other hand, the <code>age</code>-property is exposed by some special data-flow <code>storedPerson.age</code>. This one will emit a
+new value on every change to the main model. The latter is realized by the <code>&lt;button&gt;</code>-tag below, which will trigger
+a <a href="/docs/createstores/#custom-handler-in-depth">handler in the store</a> which increases the <code>Person.age</code>-property.</p>
+<p>As this value is atomic, we want to place the mount-point as deep into the static UI-part as possible. In this case,
+directly as text-node inside the <code>&lt;dd&gt;</code>-tag. This is quite <em>precise</em>, that's why we call this concept
+<em>precise rendering</em>.</p>
+<p>You can verify the two different behaviours of rendering in the example by clicking the <kbd>Increase Age</kbd>-button.
+After each click, a new <code>Person</code>-object is created by the handler. The &quot;Age&quot; data will show the increased value, but
+the &quot;Artificial random value&quot; remains the same, which proves that the first mount-point does not get an update.</p>
+<div class="info">
+<p>The above concept applies also to the <code>renderText</code>-function or <a href="/docs/storemapping/">mapped stores</a>.</p>
+</div>
+<h3 id="minimize-dom-structure-of-mount-points" tabindex="-1">Minimize DOM Structure of Mount-Points</h3>
+<p>Let's recap the first reactive rendering example:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> storedPerson <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token function">Person</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Fritz"</span></span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br>    storedPerson<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> person <span class="token operator">-></span><br>        dl <span class="token punctuation">{</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Id"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Name"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>name <span class="token punctuation">}</span><br>            dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Age"</span></span> <span class="token punctuation">}</span><br>            dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>age<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As result the following DOM-fragment is rendered:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mount-point<span class="token punctuation">"</span></span> <span class="token attr-name">data-mount-point</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Id<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>Fritz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Age<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>42<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Since the preliminary <code>&lt;dl&gt;</code> tag groups all its child UI-elements, the <em>artificially</em> created
+<code>&lt;div&gt;</code>-tag as mount-point reference to the DOM is overhead. We can improve ths DOM structure by telling the
+<code>render</code>-function to <em>use</em> an existing tag as mount-point reference instead of creating a dedicated one:</p>
+<pre class="language-kotlin"><code class="language-kotlin">dl <span class="token punctuation">{</span><br>    <span class="token comment">// `this` is the &lt;dl>-Tag in this scope</span><br>    <span class="token comment">// pass the existing tag *into* `render` to use it as the mount-point reference </span><br>    storedPerson<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>into <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> person <span class="token operator">-></span> <br>        dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Id"</span></span> <span class="token punctuation">}</span><br>        dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token comment">// ...</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>As a result, the following reduced DOM-fragment is rendered:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span> <span class="token attr-name">data-mount-point</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Id<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>Fritz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>Age<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>42<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span></code></pre>
+<div class="warning">
+<p>As you know, the mount-point has <em>full</em> control over the DOM-subtree below its reference tag and will drop it
+completely on every change of the data, so be cautious to <strong>never ever</strong> put other tags around this <code>render</code>-expression!
+It will be deleted sooner or later by the mount-point. The two additional <code>div</code>s in the following code are located
+inside the <code>dl</code>, which is the <code>this</code> we put into the render-function, and will thus disappear on re-render.</p>
+<pre class="language-kotlin"><code class="language-kotlin">dl <span class="token punctuation">{</span><br>    div <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Do not put any elements between a referenced tag and its related `render` function!"</span></span> <span class="token punctuation">}</span>    <br>    storedPerson<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>into <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> person <span class="token operator">-></span> <br>        dt <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Id"</span></span> <span class="token punctuation">}</span><br>        dd <span class="token punctuation">{</span> <span class="token operator">+</span>person<span class="token punctuation">.</span>id<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token comment">// ...</span><br>    <span class="token punctuation">}</span><br>    div <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Even though this might appear on initial rendering, it will be dropped after first change."</span></span> <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+</div>
+<p>In fact all <code>render*</code>-variants offer the <code>into</code> parameter, so this applies to <code>renderText</code> and <code>renderEach</code> too.</p>
+<h3 id="structure-ui" tabindex="-1">Structure UI</h3>
+<p>It's very easy to create a lightweight reusable component with fritz2. All you have to do is write a function
+with <code>RenderContext</code> as its receiver type:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> RenderContext<span class="token punctuation">.</span><span class="token function">myComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    p <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"This is the smallest valid stateless component."</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br>render <span class="token punctuation">{</span><br>    <span class="token function">myComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<p>Of course, you can also use a subtype of <code>RenderContext</code>, like a <code>Tag</code>, as receiver if you want to limit the
+usage of your component to this parent type.</p>
+<p>Using plain functions, it's also straight forward to parametrize your component:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> RenderContext<span class="token punctuation">.</span><span class="token function">myOtherComponent</span><span class="token punctuation">(</span>person<span class="token operator">:</span> Person<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    p <span class="token punctuation">{</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Hello, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token expression">person<span class="token punctuation">.</span>name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">!"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">val</span> somePerson <span class="token operator">=</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token operator">..</span><span class="token punctuation">.</span><span class="token punctuation">)</span><br>render <span class="token punctuation">{</span><br>    div <span class="token punctuation">{</span><br>        <span class="token function">myOtherComponent</span><span class="token punctuation">(</span>somePerson<span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>To allow nested components, use a lambda with <code>RenderContext</code> as its receiver, or the type of the element you are
+calling the lambda in:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// return an HTML element if you need it</span><br><span class="token keyword">fun</span> RenderContext<span class="token punctuation">.</span><span class="token function">container</span><span class="token punctuation">(</span>content<span class="token operator">:</span> RenderContext<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> Unit<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"container"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token function">content</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br>render <span class="token punctuation">{</span><br>    container <span class="token punctuation">{</span><br>        p <span class="token punctuation">{</span><br>            <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Hello World!"</span></span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Using <code>Div</code> as receiver type in the example above allows you to access the specific attributes and events of your
+container-element from your content-lambda. Use <code>RenderContext</code> where this is not necessary or intended.</p>
+<h3 id="inline-styles" tabindex="-1">Inline Styles</h3>
+<p>fritz2 also offers a function for setting the inline <code>style</code> attribute to your elements:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    p <span class="token punctuation">{</span><br>        <span class="token function">inlineStyle</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"color: red"</span></span><span class="token punctuation">)</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"this is red text"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Of course, it is also possible to dynamically style an element by passing a <code>Flow</code> of CSS styles to <code>inlineStyle</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> enabled <span class="token operator">=</span> <span class="token function">storeOf</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><br><br>    div <span class="token punctuation">{</span><br>        <span class="token function">inlineStyle</span><span class="token punctuation">(</span>enabled<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span><br>            <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"background-color: lightgreen;"</span></span><br>            <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"opacity: 0.5; background-color: lightgrey;"</span></span><br>        <span class="token punctuation">}</span><span class="token punctuation">)</span><br>        <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Important content"</span></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="advanced-topics" tabindex="-1">Advanced Topics</h2>
+<h3 id="scope" tabindex="-1">Scope</h3>
+<p>fritz2 offers the use of <code>Scope</code>s to add more information to a tag. It can then be received by any
+child-tag of the corresponding DOM-subtree and will not be rendered out by default. The values in the <code>Scope</code> are
+only available for tags inside the context of the tag which sets them.</p>
+<p>To append something to the <code>Scope</code>, you have to create a <code>Scope.Key</code> by using the
+<code>Scope.keyOf()</code> function.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> myKey <span class="token operator">=</span> Scope<span class="token punctuation">.</span>keyOf<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"myKeyName"</span></span><span class="token punctuation">)</span></code></pre>
+<p>The key is needed to set or get a value of the <code>Scope</code>.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> fooKey <span class="token operator">=</span> Scope<span class="token punctuation">.</span>keyOf<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"foo"</span></span><span class="token punctuation">)</span><br><br>render <span class="token punctuation">{</span><br>    <span class="token function">div</span><span class="token punctuation">(</span>scope <span class="token operator">=</span> <span class="token punctuation">{</span><br>        <span class="token keyword">set</span><span class="token punctuation">(</span>fooKey<span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"bar"</span></span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        div <span class="token punctuation">{</span><br>            <span class="token comment">// div is child of scope owner, so key is accessible</span><br>            <span class="token operator">+</span><span class="token punctuation">(</span>scope<span class="token punctuation">[</span>fooKey<span class="token punctuation">]</span> <span class="token operator">?:</span> <span class="token string-literal singleline"><span class="token string">""</span></span><span class="token punctuation">)</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br>    div <span class="token punctuation">{</span><br>        <span class="token comment">// this div is not a child, so key is not in its (empty) scope</span><br>        <span class="token operator">+</span><span class="token punctuation">(</span>scope<span class="token punctuation">[</span>fooKey<span class="token punctuation">]</span> <span class="token operator">?:</span> <span class="token string-literal singleline"><span class="token string">""</span></span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>The result is the following:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>bar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>For debugging purposes, you can use the <code>scope.asDataAttr()</code> function to set the current scope to the tag and see it
+in the DOM-Tree.</p>
+<h3 id="customize-the-starting-point---anchor-your-global-render-function" tabindex="-1">Customize the Starting Point - Anchor Your Global Render Function</h3>
+<p>As you already know, you need to call the global <code>render</code> function once in order to create an initial
+<code>RenderContext</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    render <span class="token punctuation">{</span><br>        <span class="token comment">// access to the created root `RenderContext`</span><br>        <span class="token comment">// start your UI code from within here</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>This of course only works in combination with a matching <code>index.html</code> in the <code>jsMain/resources</code>-folder, which is just a
+normal web-page. To set it up correctly,</p>
+<ol>
+<li>there must be one HTML-tag as target reference; by default the <code>document.body</code> tag is used.</li>
+<li>the resulting js-artifact must be included as <code>&lt;script&gt;</code> tag beneath the static HTML.</li>
+</ol>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myAppAnchor<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>        Loading...<br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&lt;project-name>.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<p>The global <code>render</code> factory accepts a
+<code>selector</code> string (see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">querySelector</a>),
+or alternatively a <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement</a>,
+to select the target HTML-tag:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token function">render</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"#myAppAnchor"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// using id selector here, leave blank to use document.body by default</span><br>        h1 <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"My App"</span></span> <span class="token punctuation">}</span><br>        <span class="token function">div</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"fix-css-class"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token function">p</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"someId"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Hello World!"</span></span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>When calling <code>render</code> like that, your content will be mounted to an <code>HTMLElement</code> with <code>id=&quot;myAppAnchor&quot;</code>.
+If you want to mount your content to the <code>body</code> of your <code>index.html</code> instead, you can omit this parameter.</p>
+<p>The second option is to set the <code>override</code> parameter to <code>false</code>, which means that your content will be appended.
+By default, all child elements will be removed before your content is appended to the target HTML-tag.</p>
+<p>Run the project by calling <code>./gradlew jsRun</code> in your project's main directory. Add <code>-t</code> to enable automatic
+building and reloading in the browser after changing your code.</p>
+<h3 id="reactive-styling-with-complex-rules" tabindex="-1">Reactive Styling With Complex Rules</h3>
+<p>fritz2 also lets you manage multiple classes in a <code>List&lt;String&gt;</code> or <code>Flow&lt;List&lt;String&gt;&gt;</code> with the <code>classList</code>-attribute.</p>
+<p>Additionally, you can build a <code>Map&lt;String, Boolean&gt;</code> from your model data which enables and disables single classes
+dynamically:</p>
+<pre class="language-kotlin"><code class="language-kotlin">render <span class="token punctuation">{</span><br>    div <span class="token punctuation">{</span><br>        <span class="token function">classMap</span><span class="token punctuation">(</span>toDoStore<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span><br>            <span class="token function">mapOf</span><span class="token punctuation">(</span><br>                <span class="token string-literal singleline"><span class="token string">"completed"</span></span> <span class="token keyword">to</span> it<span class="token punctuation">.</span>completed<span class="token punctuation">,</span> <span class="token comment">// a boolean-attribute in the data-model</span><br>                <span class="token string-literal singleline"><span class="token string">"editing"</span></span> <span class="token keyword">to</span> it<span class="token punctuation">.</span>editing<br>            <span class="token punctuation">)</span><br>        <span class="token punctuation">}</span><span class="token punctuation">)</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="rendering-on-stand-alone-flows" tabindex="-1">Rendering on Stand-Alone Flows</h3>
+<div class="warning">
+<p>Documentation coming soon</p>
+</div>
+<h3 id="custom-tags-%2F-rendercontexts" tabindex="-1">Custom Tags / RenderContexts</h3>
+<div class="warning">
+<p>Documentation coming soon</p>
+</div>
+
+
+    </div>
+    <a class="group flex items-center px-1 py-1 pb-6 text-sm text-cyan-300 hover:underline" href="https://github.com/jwstegemann/fritz2/blob/master/www/src/pages/docs/30_Render HTML.md" target="_blank">
+      <span class="mr-1 flex-shrink-0 h-4 w-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+      </span>
+      Edit this page on Github
+    </a>
+    <!-- End main area -->
+  </div>
+</div>
+
+<div
+    class="fixed lg:block top-0 right-0 pt-16 h-full hidden pr-4 sm:pr-6 lg:pr-8 lg:pr-2">
+    <div class="w-64 h-full overscroll-none overflow-y-auto pl-6 py-6">
+        <!-- Start right column area -->
+        <div class="h-full relative" style="min-height: 16rem;">
+
+            <h2 class="text-sm font-bold capitalize text-fg-highlight mb-4">On this Page</h2>
+
+            <nav class="toc" >
+        <ul><li><a href="#overview">Overview</a><ul><li><a href="#create-a-basic-ui">Create a Basic UI</a></li><li><a href="#make-your-ui-reactive">Make Your UI Reactive</a></li><li><a href="#style-and-enrich-your-ui-with-attributes">Style and Enrich Your UI with Attributes</a></li></ul></li><li><a href="#essentials">Essentials</a><ul><li><a href="#reactive-rendering">Reactive Rendering</a><ul><li><a href="#reactive-rendering-of-t">Reactive Rendering of T</a></li><li><a href="#reactive-rendering-of-text-nodes">Reactive Rendering of Text-Nodes</a></li><li><a href="#reactive-rendering-of-lists-of-value-objects">Reactive Rendering of Lists of Value Objects</a></li><li><a href="#reactive-rendering-of-lists-of-entities">Reactive Rendering of Lists of Entities</a></li></ul></li><li><a href="#apply-styling-to-your-ui%3A-reactive-or-static">Apply Styling to Your UI: Reactive or Static</a></li><li><a href="#avoid-flicker-effects-with-reactive-styling">Avoid Flicker Effects With Reactive Styling</a></li><li><a href="#handle-large-class-strings">Handle large Class Strings</a></li><li><a href="#apply-attributes-to-your-ui%3A-reactive-or-static">Apply Attributes to Your UI: Reactive or Static</a></li><li><a href="#avoid-unsound-values-with-reactive-attributes">Avoid Unsound Values with Reactive Attributes</a></li><li><a href="#minimize-dom-structure-changes-within-reactive-updates%3A-precise-rendering">Minimize DOM Structure Changes within Reactive Updates: Precise Rendering</a></li><li><a href="#minimize-dom-structure-of-mount-points">Minimize DOM Structure of Mount-Points</a></li><li><a href="#structure-ui">Structure UI</a></li><li><a href="#inline-styles">Inline Styles</a></li></ul></li><li><a href="#advanced-topics">Advanced Topics</a><ul><li><a href="#scope">Scope</a></li><li><a href="#customize-the-starting-point---anchor-your-global-render-function">Customize the Starting Point - Anchor Your Global Render Function</a></li><li><a href="#reactive-styling-with-complex-rules">Reactive Styling With Complex Rules</a></li><li><a href="#rendering-on-stand-alone-flows">Rendering on Stand-Alone Flows</a></li><li><a href="#custom-tags-%2F-rendercontexts">Custom Tags / RenderContexts</a></li></ul></li></ul>
+      </nav>
+
+        </div>
+        <!-- End right column area -->
+    </div>
+</div>
+
+
+  </div>
+</div>
+
+
+<script src="/assets/main.js"></script>
+</body>
+</html>

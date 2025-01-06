@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>trapFocusInMountpoint</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../index.html">
+                            fritz2
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":headless:dokkaHtmlPartial/jsMain">js</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageids="headless::dev.fritz2.headless.foundation//trapFocusInMountpoint/dev.fritz2.core.Tag[org.w3c.dom.HTMLElement]#kotlin.Boolean#dev.fritz2.headless.foundation.InitialFocus/PointingToDeclaration//1056475164">
+  <div class="breadcrumbs"><a href="../index.html">headless</a><span class="delimiter">/</span><a href="index.html">dev.fritz2.headless.foundation</a><span class="delimiter">/</span><span class="current">trapFocusInMountpoint</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>trap</span><wbr><span>Focus</span><wbr><span>In</span><wbr><span><span>Mountpoint</span></span></h1>
+  </div>
+  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":headless:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":headless:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../../core/dev.fritz2.core/-tag/index.html">Tag</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-h-t-m-l-element/index.html">HTMLElement</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="trap-focus-in-mountpoint.html"><span class="token function">trapFocusInMountpoint</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">restoreFocus<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">setInitialFocus<span class="token operator">: </span><a href="-initial-focus/index.html">InitialFocus</a><span class="token operator"> = </span>TryToSet</span></span><span class="token punctuation">)</span></div><p class="paragraph">This function enables a so called focus-trap. This enforces the specific behaviour within the receiver <a href="../../core/dev.fritz2.core/-tag/index.html">Tag</a>, that switching the focus is only possible on elements that are inside the receiver. No other focusable elements outside the enclosing container will get the focus.</p><p class="paragraph">This is often useful for components that acts as overlays like modal dialogs or menus.</p><p class="paragraph">This variant should be applied, if the trap area is inside a mount-point, thus its removal from the DOM ends the trapping.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>restore</span><wbr><span><span>Focus</span></span></u></div></span></div><div><div class="title"><p class="paragraph">sets the focus back to the element that had the focus before the container with the trap was     entered.</p></div></div></div></div><div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>set</span><wbr><span>Initial</span><wbr><span><span>Focus</span></span></u></div></span></div><div><div class="title"><p class="paragraph">will automatically focus the first element of the container or that one, which has been     tagged by <a href="trap-focus-in-mountpoint.html">setInitialFocus</a> function if the <a href="-initial-focus/index.html">InitialFocus</a> value has <code class="lang-kotlin">focus=true</code>.</p></div></div></div></div></div><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":headless:dokkaHtmlPartial/jsMain" data-filterable-set=":headless:dokkaHtmlPartial/jsMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="trap-focus-whenever.html"><span>trap</span><wbr><span>Focus</span><wbr><span><span>Whenever</span></span></a></div></span></div><div></div></div></div></div></div>  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

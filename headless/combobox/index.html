@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Combobox</title>
+    <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Inter:200,300,400&display=swap" rel="stylesheet"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    
+        <meta name="description" content="A robust component for selecting a single item from a list of options with suggestions as you type,  keyboard navigation, and more.">
+    
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#333333">
+</head>
+<body class="bg-bg font-sans">
+
+
+<!-- Background color split screen for large screens -->
+<div class="fixed top-0 left-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="fixed top-0 right-0 w-1/2 h-full bg-bg" aria-hidden="true"></div>
+<div class="relative flex flex-col bg-bg">
+<!-- Navbar -->
+<nav class="fixed h-16 px-4 z-20 w-full font-nunito text-white bg-bg bg-gray-800">
+  <div class="relative flex items-center justify-between h-16">
+    <a class="flex items-center justify-start px-0 w-48 hover:text-gray-300 min-w-fit" href="/">
+      <!-- fritz2 logo -->
+      <svg class="ml-1 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+           fill="currentColor" stroke="none" >
+          <path d="M 9.987 0.229 C 4.469 0.236 0 4.61 0 10.003 C 0 15.401 4.477 19.777 10 19.777 C 15.523 19.777 20 15.401 20 10.003 C 20 4.605 15.523 0.229 10 0.229 C 9.996 0.229 9.992 0.229 9.987 0.229 Z M 14.678 2.662 C 15.144 2.665 15.52 3.043 15.517 3.506 L 15.5 6.862 C 15.497 7.325 15.118 7.699 14.652 7.696 C 14.187 7.694 13.811 7.316 13.813 6.853 L 12.126 6.844 C 11.661 6.842 11.281 7.216 11.278 7.679 L 11.274 8.501 L 12.052 8.501 C 12.072 8.499 12.092 8.499 12.112 8.499 C 12.575 8.499 12.952 8.882 12.952 9.356 C 12.952 9.829 12.575 10.213 12.112 10.213 C 12.089 10.213 12.066 10.212 12.043 10.21 L 7.111 10.21 L 7.111 10.207 C 7.097 10.208 7.084 10.208 7.071 10.208 C 6.607 10.208 6.231 9.825 6.231 9.353 C 6.231 8.881 6.607 8.498 7.071 8.498 C 7.091 8.498 7.111 8.499 7.131 8.501 L 7.9 8.501 L 7.909 6.823 C 7.918 4.969 9.437 3.474 11.3 3.484 L 13.83 3.497 C 13.833 3.034 14.212 2.66 14.678 2.662 Z M 7.887 10.644 L 11.261 10.662 L 11.248 13.179 C 11.238 15.032 9.72 16.527 7.857 16.517 L 6.17 16.509 C 6.167 16.972 5.787 17.346 5.322 17.343 C 4.856 17.341 4.48 16.963 4.483 16.5 L 4.5 13.144 C 4.502 12.681 4.882 12.307 5.348 12.309 C 5.813 12.312 6.189 12.69 6.187 13.153 L 7.031 13.157 C 7.496 13.159 7.876 12.786 7.878 12.322 Z"/>
+        </svg>
+        <div class="ml-3">
+          <span class="text-2xl">fritz2</span>
+          <span class="ml-1 text-xs">1.0-SNAPSHOT</span>
+        </div>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="-mr-2 flex items-center md:hidden">
+      <!-- Mobile menu button -->
+      <button type="button" id="mobile-menu-button" onclick="toggleMenu()"
+              class="p-2 inline-flex items-center justify-center bg-gray-800 rounded-md text-gray-400 hover:bg-gray-900 focus:outline-none focus:ring-1 focus-ring-inset focus:ring-gray-400"
+              aria-controls="mobile-menu" aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <span class="mobile-icon block h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="menu" data-heroicon-style="outline"><title>open main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </span>
+        <span class="mobile-icon hidden h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" data-heroicon-name="x" data-heroicon-style="outline"><title>close main menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </span>
+      </button>
+    </div>
+    <!-- Links section -->
+    <div class="hidden md:block w-24 md:w-48 lg:w-64 ">
+      <div class="flex items-center justify-end hover:text-gray-200">
+        <!-- Github -->
+        <div class="ml-4 relative flex-shrink-0">
+          <div>
+            <a target="_blank" href="https://github.com/jwstegemann/fritz2">
+              <svg class="mr-1 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor" stroke="none" >
+                <path d="M 9.983 0 C 4.458 0 -0.017 4.478 -0.017 10 C -0.017 14.419 2.848 18.167 6.821 19.488 C 7.321 19.582 7.504 19.273 7.504 19.007 C 7.504 18.769 7.496 18.14 7.492 17.307 C 4.71 17.91 4.123 15.965 4.123 15.965 C 3.668 14.811 3.011 14.503 3.011 14.503 C 2.105 13.883 3.081 13.895 3.081 13.895 C 4.085 13.965 4.613 14.925 4.613 14.925 C 5.504 16.454 6.953 16.013 7.525 15.757 C 7.615 15.11 7.873 14.669 8.158 14.419 C 5.938 14.169 3.603 13.309 3.603 9.478 C 3.603 8.386 3.991 7.494 4.633 6.794 C 4.52 6.542 4.183 5.525 4.72 4.148 C 4.72 4.148 5.558 3.879 7.47 5.173 C 8.27 4.95 9.12 4.84 9.97 4.835 C 10.82 4.84 11.67 4.95 12.47 5.173 C 14.37 3.879 15.208 4.148 15.208 4.148 C 15.745 5.525 15.408 6.542 15.308 6.794 C 15.945 7.494 16.333 8.386 16.333 9.478 C 16.333 13.319 13.995 14.165 11.77 14.411 C 12.12 14.711 12.445 15.324 12.445 16.261 C 12.445 17.599 12.433 18.674 12.433 18.999 C 12.433 19.262 12.608 19.574 13.12 19.474 C 17.121 18.163 19.983 14.413 19.983 10 C 19.983 4.478 15.506 0 9.983 0"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div id="mobile-menu" class="fixed z-10 w-full bg-bg top-16 -translate-y-[100vh] transition-transform duration-250 ease-in md:hidden pb-2 border-b border-b-fg px-2 pt-2 pb-3 h-[calc(100vh-4rem)] overflow-y-auto">
+    
+    
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/start/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Getting Started
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/fundamentals/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Fundamentals
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/render/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Render HTML
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/createstores/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Creation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/events/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Event Handling
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/storemapping/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Store Mapping
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/routing/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Routing
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/validation/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Validation
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/http/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Http
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/websockets/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Websockets
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/web-components/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Web Components
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/checkboxgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        CheckboxGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/combobox/"
+   class=" pl-12 bg-bg-highlight border-fg text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Combobox
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/datacollection/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        DataCollection
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/disclosure/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Disclosure
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/inputfield/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        InputField
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/listbox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Listbox (Select)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/menu/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Menu
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/modal/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Modal
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/popover/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        PopOver
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/radioGroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        RadioGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/switch/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Switch (Toggle)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tabgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TabGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/textarea/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TextArea
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/toast/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Toast
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tooltip/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Tooltip
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+            
+        
+    
+</nav>
+
+    
+  </div>
+
+  <!-- 3 column wrapper -->
+<div class="mt-16 h-[calc(100vh-4rem)] flex-grow w-full mx-auto md:flex">
+  <!-- Left sidebar & main wrapper -->
+    <div class="min-w-fit h-full overscroll-none overflow-y-auto w-64 xl:border-b-0 bg-bg hidden md:block">
+        <!-- Start left column area -->
+        <div class="mt-6 relative" style="min-height: 12rem;">
+          
+<nav class="flex-1 bg-bg space-y-2" aria-label="Sidebar">
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/docs/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="academic-cap" data-heroicon-style="solid"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+            </span>
+        
+        Documentation
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="puzzle" data-heroicon-style="solid"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/></svg>
+            </span>
+        
+        Headless Components
+</a>
+
+        
+        
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/checkboxgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        CheckboxGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/combobox/"
+   class=" pl-12 bg-bg-highlight border-fg text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Combobox
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/datacollection/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        DataCollection
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/disclosure/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Disclosure
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/inputfield/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        InputField
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/listbox/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Listbox (Select)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/menu/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Menu
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/modal/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Modal
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/popover/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        PopOver
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/radioGroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        RadioGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/switch/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Switch (Toggle)
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tabgroup/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TabGroup
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/textarea/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        TextArea
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/toast/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Toast
+</a>
+
+            
+                
+                
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/headless/tooltip/"
+   class=" pl-12 border-transparent hover:bg-bg-highlight text-relaxed hover:text-relaxed-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+        Tooltip
+</a>
+
+            
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/examples/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="color-swatch" data-heroicon-style="solid"><path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/></svg>
+            </span>
+        
+        Examples
+</a>
+
+        
+        
+    
+        
+<!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+
+
+<a href="/blog/"
+   class="font-bold capitalize  border-transparent hover:bg-bg-highlight text-fg-highlight group flex items-center px-3 py-1 text-sm border-l-4 focus:">
+    <!--
+      Heroicon name: outline/home
+
+      Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
+    -->
+        
+            
+            <span class="mr-3 flex-shrink-0 h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-heroicon-name="newspaper" data-heroicon-style="solid"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/></svg>
+            </span>
+        
+        Blog
+</a>
+
+        
+        
+    
+</nav>
+
+        </div>
+        <!-- End left column area -->
+    </div>
+
+
+    
+<div class="bg-bg md:min-w-0 md:flex-1 h-full">
+  <div class="h-full py-6 px-5 sm:px-6 lg:px-8 h-full overscroll-none overflow-y-auto bg-bg lg:pr-72">
+    <!-- Start main area-->
+    <div class="relative content prose prose-invert max-w-prose pb-10">
+
+      <h1>Combobox</h1>
+
+      
+        <p>A robust component for selecting a single item from a list of options with suggestions as you type,  keyboard navigation, and more.</p>
+      
+
+      
+        <iframe sandbox="allow-scripts" title="Headless combobox demo" class="w-full rounded" style="height: 25rem;" src="/headless-demo/index.html#combobox"></iframe>
+      
+
+      <h2 id="basic-example" tabindex="-1">Basic Example</h2>
+<p>A combo box is created by the factory function <code>fun &lt;T&gt; combobox()</code>. <code>T</code> is the data type of the choices to be offered,
+such as a country.</p>
+<p>When the input created via <code>comboboxInput</code> is focused, a dropdown with suggestions is shown and updated as you
+type. When focused, the input shows the current input. Otherwise, the currently selected item is displayed.</p>
+<p>It is mandatory to specify a data stream or a store of type <code>T?</code> as data binding via the <code>value</code> property. The component
+supports two-way data binding, i.e. it reflects a selected element from the outside by a <code>Flow&lt;T&gt;</code>
+but also emits the updated selection to the outside via a <code>Handler</code>.</p>
+<p>A combo box may not hold a value (e.g. if initially there is  no selection or the implementation lets the user
+un-select his choice). Thus, the type parameter of the data-binding is nullable. It is possible to specify a
+placeholder text via the vanilla <code>placeholder</code> attribute exposed by the <a href="#comboboxinput"><code>comboboxInput</code></a>'s
+input element.</p>
+<p>Within the selection list the user can navigate using the keyboard. An item is selected via <kbd>Enter</kbd>, <kbd>Space</kbd> or a
+mouse click. If the combo box input loses focus or the user clicks outside the selection list, the dropdown is hidden.</p>
+<p>As typical use cases may offer thousands of items to choose from, the component reduces and filters those in order to
+support the visual recognition of a user down to a feasible size, which can be configured via <code>maximumDisplayedItems</code>.</p>
+<p>As a result, the combo box constantly evaluates which items to show based on the user's query. The results are emitted
+by the
+<code>results</code> Flow available in the scope of the items brick.<br>
+The intended pattern is to iterate over the results and re-render all of them when the results change.</p>
+<p>The selection dropdown is populated via the <code>comboboxItems</code> brick. Within the scope of this function, individual items
+can be rendered via the <code>comboboxItem</code> brick.</p>
+<div class="warning">
+<p><strong>Beware:</strong> Due to the inner workings of the combobox, rendering items via <code>renderEach</code> <em>does not work</em> and results in
+undefined behavior!</p>
+<p>Instead, apply an ordinary <code>render</code> on the <code>results</code>-flow and create the items via a <code>forEach</code>-call on the provided
+<code>List&lt;T&gt;</code>.</p>
+</div>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token comment">// some domain type for this example, a collection to choose from, and an external store</span><br><span class="token keyword">val</span> countries <span class="token operator">=</span> <span class="token function">listOf</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Germany"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"Netherlands"</span></span><span class="token punctuation">,</span> <span class="token string-literal singleline"><span class="token string">"France"</span></span><span class="token punctuation">)</span><br><span class="token keyword">val</span> country <span class="token operator">=</span> storeOf<span class="token operator">&lt;</span>String<span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><br><br>combobox<span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span><br>    <span class="token function">items</span><span class="token punctuation">(</span>countries<span class="token punctuation">)</span><br><br>    <span class="token comment">// set up (two-way) data binding</span><br>    <span class="token function">value</span><span class="token punctuation">(</span>country<span class="token punctuation">)</span><br><br>    comboboxInput <span class="token punctuation">{</span><span class="token punctuation">}</span><br><br>    <span class="token function">comboboxItems</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"bg-white"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// using a combination of 'render' and 'forEach' is the intended</span><br>        <span class="token comment">// way of populating the dropdown</span><br>        results<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> result <span class="token operator">-></span><br>            result<span class="token punctuation">.</span>items<span class="token punctuation">.</span><span class="token function">forEach</span> <span class="token punctuation">{</span> item <span class="token operator">-></span><br>                <span class="token function">comboboxItem</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                    span <span class="token punctuation">{</span><br>                        <span class="token function">className</span><span class="token punctuation">(</span>active<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"underline"</span></span> <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">""</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span><br>                        <span class="token operator">+</span>item<span class="token punctuation">.</span>value<br>                    <span class="token punctuation">}</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<div class="info">
+<p>Do not forget to include a <code>portalRoot()</code>-call at the end of your initial <code>RenderContext</code> as explained
+<a href="/headless/#portalling">here</a>!</p>
+</div>
+<h2 id="styling-the-active-or-selected-item" tabindex="-1">Styling the active or selected Item</h2>
+<p>A <code>comboboxItem</code> has two special states:</p>
+<ul>
+<li>When the mouse is hovering above it or the user navigates to the item via keyboard, it is considered <code>active</code>.</li>
+<li>A click or <kbd>Enter</kbd> selects the active item. It is then <code>selected</code>.</li>
+</ul>
+<p>In the scope of a <code>comboboxItem</code>, <code>active</code> and <code>selected</code> are available as a <code>Flow&lt;Boolean&gt;</code> to apply styling or to
+render or hide certain elements based on the state:</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token function">comboboxItem</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">//change fore- und background-color is item is active </span><br>    <span class="token function">className</span><span class="token punctuation">(</span>active<span class="token punctuation">.</span><span class="token function">map</span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token string-literal singleline"><span class="token string">"text-amber-900 bg-amber-100"</span></span> <span class="token keyword">else</span> <span class="token string-literal singleline"><span class="token string">"text-gray-300"</span></span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><br><br>    span <span class="token punctuation">{</span> <span class="token operator">+</span>item<span class="token punctuation">.</span>value <span class="token punctuation">}</span><br><br>    <span class="token comment">//render checked-icon only if item is selected</span><br>    selected<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            svg <span class="token punctuation">{</span> <span class="token function">content</span><span class="token punctuation">(</span>HeroIcons<span class="token punctuation">.</span>check<span class="token punctuation">)</span> <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="highlight-matching-items" tabindex="-1">Highlight matching items</h2>
+<p>When rendering items based on the user's query, it is often a requirement to highlight the passages of each
+item's String representation that match the given query.
+For this purpose, the current <code>query</code> is part of the <code>results</code> Flow.</p>
+<pre class="language-kotlin"><code class="language-kotlin">comboboxItems <span class="token punctuation">{</span><br>    results<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span>query<span class="token punctuation">,</span> items<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">-></span><br>        items<span class="token punctuation">.</span><span class="token function">forEach</span> <span class="token punctuation">{</span> item <span class="token operator">-></span><br>            <span class="token function">comboboxItem</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token comment">// separate the item's String representation into matching and</span><br>                <span class="token comment">// non-matching segments</span><br>                <span class="token keyword">val</span> segments <span class="token operator">=</span> item<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><br>                    <span class="token function">Regex</span><span class="token punctuation">(</span><br>                        <span class="token string-literal singleline"><span class="token string">"(?&lt;=(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$</span><span class="token expression">highlight</span></span><span class="token string">))|(?=(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$</span><span class="token expression">highlight</span></span><span class="token string">))"</span></span><span class="token punctuation">,</span><br>                        RegexOption<span class="token punctuation">.</span>IGNORE_CASE<br>                    <span class="token punctuation">)</span><br>                <span class="token punctuation">)</span><br><br>                <span class="token keyword">for</span> <span class="token punctuation">(</span>s <span class="token keyword">in</span> segments<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                    <span class="token function">span</span><span class="token punctuation">(</span><br>                        <span class="token function">joinClasses</span><span class="token punctuation">(</span><br>                            <span class="token string-literal singleline"><span class="token string">"underline"</span></span><span class="token punctuation">.</span><span class="token function">takeIf</span> <span class="token punctuation">{</span><br>                                s<span class="token punctuation">.</span><span class="token function">contentEquals</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> ignoreCase <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span><br>                            <span class="token punctuation">}</span><br>                        <span class="token punctuation">)</span><br>                    <span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">+</span>s <span class="token punctuation">}</span><br>                <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="truncated-result-list" tabindex="-1">Truncated result list</h2>
+<p>The <code>results</code> Flow only displays a fixed number of items at a time, configured via the <code>maximumDisplayedItems</code> property.
+If more items match the given query than configured to be displayed, the <code>truncated</code> flag available in the <code>results</code>
+Flow is set to <code>true</code> so an appropriate hint can be displayed.</p>
+<pre class="language-kotlin"><code class="language-kotlin">comboboxItems <span class="token punctuation">{</span><br>    results<span class="token punctuation">.</span><span class="token function">render</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span>_<span class="token punctuation">,</span> items<span class="token punctuation">,</span> truncated<span class="token punctuation">)</span> <span class="token operator">-></span><br>        items<span class="token punctuation">.</span><span class="token function">forEach</span> <span class="token punctuation">{</span> item <span class="token operator">-></span><br>            <span class="token function">comboboxItem</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                span <span class="token punctuation">{</span> <span class="token operator">+</span>item<span class="token punctuation">.</span>value <span class="token punctuation">}</span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>truncated<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            span <span class="token punctuation">{</span><br>                <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Refine your query for more results"</span></span><br>            <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="adding-a-label" tabindex="-1">Adding a Label</h2>
+<p>The combo box can be supplemented with a label using <code>comboboxLabel</code>, e.g. for use in forms or for a screen reader:</p>
+<pre class="language-kotlin"><code class="language-kotlin">combobox<span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span><br>    comboboxLabel <span class="token punctuation">{</span><br>        span <span class="token punctuation">{</span> <span class="token operator">+</span><span class="token string-literal singleline"><span class="token string">"Select a country"</span></span> <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="open-state" tabindex="-1">Open State</h2>
+<p>Combobox is an <a href="#closable-content---openclose"><code>OpenClose</code> component</a>. There are different <code>Flow</code>s and <code>Handler</code>s
+like <code>opened</code> available in its scope to control the open state of the combo box based on state changes.</p>
+<p>Most of the time, the open state managed by the component itself should be enough for all use cases, though.</p>
+<h3 id="automatic-opening-behavior" tabindex="-1">Automatic Opening Behavior</h3>
+<p>The combo box's dropdown can be configured to automatically open based on different events:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lazily()</code></td>
+<td>The dropdown is opened when the user starts typing.</td>
+</tr>
+<tr>
+<td><code>eagerly()</code></td>
+<td>The dropdown is opened as soon as the user focuses the combo box's input element</td>
+</tr>
+</tbody>
+</table>
+<p>The configuration is done via the <code>openDropdown</code> hook available in the configuration scope.</p>
+<p>Both strategies are good choices and mostly depend on subjective preferences. By <strong>default</strong>, the dropdown opens
+itself <em>eagerly</em>.</p>
+<p>Example:</p>
+<pre class="language-kotlin"><code class="language-kotlin">combobox <span class="token punctuation">{</span><br>    openDropdown<span class="token punctuation">.</span><span class="token function">lazily</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token comment">// OR</span><br>    openDropdown<span class="token punctuation">.</span><span class="token function">eagerly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="auto-selecting-items" tabindex="-1">Auto-Selecting Items</h2>
+<p>By default, the user needs to manually select an item for it to be accepted as the combo box's value.
+It can, however, also be configured to automatically select matching items for a query via the <code>selectionStrategy</code>
+property.</p>
+<p>The following modes are offered:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>autoSelectMatch()</code></td>
+<td>Matching items are automatically selected</td>
+</tr>
+<tr>
+<td><code>manual()</code></td>
+<td>Matching items need to be selected manually</td>
+</tr>
+</tbody>
+</table>
+<pre class="language-kotlin"><code class="language-kotlin">combobox <span class="token punctuation">{</span><br>    selectionStrategy<span class="token punctuation">.</span><span class="token function">autoSelectMatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token comment">// OR</span><br>    selectionStrategy<span class="token punctuation">.</span><span class="token function">manual</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="transitions" tabindex="-1">Transitions</h2>
+<p>Showing and hiding the selection list can be easily animated with the help of <code>transition</code>:</p>
+<pre class="language-kotlin"><code class="language-kotlin">comboboxItems <span class="token punctuation">{</span><br>    <span class="token function">transition</span><span class="token punctuation">(</span><br>        opened<span class="token punctuation">,</span><br>        enter <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"transition duration-100 ease-out"</span></span><span class="token punctuation">,</span><br>        enterStart <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"opacity-0 scale-95"</span></span><span class="token punctuation">,</span><br>        enterEnd <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"opacity-100 scale-100"</span></span><span class="token punctuation">,</span><br>        leave <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"transition duration-100 ease-in"</span></span><span class="token punctuation">,</span><br>        leaveStart <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"opacity-100 scale-100"</span></span><span class="token punctuation">,</span><br>        leaveEnde <span class="token operator">=</span> <span class="token string-literal singleline"><span class="token string">"opacity-0 scale-95"</span></span><br>    <span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="positioning" tabindex="-1">Positioning</h2>
+<p><code>comboboxItems</code> is a <a href="#floating-content---popuppanel"><code>PopUpPanel</code></a> and therefore provides a set of
+configuration options to control the position or distance of the list box from the <code>comboboxButton</code>
+as a reference element:</p>
+<pre class="language-kotlin"><code class="language-kotlin">comboboxItems <span class="token punctuation">{</span><br>    placement <span class="token operator">=</span> PlacementValues<span class="token punctuation">.</span>top<br>    <span class="token function">addMiddleware</span><span class="token punctuation">(</span><span class="token function">offset</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">}</span></code></pre>
+<div class="info">
+<p>In practice, the <a href="#comboboxinput"><code>comboboxInput</code></a> element might be wrapped in additional elements that are considered
+to be a part
+of it. Since by default the dropdown is positioned relative to the <a href="#comboboxinput"><code>comboboxInput</code></a> element, the
+dropdown may
+appear out of place. In those cases, the outermost wrapping element can be created via the
+<a href="#comboboxpanelreference"><code>comboboxPanelReference</code></a> brick to fix the positioning.</p>
+<p>In order to see an example of the <code>comboboxPanelReference</code> in action, have a look at the source code of the combobox
+demo
+within the <code>headless-demo</code> module. You can observe the consequences of removing and re-adding it there.</p>
+</div>
+<p>The anchor element of the dropdown is determined based on a number of conditions:</p>
+<ol>
+<li>If a <a href="#comboboxinput"><code>comboboxInput</code></a> is present, the panel is placed relative to it.</li>
+<li>If a <a href="#comboboxpanelreference"><code>comboboxPanelReference</code></a> is present, it is <em>used as the reference instead</em>.</li>
+<li>Otherwise, the dropdown references a minimal fallback input element.</li>
+</ol>
+<h2 id="validation" tabindex="-1">Validation</h2>
+<p>The data-binding allows the Combobox component to process the validation messages and provide its own building
+block <code>lcomboboxValidationMessages</code> that can beused to render the messages if present. The messages are exposed within
+its scope as a <code>msgs</code> Flow.</p>
+<pre class="language-kotlin"><code class="language-kotlin">combobox<span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span><br>    <span class="token function">value</span><span class="token punctuation">(</span>country<span class="token punctuation">)</span><br><br>    <span class="token function">comboboxValidationMessages</span><span class="token punctuation">(</span>tag <span class="token operator">=</span> RenderContext<span class="token operator">::</span>ul<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        msgs<span class="token punctuation">.</span><span class="token function">renderEach</span> <span class="token punctuation">{</span><br>            li <span class="token punctuation">{</span> <span class="token operator">+</span>it<span class="token punctuation">.</span>message <span class="token punctuation">}</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h2 id="focus-management" tabindex="-1">Focus Management</h2>
+<p>When the <code>comboboxInput</code> element is focused, the selection list (dropdown) is visible and can be used to select
+items. The input remains focused until a selection is made, even if the user navigates to an item via keyboard.<br>
+When an item is <code>active</code> and <kbd>Enter</kbd> is pressed, it will be selected and the dropdown is closed.<br>
+When the input elements loses focus, the dropdown will be closed as well and the displayed value is reset to match the
+last selection.</p>
+<h2 id="mouse-interaction" tabindex="-1">Mouse Interaction</h2>
+<p>A click on the <code>comboboxInput</code> focuses the element and opens the selection dropdown as described above. A click outside
+the opened selection list closes it. If the mouse is moved over an item in the open list, it is marked as active.
+Clicking on an item when the list is open selects it and closes the list.</p>
+<h2 id="keyboard-interaction" tabindex="-1">Keyboard Interaction</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><kbd>⬆</kbd> <kbd>⬇</kbd> when the combobox is open</td>
+<td style="text-align:left">Activates previous / next item</td>
+</tr>
+<tr>
+<td style="text-align:left"><kbd>Home</kbd> <kbd>End</kbd> when the combobox is open</td>
+<td style="text-align:left">Activates first / last item</td>
+</tr>
+<tr>
+<td style="text-align:left"><kbd>Esc</kbd> when the combobox is open</td>
+<td style="text-align:left">Closes the combobox</td>
+</tr>
+<tr>
+<td style="text-align:left"><kbd>Enter</kbd> <kbd>Space</kbd> when the combobox is open</td>
+<td style="text-align:left">Selects the active item</td>
+</tr>
+</tbody>
+</table>
+<h2 id="performance" tabindex="-1">Performance</h2>
+<p>The combo box component uses a specific internal pipeline to filter and display the selection items:</p>
+<ol>
+<li>Retrieve the user's input</li>
+<li><em>Debounce</em></li>
+<li>Find matches</li>
+<li><em>Debounce</em></li>
+<li>Render matches</li>
+</ol>
+<p>The debouncing is in place because the above workflow consists of two relatively expensive operations: <em>filtering</em> and
+<em>rendering</em>.</p>
+<p>While typing, the query may be manipulated multiple times per second. In order for the filter function to run as few
+times as possible, the flow of inputs is debounced.</p>
+<p>The same goes for the actual rendering: It is by far the most expensive operation in the workflow so it is debounced to
+not be executed multiple times in a row.</p>
+<p>Adding to the above, the number of displayed items in the dropdown also has an impact on the rendering performance.</p>
+<div class="info">
+<p>Most of the time, the default behavior should be working fine. There might be cases, however, where the implementing
+component has a consistently high/low amount of items or other niche scenarios. In those cases, the debouncing and
+other performance-related parameters can be configured via the DSL.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>maximumDisplayedItems</code></td>
+<td style="text-align:left"><code>Int</code></td>
+<td style="text-align:left"><code>20</code></td>
+<td style="text-align:left">Maximum number of items to display</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>inputDebounceMillis</code></td>
+<td style="text-align:left"><code>Long</code></td>
+<td style="text-align:left"><code>50L</code></td>
+<td style="text-align:left">Time to wait and debounce before the filter function is invoked</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>renderDebounceMillis</code></td>
+<td style="text-align:left"><code>Long</code></td>
+<td style="text-align:left"><code>50L</code></td>
+<td style="text-align:left">Time to wait and debounce before the filter results are rendered</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="#combobox"><code>combobox</code></a> for more api information.</p>
+<h2 id="api" tabindex="-1">API</h2>
+<h3 id="summary-%2F-sketch" tabindex="-1">Summary / Sketch</h3>
+<pre class="language-kotlin"><code class="language-kotlin">combobox<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span><br>    <span class="token keyword">val</span> items<span class="token operator">:</span> <span class="token function">ItemsHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token comment">// params: List&lt;T> / Flow&lt;List&lt;T>></span><br><br>    <span class="token keyword">var</span> itemFormat<span class="token operator">:</span> <span class="token punctuation">(</span>T<span class="token punctuation">)</span> <span class="token operator">-></span> String<br><br>    <span class="token keyword">val</span> value<span class="token operator">:</span> DatabindingProperty<span class="token operator">&lt;</span>T<span class="token operator">?</span><span class="token operator">></span><br><br>    <span class="token keyword">var</span> filterBy<span class="token operator">:</span> FilterFunctionProperty<br>    <span class="token comment">// params: (Sequence&lt;T>, String) -> Sequence&lt;T> / T.() -> String</span><br><br>    <span class="token keyword">val</span> openDropdown<span class="token operator">:</span> DropdownOpeningHook<br>    <span class="token comment">// methods: lazily() / eagerly()</span><br><br>    <span class="token keyword">val</span> selectionStrategy<span class="token operator">:</span> SelectionStrategyProperty<br>    <span class="token comment">// methods: autoSelectMatch() / manual()</span><br><br>    <span class="token keyword">var</span> maximumDisplayedItems<span class="token operator">:</span> Int <span class="token operator">=</span> <span class="token number">20</span><br>    <span class="token keyword">var</span> inputDebounceMillis<span class="token operator">:</span> Long <span class="token operator">=</span> <span class="token number">50L</span><br>    <span class="token keyword">var</span> renderDebounceMillis<span class="token operator">:</span> Long <span class="token operator">=</span> <span class="token number">50L</span><br><br>    <span class="token function">comboboxInput</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><br>    <span class="token function">comboboxPanelReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// this brick is often used with a nested</span><br>        <span class="token comment">// comboboxInput() { }</span><br>    <span class="token punctuation">}</span><br>    <span class="token function">comboboxLabel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><br>    <span class="token function">comboboxItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// inherited by `PopUpPanel`</span><br>        <span class="token keyword">var</span> placement<span class="token operator">:</span> Placement<br>        <span class="token keyword">var</span> strategy<span class="token operator">:</span> Strategy<br>        <span class="token keyword">var</span> flip<span class="token operator">:</span> Boolean<br>        <span class="token keyword">var</span> skidding<span class="token operator">:</span> Int<br>        <span class="token keyword">var</span> distance<span class="token operator">:</span> int<br><br>        <span class="token keyword">val</span> results<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>QueryResult<span class="token punctuation">.</span>ItemList<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">></span><br><br>        <span class="token comment">// results.render {</span><br>            <span class="token comment">// for each QueryResult.ItemList&lt;T>.Item&lt;T> {</span><br>                <span class="token function">comboboxItem</span><span class="token punctuation">(</span>Item<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><br>            <span class="token comment">// }</span><br>        <span class="token comment">// }</span><br>    <span class="token punctuation">}</span><br>    <span class="token function">comboboxValidationMessages</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">val</span> msgs<span class="token operator">:</span> Flow<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>ComponentValidationMessage<span class="token operator">></span><span class="token operator">></span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="combobox" tabindex="-1">combobox</h3>
+<p>Parameters: <code>classes</code>, <code>id</code>, <code>scope</code>, <code>tag</code>, <code>initialize</code></p>
+<p>Default-Tag: <code>div</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Scope property</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>items</code></td>
+<td style="text-align:left"><code>Combobox&lt;T&gt;.ItemsHook</code></td>
+<td style="text-align:left">Mandatory <code>List&lt;T&gt;</code> or <code>Flow&lt;List&lt;T&gt;&gt;</code> of items to offer (invoke)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>itemFormat</code></td>
+<td style="text-align:left"><code>(T) -&gt; String</code></td>
+<td style="text-align:left">Recommended formatting function used to display an item's String representation in the <code>comboboxInput</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>value</code></td>
+<td style="text-align:left"><code>DatabindingProperty&lt;T&gt;</code></td>
+<td style="text-align:left">Mandatory (tow-way) data binding for a selected item.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>filterBy</code></td>
+<td style="text-align:left"><code>FilterFunctionProperty</code></td>
+<td style="text-align:left">Recommended filter function to find matching items based on the query. Accepts either a String getter (<code>T.() -&gt; String</code>) or a fully custom filter function (<code>(Sequence&lt;T&gt;, String) -&gt; Sequence&lt;T&gt;</code>). <em>Mandatory for non-String items!</em></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>openDropdown</code></td>
+<td style="text-align:left"><code>DropdownOpeningHook</code></td>
+<td style="text-align:left">Optional strategy to configure when the combo box's dropdown should open (lazily or eagerly)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>selectionStrategy</code></td>
+<td style="text-align:left"><code>SelectionStrategyProperty</code></td>
+<td style="text-align:left">Optional strategy to configure whether exact matches are automatically selected. Invoke either <code>autoSelectMatch()</code> or <code>manual()</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>maximumDisplayedItems</code></td>
+<td style="text-align:left"><code>Int</code></td>
+<td style="text-align:left">Maxmimum number of items to display in the dropdown. Defaults to 20</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>inputDebounceMillis</code></td>
+<td style="text-align:left"><code>Long</code></td>
+<td style="text-align:left">Time to wait and debounce before the filter function is invoked. Defaults to 50 milliseconds.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>renderDebounceMillis</code></td>
+<td style="text-align:left"><code>Long</code></td>
+<td style="text-align:left">Time to wait and debounce before the filter results are rendered. Defaults to 50 milliseconds.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>openState</code></td>
+<td style="text-align:left"><code>DatabindingProperty&lt;Boolean&gt;</code></td>
+<td style="text-align:left">Optional (two-way) data binding for opening and closing.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>opened</code></td>
+<td style="text-align:left"><code>Flow&lt;Boolean&gt;</code></td>
+<td style="text-align:left">Data stream that provides Boolean values related to the &quot;open&quot; state. Quite useless within a list box, as it is always <code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>close</code></td>
+<td style="text-align:left"><code>SimpleHandler&lt;Unit&gt;</code></td>
+<td style="text-align:left">Handler to close the list box from inside. Should not be used, as the component handles this internally.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>open</code></td>
+<td style="text-align:left"><code>SimpleHandler&lt;Unit&gt;</code></td>
+<td style="text-align:left">handler to open; does not make sense to use within a list box!</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>toggle</code></td>
+<td style="text-align:left"><code>SimpleHandler&lt;Unit&gt;</code></td>
+<td style="text-align:left">handler for switching between open and closed; does not make sense to use within a list box.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comboboxpanelreference" tabindex="-1">comboboxPanelReference</h3>
+<p>Available in the scope of: <code>combobox</code></p>
+<p>Parameters: <code>classes</code>, <code>scope</code>, <code>tag</code>, <code>initialize</code></p>
+<p>Default-Tag: <code>div</code></p>
+<h3 id="comboboxinput" tabindex="-1">comboboxInput</h3>
+<p>Available in the scope of: <code>combobox</code>, <code>comboboxPanelReference</code></p>
+<p>Parameters: <code>classes</code>, <code>scope</code>, <code>initialize</code></p>
+<h3 id="comboboxlabel" tabindex="-1">comboboxLabel</h3>
+<p>Available in the scope of: <code>combobox</code>, <code>comboboxPanelReference</code></p>
+<p>Parameters: <code>classes</code>, <code>scope</code>, <code>tag</code>, <code>initialize</code></p>
+<p>Default-Tag: <code>label</code></p>
+<h3 id="comboboxvalidationmessages" tabindex="-1">comboboxValidationMessages</h3>
+<p>Available in the scope of: <code>combobox</code>, <code>comboboxPanelReference</code></p>
+<p>Parameters: <code>classes</code>, <code>scope</code>, <code>tag</code>, <code>initialize</code></p>
+<p>Default-Tag: <code>div</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Scope property</th>
+<th style="text-align:left">Typ</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>msgs</code></td>
+<td style="text-align:left"><code>Flow&lt;List&lt;ComponentValidationMessage&gt;&gt;</code></td>
+<td style="text-align:left">provides a data stream with a list of <code>ComponentValidationMessage</code>s</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comboboxitems" tabindex="-1">comboboxItems</h3>
+<p>Available in the scope of: <code>combobox</code></p>
+<p>Parameters: <code>classes</code>, <code>scope</code>, <code>tag</code>, <code>initialize</code></p>
+<p>Default-Tag: <code>div</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Scope property</th>
+<th style="text-align:left">Typ</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>results</code></td>
+<td style="text-align:left"><code>Flow&lt;QueryResult.ItemList&lt;T&gt;&gt;</code></td>
+<td style="text-align:left">Emits the current list of items to be displayed in the selection dropdown</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comboboxitem" tabindex="-1">comboboxItem</h3>
+<p>Available in the scope of: <code>comboboxItems</code></p>
+<p>Parameters: <code>item</code>, <code>classes</code>, <code>scope</code>, <code>tag</code>, <code>initialize</code></p>
+<p>Default-Tag: <code>button</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Scope property</th>
+<th style="text-align:left">Typ</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>selected</code></td>
+<td style="text-align:left"><code>Flow&lt;Boolean&gt;</code></td>
+<td style="text-align:left">This data stream provides the selection state of the managed option: <code>true</code> the option is selected, <code>false</code> if not.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>active</code></td>
+<td style="text-align:left"><code>Flow&lt;Boolean&gt;</code></td>
+<td style="text-align:left">This data stream indicates whether an item has focus: <code>true</code> the option has focus, <code>false</code> if not. Only one option can have focus at a time.</td>
+</tr>
+</tbody>
+</table>
+
+
+    </div>
+    <a class="group flex items-center px-1 py-1 pb-6 text-sm text-cyan-300 hover:underline" href="https://github.com/jwstegemann/fritz2/blob/master/www/src/pages/headless/combobox.md" target="_blank">
+      <span class="mr-1 flex-shrink-0 h-4 w-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+        </svg>
+      </span>
+      Edit this page on Github
+    </a>
+    <!-- End main area -->
+  </div>
+</div>
+
+<div
+    class="fixed lg:block top-0 right-0 pt-16 h-full hidden pr-4 sm:pr-6 lg:pr-8 lg:pr-2">
+    <div class="w-64 h-full overscroll-none overflow-y-auto pl-6 py-6">
+        <!-- Start right column area -->
+        <div class="h-full relative" style="min-height: 16rem;">
+
+            <h2 class="text-sm font-bold capitalize text-fg-highlight mb-4">On this Page</h2>
+
+            <nav class="toc" >
+        <ul><li><a href="#basic-example">Basic Example</a></li><li><a href="#styling-the-active-or-selected-item">Styling the active or selected Item</a></li><li><a href="#highlight-matching-items">Highlight matching items</a></li><li><a href="#truncated-result-list">Truncated result list</a></li><li><a href="#adding-a-label">Adding a Label</a></li><li><a href="#open-state">Open State</a><ul><li><a href="#automatic-opening-behavior">Automatic Opening Behavior</a></li></ul></li><li><a href="#auto-selecting-items">Auto-Selecting Items</a></li><li><a href="#transitions">Transitions</a></li><li><a href="#positioning">Positioning</a></li><li><a href="#validation">Validation</a></li><li><a href="#focus-management">Focus Management</a></li><li><a href="#mouse-interaction">Mouse Interaction</a></li><li><a href="#keyboard-interaction">Keyboard Interaction</a></li><li><a href="#performance">Performance</a></li><li><a href="#api">API</a><ul><li><a href="#summary-%2F-sketch">Summary / Sketch</a></li><li><a href="#combobox">combobox</a></li><li><a href="#comboboxpanelreference">comboboxPanelReference</a></li><li><a href="#comboboxinput">comboboxInput</a></li><li><a href="#comboboxlabel">comboboxLabel</a></li><li><a href="#comboboxvalidationmessages">comboboxValidationMessages</a></li><li><a href="#comboboxitems">comboboxItems</a></li><li><a href="#comboboxitem">comboboxItem</a></li></ul></li></ul>
+      </nav>
+
+        </div>
+        <!-- End right column area -->
+    </div>
+</div>
+
+
+  </div>
+</div>
+
+
+<script src="/assets/main.js"></script>
+</body>
+</html>
